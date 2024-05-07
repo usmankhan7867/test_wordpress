@@ -1,0 +1,2308 @@
+<!DOCTYPE html>
+<html class="html" lang="en-US">
+<head><script>if(navigator.userAgent.match(/MSIE|Internet Explorer/i)||navigator.userAgent.match(/Trident\/7\..*?rv:11/i)){var href=document.location.href;if(!href.match(/[?&]nowprocket/)){if(href.indexOf("?")==-1){if(href.indexOf("#")==-1){document.location.href=href+"?nowprocket=1"}else{document.location.href=href.replace("#","?nowprocket=1#")}}else{if(href.indexOf("#")==-1){document.location.href=href+"&nowprocket=1"}else{document.location.href=href.replace("#","&nowprocket=1#")}}}}</script><script>class RocketLazyLoadScripts{constructor(e){this.triggerEvents=e,this.eventOptions={passive:!0},this.userEventListener=this.triggerListener.bind(this),this.delayedScripts={normal:[],async:[],defer:[]},this.allJQueries=[]}_addUserInteractionListener(e){this.triggerEvents.forEach((t=>window.addEventListener(t,e.userEventListener,e.eventOptions)))}_removeUserInteractionListener(e){this.triggerEvents.forEach((t=>window.removeEventListener(t,e.userEventListener,e.eventOptions)))}triggerListener(){this._removeUserInteractionListener(this),"loading"===document.readyState?document.addEventListener("DOMContentLoaded",this._loadEverythingNow.bind(this)):this._loadEverythingNow()}async _loadEverythingNow(){this._delayEventListeners(),this._delayJQueryReady(this),this._handleDocumentWrite(),this._registerAllDelayedScripts(),this._preloadAllScripts(),await this._loadScriptsFromList(this.delayedScripts.normal),await this._loadScriptsFromList(this.delayedScripts.defer),await this._loadScriptsFromList(this.delayedScripts.async),await this._triggerDOMContentLoaded(),await this._triggerWindowLoad(),window.dispatchEvent(new Event("rocket-allScriptsLoaded"))}_registerAllDelayedScripts(){document.querySelectorAll("script[type=rocketlazyloadscript]").forEach((e=>{e.hasAttribute("src")?e.hasAttribute("async")&&!1!==e.async?this.delayedScripts.async.push(e):e.hasAttribute("defer")&&!1!==e.defer||"module"===e.getAttribute("data-rocket-type")?this.delayedScripts.defer.push(e):this.delayedScripts.normal.push(e):this.delayedScripts.normal.push(e)}))}async _transformScript(e){return await this._requestAnimFrame(),new Promise((t=>{const n=document.createElement("script");let i;[...e.attributes].forEach((e=>{let t=e.nodeName;"type"!==t&&("data-rocket-type"===t&&(t="type",i=e.nodeValue),n.setAttribute(t,e.nodeValue))})),e.hasAttribute("src")&&this._isValidScriptType(i)?(n.addEventListener("load",t),n.addEventListener("error",t)):(n.text=e.text,t()),e.parentNode.replaceChild(n,e)}))}_isValidScriptType(e){return!e||""===e||"string"==typeof e&&["text/javascript","text/x-javascript","text/ecmascript","text/jscript","application/javascript","application/x-javascript","application/ecmascript","application/jscript","module"].includes(e.toLowerCase())}async _loadScriptsFromList(e){const t=e.shift();return t?(await this._transformScript(t),this._loadScriptsFromList(e)):Promise.resolve()}_preloadAllScripts(){var e=document.createDocumentFragment();[...this.delayedScripts.normal,...this.delayedScripts.defer,...this.delayedScripts.async].forEach((t=>{const n=t.getAttribute("src");if(n){const t=document.createElement("link");t.href=n,t.rel="preload",t.as="script",e.appendChild(t)}})),document.head.appendChild(e)}_delayEventListeners(){let e={};function t(t,n){!function(t){function n(n){return e[t].eventsToRewrite.indexOf(n)>=0?"rocket-"+n:n}e[t]||(e[t]={originalFunctions:{add:t.addEventListener,remove:t.removeEventListener},eventsToRewrite:[]},t.addEventListener=function(){arguments[0]=n(arguments[0]),e[t].originalFunctions.add.apply(t,arguments)},t.removeEventListener=function(){arguments[0]=n(arguments[0]),e[t].originalFunctions.remove.apply(t,arguments)})}(t),e[t].eventsToRewrite.push(n)}function n(e,t){const n=e[t];Object.defineProperty(e,t,{get:n||function(){},set:n=>{e["rocket"+t]=n}})}t(document,"DOMContentLoaded"),t(window,"DOMContentLoaded"),t(window,"load"),t(window,"pageshow"),t(document,"readystatechange"),n(document,"onreadystatechange"),n(window,"onload"),n(window,"onpageshow")}_delayJQueryReady(e){let t=window.jQuery;Object.defineProperty(window,"jQuery",{get:()=>t,set(n){if(n&&n.fn&&!e.allJQueries.includes(n)){n.fn.ready=n.fn.init.prototype.ready=function(t){e.domReadyFired?t.bind(document)(n):document.addEventListener("rocket-DOMContentLoaded",(()=>t.bind(document)(n)))};const t=n.fn.on;n.fn.on=n.fn.init.prototype.on=function(){if(this[0]===window){function e(e){return e.split(" ").map((e=>"load"===e||0===e.indexOf("load.")?"rocket-jquery-load":e)).join(" ")}"string"==typeof arguments[0]||arguments[0]instanceof String?arguments[0]=e(arguments[0]):"object"==typeof arguments[0]&&Object.keys(arguments[0]).forEach((t=>{delete Object.assign(arguments[0],{[e(t)]:arguments[0][t]})[t]}))}return t.apply(this,arguments),this},e.allJQueries.push(n)}t=n}})}async _triggerDOMContentLoaded(){this.domReadyFired=!0,await this._requestAnimFrame(),document.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._requestAnimFrame(),window.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._requestAnimFrame(),document.dispatchEvent(new Event("rocket-readystatechange")),await this._requestAnimFrame(),document.rocketonreadystatechange&&document.rocketonreadystatechange()}async _triggerWindowLoad(){await this._requestAnimFrame(),window.dispatchEvent(new Event("rocket-load")),await this._requestAnimFrame(),window.rocketonload&&window.rocketonload(),await this._requestAnimFrame(),this.allJQueries.forEach((e=>e(window).trigger("rocket-jquery-load"))),window.dispatchEvent(new Event("rocket-pageshow")),await this._requestAnimFrame(),window.rocketonpageshow&&window.rocketonpageshow()}_handleDocumentWrite(){const e=new Map;document.write=document.writeln=function(t){const n=document.currentScript,i=document.createRange(),r=n.parentElement;let a=e.get(n);void 0===a&&(a=n.nextSibling,e.set(n,a));const o=document.createDocumentFragment();i.setStart(o,0),o.appendChild(i.createContextualFragment(t)),r.insertBefore(o,a)}}async _requestAnimFrame(){return new Promise((e=>requestAnimationFrame(e)))}static run(){const e=new RocketLazyLoadScripts(["keydown","mousemove","touchmove","touchstart","touchend","touchcancel","touchforcechange","wheel"]);e._addUserInteractionListener(e)}}RocketLazyLoadScripts.run();
+</script>
+	<meta charset="UTF-8">
+	<link rel="profile" href="https://gmpg.org/xfn/11">
+	 
+    <noscript></noscript>
+	<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+
+                                    
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>Get Instant Homework Help with our AI Homework Assistant!</title><link rel="stylesheet" href="https://aihomeworkhelper.co/wp-content/cache/min/1/e051d58ef7a16e31cf252346d950e136.css" media="all" data-minify="1" />
+	<meta name="description" content="Our AI Homework Assistant is an innovative tool designed to assist students in completing their homework assignments efficiently &amp; effectively." />
+	<link rel="canonical" href="https://aihomeworkhelper.co/" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Get Instant Homework Help with our AI Homework Assistant!" />
+	<meta property="og:description" content="Our AI Homework Assistant is an innovative tool designed to assist students in completing their homework assignments efficiently &amp; effectively." />
+	<meta property="og:url" content="https://aihomeworkhelper.co/" />
+	<meta property="og:site_name" content="AI HomeWork Helper" />
+	<meta property="article:modified_time" content="2024-04-27T14:20:46+00:00" />
+	<meta property="og:image" content="https://aihomeworkhelper.co/wp-content/uploads/2024/02/why-ai-homework-helper.webp" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://aihomeworkhelper.co/","url":"https://aihomeworkhelper.co/","name":"Get Instant Homework Help with our AI Homework Assistant!","isPartOf":{"@id":"https://aihomeworkhelper.co/#website"},"about":{"@id":"https://aihomeworkhelper.co/#organization"},"primaryImageOfPage":{"@id":"https://aihomeworkhelper.co/#primaryimage"},"image":{"@id":"https://aihomeworkhelper.co/#primaryimage"},"thumbnailUrl":"https://aihomeworkhelper.co/wp-content/uploads/2024/02/why-ai-homework-helper.webp","datePublished":"2024-02-17T08:14:48+00:00","dateModified":"2024-04-27T14:20:46+00:00","description":"Our AI Homework Assistant is an innovative tool designed to assist students in completing their homework assignments efficiently & effectively.","breadcrumb":{"@id":"https://aihomeworkhelper.co/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https://aihomeworkhelper.co/"]}]},{"@type":"ImageObject","inLanguage":"en-US","@id":"https://aihomeworkhelper.co/#primaryimage","url":"https://aihomeworkhelper.co/wp-content/uploads/2024/02/why-ai-homework-helper.webp","contentUrl":"https://aihomeworkhelper.co/wp-content/uploads/2024/02/why-ai-homework-helper.webp","width":499,"height":499,"caption":"This image is About Why Conisder AI Homework Helper"},{"@type":"BreadcrumbList","@id":"https://aihomeworkhelper.co/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home"}]},{"@type":"WebSite","@id":"https://aihomeworkhelper.co/#website","url":"https://aihomeworkhelper.co/","name":"AI HomeWork Helper","description":"","publisher":{"@id":"https://aihomeworkhelper.co/#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://aihomeworkhelper.co/?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"en-US"},{"@type":"Organization","@id":"https://aihomeworkhelper.co/#organization","name":"AI HomeWork Helper","url":"https://aihomeworkhelper.co/","logo":{"@type":"ImageObject","inLanguage":"en-US","@id":"https://aihomeworkhelper.co/#/schema/logo/image/","url":"https://aihomeworkhelper.co/wp-content/uploads/2024/03/cropped-cropped-ai_homework_helper_co_logo.webp","contentUrl":"https://aihomeworkhelper.co/wp-content/uploads/2024/03/cropped-cropped-ai_homework_helper_co_logo.webp","width":300,"height":82,"caption":"AI HomeWork Helper"},"image":{"@id":"https://aihomeworkhelper.co/#/schema/logo/image/"}}]}</script>
+	
+
+
+<link rel='dns-prefetch' href='//www.googletagmanager.com' />
+
+<link rel="alternate" type="application/rss+xml" title="AI HomeWork Helper &raquo; Feed" href="https://aihomeworkhelper.co/feed/" />
+<link rel="alternate" type="application/rss+xml" title="AI HomeWork Helper &raquo; Comments Feed" href="https://aihomeworkhelper.co/comments/feed/" />
+
+<style id='wp-emoji-styles-inline-css'>
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+</style>
+<style id='classic-theme-styles-inline-css'>
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+</style>
+<style id='global-styles-inline-css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}body .is-layout-flex{flex-wrap: wrap;align-items: center;}body .is-layout-flex > *{margin: 0;}body .is-layout-grid{display: grid;}body .is-layout-grid > *{margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+.wp-block-navigation a:where(:not(.wp-element-button)){color: inherit;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+.wp-block-pullquote{font-size: 1.5em;line-height: 1.6;}
+</style>
+<style   data-wpacu-inline-css-file='1'>
+/**
+ * All of the CSS for your public-facing functionality should be
+ * included in this file.
+ */
+</style>
+
+<style  media='print' data-wpacu-inline-css-file='1'>
+@media print {
+	.pmpro_a-print {display: none; position: absolute; left: -9999px; }
+}
+
+</style>
+<style   data-wpacu-inline-css-file='1'>
+.footer-width-fixer {
+    width: 100%;
+}
+
+/* Container fix for genesis themes */
+
+.ehf-template-genesis.ehf-header .site-header .wrap,
+.ehf-template-genesis.ehf-footer .site-footer .wrap,
+.ehf-template-generatepress.ehf-header .site-header .inside-header {
+    width: 100%;
+    padding: 0;
+    max-width: 100%;
+}
+
+/* Container fix for generatepress theme */
+
+.ehf-template-generatepress.ehf-header .site-header,
+.ehf-template-generatepress.ehf-footer .site-footer {
+    width: 100%;
+    padding: 0;
+    max-width: 100%;
+    background-color: transparent !important; /* override generatepress default white color for header */
+}
+
+.bhf-hidden {
+    display: none
+}
+
+/* Fix: Header hidden below the page content */
+.ehf-header #masthead {
+	z-index: 99;
+    position: relative;
+}
+
+</style>
+
+
+<style   data-wpacu-inline-css-file='1'>
+.elementor-kit-6{--e-global-color-primary:#FFFFFF;--e-global-color-secondary:#F6C916;--e-global-color-text:#000000;--e-global-color-accent:#67686A;--e-global-typography-primary-font-family:"Roboto";--e-global-typography-primary-font-weight:600;--e-global-typography-secondary-font-family:"Roboto Slab";--e-global-typography-secondary-font-weight:400;--e-global-typography-text-font-family:"Roboto";--e-global-typography-text-font-weight:400;--e-global-typography-accent-font-family:"Roboto";--e-global-typography-accent-font-weight:500;}.elementor-section.elementor-section-boxed > .elementor-container{max-width:1140px;}.e-con{--container-max-width:1140px;}.elementor-widget:not(:last-child){margin-block-end:20px;}.elementor-element{--widgets-spacing:20px 20px;}{}h1.entry-title{display:var(--page-title-display);}@media(max-width:1024px){.elementor-section.elementor-section-boxed > .elementor-container{max-width:1024px;}.e-con{--container-max-width:1024px;}}@media(max-width:767px){.elementor-section.elementor-section-boxed > .elementor-container{max-width:767px;}.e-con{--container-max-width:767px;}}
+</style>
+
+
+
+
+
+
+<style   data-wpacu-inline-css-file='1'>
+/*!
+ * Project   : OceanWP WordPress Theme
+ * Purpose   : Hamburgers Icons
+ * Author    : https://jonsuh.com/hamburgers/
+ */.hamburger{display:inline-block;cursor:pointer;transition-property:opacity,filter;transition-duration:.15s;transition-timing-function:linear;font:inherit;color:inherit;text-transform:none;background-color:transparent;border:0;margin:0;overflow:visible}a:hover .hamburger{opacity:.7}.hamburger-box{width:20px;height:16px;display:inline-block;position:relative}.hamburger-inner{display:block;top:50%;margin-top:2px}.hamburger-inner,.hamburger-inner::after,.hamburger-inner::before{width:20px;height:2px;background-color:#000;border-radius:3px;position:absolute;transition-property:transform;transition-duration:.15s;transition-timing-function:ease}.hamburger-inner::after,.hamburger-inner::before{content:"";display:block}.hamburger-inner::before{top:-7px}.hamburger-inner::after{bottom:-7px}
+</style>
+<style   data-wpacu-inline-css-file='1'>
+/*
+ * 3DX
+*/
+.hamburger--3dx .hamburger-box {
+	-webkit-perspective: 40px;
+	        perspective: 40px;
+}
+
+.hamburger--3dx .hamburger-inner {
+	-webkit-transition: -webkit-transform 0.15s cubic-bezier(0.645, 0.045, 0.355, 1), background-color 0s 0.1s cubic-bezier(0.645, 0.045, 0.355, 1);
+	      transition: transform 0.15s cubic-bezier(0.645, 0.045, 0.355, 1), background-color 0s 0.1s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.hamburger--3dx .hamburger-inner::before, .hamburger--3dx .hamburger-inner::after {
+	-webkit-transition: -webkit-transform 0s 0.1s cubic-bezier(0.645, 0.045, 0.355, 1);
+	      transition: transform 0s 0.1s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.hamburger--3dx.is-active .hamburger-inner {
+	background-color: transparent;
+	-webkit-transform: rotateY(180deg);
+	      transform: rotateY(180deg);
+}
+
+.hamburger--3dx.is-active .hamburger-inner::before {
+	-webkit-transform: translate3d(0, 7px, 0) rotate(45deg);
+	      transform: translate3d(0, 7px, 0) rotate(45deg);
+}
+
+.hamburger--3dx.is-active .hamburger-inner::after {
+	-webkit-transform: translate3d(0, -7px, 0) rotate(-45deg);
+	      transform: translate3d(0, -7px, 0) rotate(-45deg);
+}
+</style>
+
+
+
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript">
+            window._nslDOMReady = function (callback) {
+                if ( document.readyState === "complete" || document.readyState === "interactive" ) {
+                    callback();
+                } else {
+                    document.addEventListener( "DOMContentLoaded", callback );
+                }
+            };
+            </script><script type="rocketlazyloadscript"   src="https://aihomeworkhelper.co/wp-includes/js/jquery/jquery.min.js?ver=3.7.1" id="jquery-core-js" defer></script>
+<script type="rocketlazyloadscript"   src="https://aihomeworkhelper.co/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" id="jquery-migrate-js" defer></script>
+<script type="rocketlazyloadscript" data-minify="1"   src="https://aihomeworkhelper.co/wp-content/cache/min/1/wp-content/plugins/gpt3-ai-content-generator/public/js/wp-ai-content-generator-public.js?ver=1714471897" id="wp-ai-content-generator-js" defer></script>
+
+
+
+
+<script type="rocketlazyloadscript"   src="https://www.googletagmanager.com/gtag/js?id=GT-MR29D3NF" id="google_gtagjs-js" async></script>
+<script type="rocketlazyloadscript"   id="google_gtagjs-js-after">
+window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}
+gtag("set","linker",{"domains":["aihomeworkhelper.co"]});
+gtag("js", new Date());
+gtag("set", "developer_id.dZTNiMT", true);
+gtag("config", "GT-MR29D3NF");
+</script>
+
+
+<link rel="https://api.w.org/" href="https://aihomeworkhelper.co/wp-json/" /><link rel="alternate" type="application/json" href="https://aihomeworkhelper.co/wp-json/wp/v2/pages/204" /><link rel='shortlink' href='https://aihomeworkhelper.co/' />
+<link rel="alternate" type="application/json+oembed" href="https://aihomeworkhelper.co/wp-json/oembed/1.0/embed?url=https%3A%2F%2Faihomeworkhelper.co%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://aihomeworkhelper.co/wp-json/oembed/1.0/embed?url=https%3A%2F%2Faihomeworkhelper.co%2F&#038;format=xml" />
+<meta name="generator" content="Site Kit by Google 1.125.0" />
+ <script type="rocketlazyloadscript" async src="https://www.googletagmanager.com/gtag/js?id=AW-10991826776"></script> <script type="rocketlazyloadscript"> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-10991826776'); </script>
+
+		<script type="rocketlazyloadscript" data-rocket-type="text/javascript">
+				(function(c,l,a,r,i,t,y){
+					c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;
+					t.src="https://www.clarity.ms/tag/"+i+"?ref=wordpress";y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+				})(window, document, "clarity", "script", "m22x466p3i");
+		</script>
+		<meta name="generator" content="Elementor 3.21.3; features: e_optimized_assets_loading, e_optimized_css_loading, e_font_icon_svg, additional_custom_breakpoints; settings: css_print_method-external, google_font-enabled, font_display-swap">
+
+
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript'>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js?v=next');
+</script>
+
+
+      <script type="rocketlazyloadscript" data-rocket-type='text/javascript'>
+        var url = window.location.origin + '?ob=open-bridge';
+        fbq('set', 'openbridge', '7234422609998957', url);
+      </script>
+    <script type="rocketlazyloadscript" data-rocket-type='text/javascript'>fbq('init', '7234422609998957', {}, {
+    "agent": "wordpress-6.5.2-3.0.16"
+})</script><script type="rocketlazyloadscript" data-rocket-type='text/javascript'>
+    fbq('track', 'PageView', []);
+  </script>
+
+<noscript>
+<img height="1" width="1" style="display:none" alt="fbpx"
+src="https://www.facebook.com/tr?id=7234422609998957&ev=PageView&noscript=1" />
+</noscript>
+
+<link rel="icon" href="https://aihomeworkhelper.co/wp-content/uploads/2024/03/cropped-favicon-removebg-preview-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://aihomeworkhelper.co/wp-content/uploads/2024/03/cropped-favicon-removebg-preview-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://aihomeworkhelper.co/wp-content/uploads/2024/03/cropped-favicon-removebg-preview-180x180.png" />
+<meta name="msapplication-TileImage" content="https://aihomeworkhelper.co/wp-content/uploads/2024/03/cropped-favicon-removebg-preview-270x270.png" />
+<style type="text/css">div.nsl-container[data-align="left"] {
+    text-align: left;
+}
+
+div.nsl-container[data-align="center"] {
+    text-align: center;
+}
+
+div.nsl-container[data-align="right"] {
+    text-align: right;
+}
+
+
+div.nsl-container div.nsl-container-buttons a[data-plugin="nsl"] {
+    text-decoration: none;
+    box-shadow: none;
+    border: 0;
+}
+
+div.nsl-container .nsl-container-buttons {
+    display: flex;
+    padding: 5px 0;
+}
+
+div.nsl-container.nsl-container-block .nsl-container-buttons {
+    display: inline-grid;
+    grid-template-columns: minmax(145px, auto);
+}
+
+div.nsl-container-block-fullwidth .nsl-container-buttons {
+    flex-flow: column;
+    align-items: center;
+}
+
+div.nsl-container-block-fullwidth .nsl-container-buttons a,
+div.nsl-container-block .nsl-container-buttons a {
+    flex: 1 1 auto;
+    display: block;
+    margin: 5px 0;
+    width: 100%;
+}
+
+div.nsl-container-inline {
+    margin: -5px;
+    text-align: left;
+}
+
+div.nsl-container-inline .nsl-container-buttons {
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+div.nsl-container-inline .nsl-container-buttons a {
+    margin: 5px;
+    display: inline-block;
+}
+
+div.nsl-container-grid .nsl-container-buttons {
+    flex-flow: row;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+div.nsl-container-grid .nsl-container-buttons a {
+    flex: 1 1 auto;
+    display: block;
+    margin: 5px;
+    max-width: 280px;
+    width: 100%;
+}
+
+@media only screen and (min-width: 650px) {
+    div.nsl-container-grid .nsl-container-buttons a {
+        width: auto;
+    }
+}
+
+div.nsl-container .nsl-button {
+    cursor: pointer;
+    vertical-align: top;
+    border-radius: 4px;
+}
+
+div.nsl-container .nsl-button-default {
+    color: #fff;
+    display: flex;
+}
+
+div.nsl-container .nsl-button-icon {
+    display: inline-block;
+}
+
+div.nsl-container .nsl-button-svg-container {
+    flex: 0 0 auto;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+}
+
+div.nsl-container svg {
+    height: 24px;
+    width: 24px;
+    vertical-align: top;
+}
+
+div.nsl-container .nsl-button-default div.nsl-button-label-container {
+    margin: 0 24px 0 12px;
+    padding: 10px 0;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: .25px;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: clip;
+    white-space: nowrap;
+    flex: 1 1 auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-transform: none;
+    display: inline-block;
+}
+
+div.nsl-container .nsl-button-google[data-skin="dark"] .nsl-button-svg-container {
+    margin: 1px;
+    padding: 7px;
+    border-radius: 3px;
+    background: #fff;
+}
+
+div.nsl-container .nsl-button-google[data-skin="light"] {
+    border-radius: 1px;
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .25);
+    color: RGBA(0, 0, 0, 0.54);
+}
+
+div.nsl-container .nsl-button-apple .nsl-button-svg-container {
+    padding: 0 6px;
+}
+
+div.nsl-container .nsl-button-apple .nsl-button-svg-container svg {
+    height: 40px;
+    width: auto;
+}
+
+div.nsl-container .nsl-button-apple[data-skin="light"] {
+    color: #000;
+    box-shadow: 0 0 0 1px #000;
+}
+
+div.nsl-container .nsl-button-facebook[data-skin="white"] {
+    color: #000;
+    box-shadow: inset 0 0 0 1px #000;
+}
+
+div.nsl-container .nsl-button-facebook[data-skin="light"] {
+    color: #1877F2;
+    box-shadow: inset 0 0 0 1px #1877F2;
+}
+
+div.nsl-container .nsl-button-spotify[data-skin="white"] {
+    color: #191414;
+    box-shadow: inset 0 0 0 1px #191414;
+}
+
+div.nsl-container .nsl-button-apple div.nsl-button-label-container {
+    font-size: 17px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+div.nsl-container .nsl-button-slack div.nsl-button-label-container {
+    font-size: 17px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+div.nsl-container .nsl-button-slack[data-skin="light"] {
+    color: #000000;
+    box-shadow: inset 0 0 0 1px #DDDDDD;
+}
+
+div.nsl-container .nsl-button-tiktok[data-skin="light"] {
+    color: #161823;
+    box-shadow: 0 0 0 1px rgba(22, 24, 35, 0.12);
+}
+
+
+div.nsl-container .nsl-button-kakao {
+    color: rgba(0, 0, 0, 0.85);
+}
+
+.nsl-clear {
+    clear: both;
+}
+
+.nsl-container {
+    clear: both;
+}
+
+.nsl-disabled-provider .nsl-button {
+    filter: grayscale(1);
+    opacity: 0.8;
+}
+
+/*Button align start*/
+
+div.nsl-container-inline[data-align="left"] .nsl-container-buttons {
+    justify-content: flex-start;
+}
+
+div.nsl-container-inline[data-align="center"] .nsl-container-buttons {
+    justify-content: center;
+}
+
+div.nsl-container-inline[data-align="right"] .nsl-container-buttons {
+    justify-content: flex-end;
+}
+
+
+div.nsl-container-grid[data-align="left"] .nsl-container-buttons {
+    justify-content: flex-start;
+}
+
+div.nsl-container-grid[data-align="center"] .nsl-container-buttons {
+    justify-content: center;
+}
+
+div.nsl-container-grid[data-align="right"] .nsl-container-buttons {
+    justify-content: flex-end;
+}
+
+div.nsl-container-grid[data-align="space-around"] .nsl-container-buttons {
+    justify-content: space-around;
+}
+
+div.nsl-container-grid[data-align="space-between"] .nsl-container-buttons {
+    justify-content: space-between;
+}
+
+/* Button align end*/
+
+/* Redirect */
+
+#nsl-redirect-overlay {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 1000000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(1px);
+    background-color: RGBA(0, 0, 0, .32);;
+}
+
+#nsl-redirect-overlay-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+#nsl-redirect-overlay-spinner {
+    content: '';
+    display: block;
+    margin: 20px;
+    border: 9px solid RGBA(0, 0, 0, .6);
+    border-top: 9px solid #fff;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1px RGBA(0, 0, 0, .6), 0 0 0 1px RGBA(0, 0, 0, .6);
+    width: 40px;
+    height: 40px;
+    animation: nsl-loader-spin 2s linear infinite;
+}
+
+@keyframes nsl-loader-spin {
+    0% {
+        transform: rotate(0deg)
+    }
+    to {
+        transform: rotate(360deg)
+    }
+}
+
+#nsl-redirect-overlay-title {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    color: #3C434A;
+}
+
+#nsl-redirect-overlay-text {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    text-align: center;
+    font-size: 14px;
+    color: #3C434A;
+}
+
+/* Redirect END*/</style><style type="text/css">/* Notice fallback */
+#nsl-notices-fallback {
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    z-index: 10000;
+}
+
+.admin-bar #nsl-notices-fallback {
+    top: 42px;
+}
+
+#nsl-notices-fallback > div {
+    position: relative;
+    background: #fff;
+    border-left: 4px solid #fff;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .1);
+    margin: 5px 15px 2px;
+    padding: 1px 20px;
+}
+
+#nsl-notices-fallback > div.error {
+    display: block;
+    border-left-color: #dc3232;
+}
+
+#nsl-notices-fallback > div.updated {
+    display: block;
+    border-left-color: #46b450;
+}
+
+#nsl-notices-fallback p {
+    margin: .5em 0;
+    padding: 2px;
+}
+
+#nsl-notices-fallback > div:after {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    content: '\00d7';
+    display: block;
+    height: 16px;
+    width: 16px;
+    line-height: 16px;
+    text-align: center;
+    font-size: 20px;
+    cursor: pointer;
+}</style>		<style id="wp-custom-css">
+			h1,h2,h3,h4,h5,h6,span,p,li,a{font-family:calibri !important}.elementor-59 .elementor-element.elementor-element-bb18483 >.elementor-widget-container{height:40rem}#nsl-custom-login-form-1 .nsl-container-embedded-login-layout-below{clear:both;padding:20px 0 0}div.nsl-container.nsl-container-block .nsl-container-buttons{display:inline-grid;grid-template-columns:minmax(145px,auto)}div.nsl-container .nsl-container-buttons{display:flex;padding:5px 0}div.nsl-container div.nsl-container-buttons a[data-plugin="nsl"]{text-decoration:none;box-shadow:none;border:0}form.pmpro_form .pmpro_checkout-fields div,#loginform p{margin:0 0 1em 0}form.pmpro_form label,#loginform label{font-weight:700;display:block;margin:0;text-align:left}form.pmpro_form input[type=text],form.pmpro_form input[type=password],form.pmpro_form input[type=email],form.pmpro_form input[type=number],form.pmpro_form textarea,form.pmpro_form select,#loginform input[type=text],#loginform input[type=password]{display:inline-block;max-width:90%;min-height:1.5rem}form input[type=text]{display:inline-block;min-height:40px;width:100%;font-size:14px;line-height:1.8;padding:6px 12px;vertical-align:middle;background-color:rgba(0,0,0,0);color:#333;border:1px solid #ddd;-webkit-border-radius:3px;-moz-border-radius:3px;-ms-border-radius:3px;border-radius:3px;-webkit-transition:all .3s ease;-moz-transition:all .3s ease;-ms-transition:all .3s ease;-o-transition:all .3s ease;transition:all .3s ease}form input[type=text],form input[type=password],form input[type=email],form input[type=url],form input[type=date],form input[type=month],form input[type=time],form input[type=datetime],form input[type=datetime-local],form input[type=week],form input[type=number],form input[type=search],form input[type=tel],form input[type=color],form select,form textarea{color:#fff}html,body,applet,object,iframe,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{color:white}form input[type=text],form input[type=password],form input[type=email],form input[type=url],form input[type=date],form input[type=month],form input[type=time],form input[type=datetime],form input[type=datetime-local],form input[type=week],form input[type=number],form input[type=search],form input[type=tel],form input[type=color],form select,form textarea{color:#ffca40}.um a.um-button,.um a.um-button.um-disabled:active,.um a.um-button.um-disabled:focus,.um a.um-button.um-disabled:hover,.um input[type=submit].um-button,.um input[type=submit].um-button:focus{background:#FFCA40}		</style>
+		
+<style type="text/css">
+/* General CSS */a:hover,a.light:hover,.theme-heading .text::before,.theme-heading .text::after,#top-bar-content >a:hover,#top-bar-social li.oceanwp-email a:hover,#site-navigation-wrap .dropdown-menu >li >a:hover,#site-header.medium-header #medium-searchform button:hover,.oceanwp-mobile-menu-icon a:hover,.blog-entry.post .blog-entry-header .entry-title a:hover,.blog-entry.post .blog-entry-readmore a:hover,.blog-entry.thumbnail-entry .blog-entry-category a,ul.meta li a:hover,.dropcap,.single nav.post-navigation .nav-links .title,body .related-post-title a:hover,body #wp-calendar caption,body .contact-info-widget.default i,body .contact-info-widget.big-icons i,body .custom-links-widget .oceanwp-custom-links li a:hover,body .custom-links-widget .oceanwp-custom-links li a:hover:before,body .posts-thumbnails-widget li a:hover,body .social-widget li.oceanwp-email a:hover,.comment-author .comment-meta .comment-reply-link,#respond #cancel-comment-reply-link:hover,#footer-widgets .footer-box a:hover,#footer-bottom a:hover,#footer-bottom #footer-bottom-menu a:hover,.sidr a:hover,.sidr-class-dropdown-toggle:hover,.sidr-class-menu-item-has-children.active >a,.sidr-class-menu-item-has-children.active >a >.sidr-class-dropdown-toggle,input[type=checkbox]:checked:before{color:#ffca40}.single nav.post-navigation .nav-links .title .owp-icon use,.blog-entry.post .blog-entry-readmore a:hover .owp-icon use,body .contact-info-widget.default .owp-icon use,body .contact-info-widget.big-icons .owp-icon use{stroke:#ffca40}input[type="button"],input[type="reset"],input[type="submit"],button[type="submit"],.button,#site-navigation-wrap .dropdown-menu >li.btn >a >span,.thumbnail:hover i,.post-quote-content,.omw-modal .omw-close-modal,body .contact-info-widget.big-icons li:hover i,body div.wpforms-container-full .wpforms-form input[type=submit],body div.wpforms-container-full .wpforms-form button[type=submit],body div.wpforms-container-full .wpforms-form .wpforms-page-button{background-color:#ffca40}.thumbnail:hover .link-post-svg-icon{background-color:#ffca40}body .contact-info-widget.big-icons li:hover .owp-icon{background-color:#ffca40}.widget-title{border-color:#ffca40}blockquote{border-color:#ffca40}#searchform-dropdown{border-color:#ffca40}.dropdown-menu .sub-menu{border-color:#ffca40}.blog-entry.large-entry .blog-entry-readmore a:hover{border-color:#ffca40}.oceanwp-newsletter-form-wrap input[type="email"]:focus{border-color:#ffca40}.social-widget li.oceanwp-email a:hover{border-color:#ffca40}#respond #cancel-comment-reply-link:hover{border-color:#ffca40}body .contact-info-widget.big-icons li:hover i{border-color:#ffca40}#footer-widgets .oceanwp-newsletter-form-wrap input[type="email"]:focus{border-color:#ffca40}blockquote,.wp-block-quote{border-left-color:#ffca40}body .contact-info-widget.big-icons li:hover .owp-icon{border-color:#ffca40}input[type="button"]:hover,input[type="reset"]:hover,input[type="submit"]:hover,button[type="submit"]:hover,input[type="button"]:focus,input[type="reset"]:focus,input[type="submit"]:focus,button[type="submit"]:focus,.button:hover,.button:focus,#site-navigation-wrap .dropdown-menu >li.btn >a:hover >span,.post-quote-author,.omw-modal .omw-close-modal:hover,body div.wpforms-container-full .wpforms-form input[type=submit]:hover,body div.wpforms-container-full .wpforms-form button[type=submit]:hover,body div.wpforms-container-full .wpforms-form .wpforms-page-button:hover{background-color:#ffb600}body,.has-parallax-footer:not(.separate-layout) #main{background-color:#201e34}a{color:#ffffff}a .owp-icon use{stroke:#ffffff}a:hover{color:#ffca40}a:hover .owp-icon use{stroke:#ffca40}/* Header CSS */#site-logo #site-logo-inner,.oceanwp-social-menu .social-menu-inner,#site-header.full_screen-header .menu-bar-inner,.after-header-content .after-header-content-inner{height:78px}#site-navigation-wrap .dropdown-menu >li >a,.oceanwp-mobile-menu-icon a,.mobile-menu-close,.after-header-content-inner >a{line-height:78px}#site-header,.has-transparent-header .is-sticky #site-header,.has-vh-transparent .is-sticky #site-header.vertical-header,#searchform-header-replace{background-color:#201e34}#site-header-inner{padding:0 50px 0 0}#site-header.has-header-media .overlay-header-media{background-color:rgba(0,0,0,0.5)}#site-logo #site-logo-inner a img,#site-header.center-header #site-navigation-wrap .middle-site-logo a img{max-width:230px}@media (max-width:768px){#site-logo #site-logo-inner a img,#site-header.center-header #site-navigation-wrap .middle-site-logo a img{max-width:162px}}@media (max-width:480px){#site-logo #site-logo-inner a img,#site-header.center-header #site-navigation-wrap .middle-site-logo a img{max-width:162px}}#site-header #site-logo #site-logo-inner a img,#site-header.center-header #site-navigation-wrap .middle-site-logo a img{max-height:150px}@media (max-width:768px){#site-header #site-logo #site-logo-inner a img,#site-header.center-header #site-navigation-wrap .middle-site-logo a img{max-height:120px}}@media (max-width:480px){#site-header #site-logo #site-logo-inner a img,#site-header.center-header #site-navigation-wrap .middle-site-logo a img{max-height:120px}}#site-logo a.site-logo-text{color:#ee6c4d}.effect-one #site-navigation-wrap .dropdown-menu >li >a.menu-link >span:after,.effect-three #site-navigation-wrap .dropdown-menu >li >a.menu-link >span:after,.effect-five #site-navigation-wrap .dropdown-menu >li >a.menu-link >span:before,.effect-five #site-navigation-wrap .dropdown-menu >li >a.menu-link >span:after,.effect-nine #site-navigation-wrap .dropdown-menu >li >a.menu-link >span:before,.effect-nine #site-navigation-wrap .dropdown-menu >li >a.menu-link >span:after{background-color:#ffca40}.effect-four #site-navigation-wrap .dropdown-menu >li >a.menu-link >span:before,.effect-four #site-navigation-wrap .dropdown-menu >li >a.menu-link >span:after,.effect-seven #site-navigation-wrap .dropdown-menu >li >a.menu-link:hover >span:after,.effect-seven #site-navigation-wrap .dropdown-menu >li.sfHover >a.menu-link >span:after{color:#ffca40}.effect-seven #site-navigation-wrap .dropdown-menu >li >a.menu-link:hover >span:after,.effect-seven #site-navigation-wrap .dropdown-menu >li.sfHover >a.menu-link >span:after{text-shadow:10px 0 #ffca40,-10px 0 #ffca40}#site-navigation-wrap .dropdown-menu >li >a,.oceanwp-mobile-menu-icon a,#searchform-header-replace-close{color:#ffffff}#site-navigation-wrap .dropdown-menu >li >a .owp-icon use,.oceanwp-mobile-menu-icon a .owp-icon use,#searchform-header-replace-close .owp-icon use{stroke:#ffffff}#site-navigation-wrap .dropdown-menu >.current-menu-item >a,#site-navigation-wrap .dropdown-menu >.current-menu-ancestor >a,#site-navigation-wrap .dropdown-menu >.current-menu-item >a:hover,#site-navigation-wrap .dropdown-menu >.current-menu-ancestor >a:hover{color:#ffca40}.dropdown-menu .sub-menu{min-width:230px}.dropdown-menu .sub-menu,#searchform-dropdown,.current-shop-items-dropdown{background-color:#232c38}.navigation li.mega-cat .mega-cat-title{background-color:#232c38}.mobile-menu .hamburger-inner,.mobile-menu .hamburger-inner::before,.mobile-menu .hamburger-inner::after{background-color:#ffffff}#sidr,#mobile-dropdown{background-color:#232c38}#sidr li,#sidr ul,#mobile-dropdown ul li,#mobile-dropdown ul li ul{border-color:rgba(255,255,255,0.035)}/* Footer Bottom CSS */#footer-bottom{background-color:#232c38}/* Typography CSS */body{font-family:Poppins;color:#ffffff}h1,h2,h3,h4,h5,h6,.theme-heading,.widget-title,.oceanwp-widget-recent-posts-title,.comment-reply-title,.entry-title,.sidebar-box .widget-title{color:#ffca40}h1{color:#ffca40}h4{color:#ffca40}#site-navigation-wrap .dropdown-menu >li >a,#site-header.full_screen-header .fs-dropdown-menu >li >a,#site-header.top-header #site-navigation-wrap .dropdown-menu >li >a,#site-header.center-header #site-navigation-wrap .dropdown-menu >li >a,#site-header.medium-header #site-navigation-wrap .dropdown-menu >li >a,.oceanwp-mobile-menu-icon a{font-family:Poppins;font-weight:600;font-size:16px;letter-spacing:1.3px;text-transform:uppercase}.page-header .page-subheading{color:#ffffff}.blog-entry.post .blog-entry-header .entry-title a{color:#ffffff}.single-post .entry-title{color:#ffffff}
+</style><noscript><style id="rocket-lazyload-nojs-css">.rll-youtube-player, [data-lazy-src]{display:none !important;}</style></noscript>	<style>
+	.facebook-icon , .instagram-icon, .thread-icon, .twitter-icon{
+	background-color:#FACC15 !important;
+    padding: 10px 10px 5px 10px;
+	border-radius:50%;
+}
+		.instagram-icon, .thread-icon, .twitter-icon{
+			margin-left:1.5rem;
+		}
+	</style>
+</head>
+
+<body class="home page-template-default page page-id-204 wp-custom-logo wp-embed-responsive pmpro-body-has-access ehf-footer ehf-template-oceanwp ehf-stylesheet-oceanwp oceanwp-theme dropdown-mobile no-header-border default-breakpoint content-full-screen page-header-disabled elementor-default elementor-kit-6 elementor-page elementor-page-204" itemscope="itemscope" itemtype="https://schema.org/WebPage">
+
+	
+	
+	<div id="outer-wrap" class="site clr">
+
+		<a class="skip-link screen-reader-text" href="#main">Skip to content</a>
+
+		
+		<div id="wrap" class="clr">
+
+			
+			
+<header id="site-header" class="minimal-header effect-one clr" data-height="78" itemscope="itemscope" itemtype="https://schema.org/WPHeader" role="banner">
+
+	
+					
+			<div id="site-header-inner" class="clr container">
+
+				
+				
+
+<div id="site-logo" class="clr" itemscope itemtype="https://schema.org/Brand" >
+
+	
+	<div id="site-logo-inner" class="clr">
+
+		<a href="https://aihomeworkhelper.co/" class="custom-logo-link" rel="home" aria-current="page"><img width="300" height="82" src="https://aihomeworkhelper.co/wp-content/uploads/2024/03/cropped-cropped-ai_homework_helper_co_logo.webp" class="custom-logo" alt="This Image Depicts Site Logo" decoding="async" /></a>
+	</div>
+
+	
+	
+</div>
+
+			<div id="site-navigation-wrap" class="no-top-border clr">
+			
+							
+						<nav id="site-navigation" style="display:flex;align-items:center;justify-content:space-between;" class="navigation main-navigation clr" itemscope="itemscope" itemtype="https://schema.org/SiteNavigationElement" role="navigation" >
+				
+				<ul id="menu-main_menu" class="main-menu dropdown-menu sf-menu"><li id="menu-item-1170" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1170"><a href="https://aihomeworkhelper.co/pricing/" class="menu-link"><span class="text-wrap">Pricing</span></a></li><li id="menu-item-871" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children dropdown menu-item-871"><a href="#" class="menu-link"><span class="text-wrap">Services<i class="nav-arrow fa fa-angle-down" aria-hidden="true" role="img"></i></span></a>
+<ul class="sub-menu">
+	<li id="menu-item-881" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-881"><a href="https://aihomeworkhelper.co/ai-for-writing-research-papers/" class="menu-link"><span class="text-wrap">AI For Writing Research Papers</span></a></li>	<li id="menu-item-882" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-882"><a href="https://aihomeworkhelper.co/ai-for-thesis-writing/" class="menu-link"><span class="text-wrap">AI For Thesis Writing</span></a></li>	<li id="menu-item-883" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-883"><a href="https://aihomeworkhelper.co/ai-math-solver-tool/" class="menu-link"><span class="text-wrap">AI Math Problem Solver</span></a></li>	<li id="menu-item-884" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-884"><a href="https://aihomeworkhelper.co/ai-tutor/" class="menu-link"><span class="text-wrap">AI Tutor</span></a></li></ul>
+</li><li id="menu-item-334" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-334"><a href="https://aihomeworkhelper.co/blogs/" class="menu-link"><span class="text-wrap">Blogs</span></a></li></ul>		
+			<div style="padding:8px;box-shadow: 0px 0px 3px 0px #eee;margin-left:2rem;border-radius:5px">
+   <a href="https://aihomeworkhelper.co/login/" style="display:flex;align-items:center;">
+	<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#FACC15" class="bi bi-pencil-square" viewBox="0 0 16 16">
+  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+</svg>
+    <span style="font-size:16px;font-weight:600;padding-left:8px">Start Writing - It's Free</span>
+	</a>
+</div>
+				
+			
+			</nav>
+
+			
+			
+					</div>
+			
+		
+	
+				
+	
+	<div class="oceanwp-mobile-menu-icon clr mobile-right">
+
+		
+		
+		
+		<a href="https://aihomeworkhelper.co/#mobile-menu-toggle" class="mobile-menu"  aria-label="Mobile Menu">
+							<div class="hamburger hamburger--3dx" aria-expanded="false" role="navigation">
+					<div class="hamburger-box">
+						<div class="hamburger-inner"></div>
+					</div>
+				</div>
+						</a>
+
+		
+		
+		
+	</div>
+
+	
+			</div>
+	
+	
+
+			
+<div id="mobile-dropdown" class="clr" >
+
+	<nav class="clr" itemscope="itemscope" itemtype="https://schema.org/SiteNavigationElement">
+
+		<ul id="menu-main_menu-1" class="menu"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1170"><a href="https://aihomeworkhelper.co/pricing/">Pricing</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-871"><a href="#">Services</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-881"><a href="https://aihomeworkhelper.co/ai-for-writing-research-papers/">AI For Writing Research Papers</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-882"><a href="https://aihomeworkhelper.co/ai-for-thesis-writing/">AI For Thesis Writing</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-883"><a href="https://aihomeworkhelper.co/ai-math-solver-tool/">AI Math Problem Solver</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-884"><a href="https://aihomeworkhelper.co/ai-tutor/">AI Tutor</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-334"><a href="https://aihomeworkhelper.co/blogs/">Blogs</a></li>
+</ul><div style="display:flex;align-items:center;justify-content:center;padding:20px 0;">
+				<div style="display:flex;align-items:center;padding:8px;box-shadow: 0px 2px 10px 2px #5f5b8ec7;margin-left:2rem;border-radius:5px">
+    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#FACC15" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z"/>
+        <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
+    </svg>
+    <a href="https://aihomeworkhelper.co/login/" style="font-size:16px;font-weight:600;padding-left:5px">LOGIN</a>
+</div>
+				<div style="margin-left:3rem;padding:8px 0;">
+					<a href="https://wa.me/+16163145029">
+					<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#FACC15" class="bi bi-whatsapp" viewBox="0 0 16 16">
+  <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+</svg>
+					</a>
+				</div>
+		</div>
+
+	</nav>
+
+</div>
+
+			
+			
+		
+		
+</header>
+
+
+			
+			<main id="main" class="site-main clr"  role="main">
+
+				
+	
+	<div id="content-wrap" class="container clr">
+
+		
+		<div id="primary" class="content-area clr">
+
+			
+			<div id="content" class="site-content clr">
+
+				
+				
+<article class="single-page-article clr">
+
+	
+<div class="entry clr" itemprop="text">
+
+	
+			<div data-elementor-type="wp-page" data-elementor-id="204" class="elementor elementor-204">
+				<div class="elementor-element elementor-element-9470a74 e-flex e-con-boxed e-con e-parent" data-id="9470a74" data-element_type="container">
+					<div class="e-con-inner">
+		<div class="elementor-element elementor-element-fdc3ec4 e-flex e-con-boxed e-con e-child" data-id="fdc3ec4" data-element_type="container">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-6df8152 elementor-widget elementor-widget-heading" data-id="6df8152" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<style>/*! elementor - v3.21.0 - 25-04-2024 */
+.elementor-heading-title{padding:0;margin:0;line-height:1}.elementor-widget-heading .elementor-heading-title[class*=elementor-size-]>a{color:inherit;font-size:inherit;line-height:inherit}.elementor-widget-heading .elementor-heading-title.elementor-size-small{font-size:15px}.elementor-widget-heading .elementor-heading-title.elementor-size-medium{font-size:19px}.elementor-widget-heading .elementor-heading-title.elementor-size-large{font-size:29px}.elementor-widget-heading .elementor-heading-title.elementor-size-xl{font-size:39px}.elementor-widget-heading .elementor-heading-title.elementor-size-xxl{font-size:59px}</style><h1 class="elementor-heading-title elementor-size-default">AI Homework Helper </h1>		</div>
+				</div>
+				<div class="elementor-element elementor-element-eaa8a62 elementor-widget elementor-widget-heading" data-id="eaa8a62" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">AI Homework Helper: Expert Assistance for Your Academic Assignments</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-dc38f85 elementor-widget elementor-widget-text-editor" data-id="dc38f85" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+			<style>/*! elementor - v3.21.0 - 25-04-2024 */
+.elementor-widget-text-editor.elementor-drop-cap-view-stacked .elementor-drop-cap{background-color:#69727d;color:#fff}.elementor-widget-text-editor.elementor-drop-cap-view-framed .elementor-drop-cap{color:#69727d;border:3px solid;background-color:transparent}.elementor-widget-text-editor:not(.elementor-drop-cap-view-default) .elementor-drop-cap{margin-top:8px}.elementor-widget-text-editor:not(.elementor-drop-cap-view-default) .elementor-drop-cap-letter{width:1em;height:1em}.elementor-widget-text-editor .elementor-drop-cap{float:left;text-align:center;line-height:1;font-size:50px}.elementor-widget-text-editor .elementor-drop-cap-letter{display:inline-block}</style>				<p style="text-align: center;"><strong>Our AI Homework Helper is an innovative solution designed to assist students in completing their homework assignments efficiently and effectively. Powered by artificial intelligence technology, our platform offers personalized support tailored to each student&#8217;s specific needs and requirements.</strong></p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-681d3d3 elementor-align-center elementor-button-info elementor-widget elementor-widget-button" data-id="681d3d3" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-button-wrapper">
+			<a class="elementor-button elementor-button-link elementor-size-sm elementor-animation-grow" href="https://aihomeworkhelper.co/dashboard-aihomework-helper/">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-icon elementor-align-icon-left">
+				<svg aria-hidden="true" class="e-font-icon-svg e-fas-pencil-alt" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"></path></svg>			</span>
+									<span class="elementor-button-text">Start Writing - It's Free</span>
+					</span>
+					</a>
+		</div>
+				</div>
+				</div>
+					</div>
+				</div>
+					</div>
+				</div>
+		<div class="elementor-element elementor-element-77fdc4a e-flex e-con-boxed e-con e-parent" data-id="77fdc4a" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-fa4f576 elementor-widget elementor-widget-heading" data-id="fa4f576" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">3-step process for getting homework done <br>through our AI Homework Helper</h2>		</div>
+				</div>
+		<div class="elementor-element elementor-element-9c1f26c e-flex e-con-boxed e-con e-child" data-id="9c1f26c" data-element_type="container">
+					<div class="e-con-inner">
+		<div class="elementor-element elementor-element-c6b0d38 e-con-full e-flex e-con e-child" data-id="c6b0d38" data-element_type="container">
+				<div class="elementor-element elementor-element-6c5a6c6 elementor-view-stacked elementor-shape-circle elementor-mobile-position-top elementor-vertical-align-top elementor-widget elementor-widget-icon-box" data-id="6c5a6c6" data-element_type="widget" data-widget_type="icon-box.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-icon-box-wrapper">
+
+						<div class="elementor-icon-box-icon">
+				<span  class="elementor-icon elementor-animation-">
+				<svg aria-hidden="true" class="e-font-icon-svg e-far-question-circle" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 448c-110.532 0-200-89.431-200-200 0-110.495 89.472-200 200-200 110.491 0 200 89.471 200 200 0 110.53-89.431 200-200 200zm107.244-255.2c0 67.052-72.421 68.084-72.421 92.863V300c0 6.627-5.373 12-12 12h-45.647c-6.627 0-12-5.373-12-12v-8.659c0-35.745 27.1-50.034 47.579-61.516 17.561-9.845 28.324-16.541 28.324-29.579 0-17.246-21.999-28.693-39.784-28.693-23.189 0-33.894 10.977-48.942 29.969-4.057 5.12-11.46 6.071-16.666 2.124l-27.824-21.098c-5.107-3.872-6.251-11.066-2.644-16.363C184.846 131.491 214.94 112 261.794 112c49.071 0 101.45 38.304 101.45 88.8zM298 368c0 23.159-18.841 42-42 42s-42-18.841-42-42 18.841-42 42-42 42 18.841 42 42z"></path></svg>				</span>
+			</div>
+			
+						<div class="elementor-icon-box-content">
+
+									<h3 class="elementor-icon-box-title">
+						<span  >
+							Submit Your Requirements						</span>
+					</h3>
+				
+									<p class="elementor-icon-box-description">
+						Start by logging into our AI Homework Helper platform and submitting your homework requirements. This may include the subject, topic, specific questions, or any additional instructions from your teacher.
+Our AI system will analyze your requirements and generate a customized solution tailored to your needs					</p>
+				
+			</div>
+			
+		</div>
+				</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-d3105cf e-con-full e-flex e-con e-child" data-id="d3105cf" data-element_type="container">
+				<div class="elementor-element elementor-element-15b8a55 elementor-view-stacked elementor-shape-circle elementor-mobile-position-top elementor-vertical-align-top elementor-widget elementor-widget-icon-box" data-id="15b8a55" data-element_type="widget" data-widget_type="icon-box.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-icon-box-wrapper">
+
+						<div class="elementor-icon-box-icon">
+				<span  class="elementor-icon elementor-animation-">
+				<svg aria-hidden="true" class="e-font-icon-svg e-fas-assistive-listening-systems" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M216 260c0 15.464-12.536 28-28 28s-28-12.536-28-28c0-44.112 35.888-80 80-80s80 35.888 80 80c0 15.464-12.536 28-28 28s-28-12.536-28-28c0-13.234-10.767-24-24-24s-24 10.766-24 24zm24-176c-97.047 0-176 78.953-176 176 0 15.464 12.536 28 28 28s28-12.536 28-28c0-66.168 53.832-120 120-120s120 53.832 120 120c0 75.164-71.009 70.311-71.997 143.622L288 404c0 28.673-23.327 52-52 52-15.464 0-28 12.536-28 28s12.536 28 28 28c59.475 0 107.876-48.328 108-107.774.595-34.428 72-48.24 72-144.226 0-97.047-78.953-176-176-176zm-80 236c-17.673 0-32 14.327-32 32s14.327 32 32 32 32-14.327 32-32-14.327-32-32-32zM32 448c-17.673 0-32 14.327-32 32s14.327 32 32 32 32-14.327 32-32-14.327-32-32-32zm480-187.993c0-1.518-.012-3.025-.045-4.531C510.076 140.525 436.157 38.47 327.994 1.511c-14.633-4.998-30.549 2.809-35.55 17.442-5 14.633 2.81 30.549 17.442 35.55 85.906 29.354 144.61 110.513 146.077 201.953l.003.188c.026 1.118.033 2.236.033 3.363 0 15.464 12.536 28 28 28s28.001-12.536 28.001-28zM152.971 439.029l-80-80L39.03 392.97l80 80 33.941-33.941z"></path></svg>				</span>
+			</div>
+			
+						<div class="elementor-icon-box-content">
+
+									<h3 class="elementor-icon-box-title">
+						<span  >
+							Receive Instant Assistance						</span>
+					</h3>
+				
+									<p class="elementor-icon-box-description">
+						Once you've submitted your requirements, our AI Homework Helper will instantly generate a solution for your homework assignment.
+You'll receive clear and concise explanations, step-by-step solutions, or relevant examples to help you understand the concepts and complete your homework effectively.
+					</p>
+				
+			</div>
+			
+		</div>
+				</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-1e168fb e-con-full e-flex e-con e-child" data-id="1e168fb" data-element_type="container">
+				<div class="elementor-element elementor-element-65ef2cd elementor-view-stacked elementor-shape-circle elementor-mobile-position-top elementor-vertical-align-top elementor-widget elementor-widget-icon-box" data-id="65ef2cd" data-element_type="widget" data-widget_type="icon-box.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-icon-box-wrapper">
+
+						<div class="elementor-icon-box-icon">
+				<span  class="elementor-icon elementor-animation-">
+				<svg aria-hidden="true" class="e-font-icon-svg e-far-check-circle" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 48c110.532 0 200 89.451 200 200 0 110.532-89.451 200-200 200-110.532 0-200-89.451-200-200 0-110.532 89.451-200 200-200m140.204 130.267l-22.536-22.718c-4.667-4.705-12.265-4.736-16.97-.068L215.346 303.697l-59.792-60.277c-4.667-4.705-12.265-4.736-16.97-.069l-22.719 22.536c-4.705 4.667-4.736 12.265-.068 16.971l90.781 91.516c4.667 4.705 12.265 4.736 16.97.068l172.589-171.204c4.704-4.668 4.734-12.266.067-16.971z"></path></svg>				</span>
+			</div>
+			
+						<div class="elementor-icon-box-content">
+
+									<h3 class="elementor-icon-box-title">
+						<span  >
+							Review and Learn						</span>
+					</h3>
+				
+									<p class="elementor-icon-box-description">
+						After receiving the assistance from our AI Homework Helper, take the time to review the solutions provided and ensure you understand the concepts covered.
+Use the solutions as learning aids to reinforce your understanding of the material and improve your problem-solving skills.
+					</p>
+				
+			</div>
+			
+		</div>
+				</div>
+				</div>
+				</div>
+					</div>
+				</div>
+					</div>
+				</div>
+		<div class="elementor-element elementor-element-b983b8f e-flex e-con-boxed e-con e-parent" data-id="b983b8f" data-element_type="container">
+					<div class="e-con-inner">
+		<div class="elementor-element elementor-element-b7fc9f9 e-flex e-con-boxed e-con e-child" data-id="b7fc9f9" data-element_type="container">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-26e3120 elementor-widget elementor-widget-heading" data-id="26e3120" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">Why Choose Us?</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-e369b28 elementor-widget elementor-widget-heading" data-id="e369b28" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h3 class="elementor-heading-title elementor-size-default">Choose Us &amp; Unlock Your Academic Potential with Ai Homework Helper</h3>		</div>
+				</div>
+				<div class="elementor-element elementor-element-460fdc9 elementor-widget elementor-widget-text-editor" data-id="460fdc9" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p>At Ai Homework Helper, we stand out as your premier choice for academic assistance. What sets us apart is our fusion of cutting-edge AI technology with a team of experienced educators. By choosing us, you&#8217;re opting for more than just a homework helper; you&#8217;re embracing a transformative learning experience. Our platform offers personalized guidance tailored to your unique academic needs, ensuring that you not only conquer challenging assignments but also gain a deeper understanding of Field-related concepts. We prioritize your success, combining efficiency, expertise, and innovation to unlock your academic potential. Choose Ai Homework Helper for a seamless journey towards excellence in AI education and assignment help.</p>						</div>
+				</div>
+					</div>
+				</div>
+		<div class="elementor-element elementor-element-d16ff5b e-flex e-con-boxed e-con e-child" data-id="d16ff5b" data-element_type="container">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-a1ccbbc elementor-widget elementor-widget-image" data-id="a1ccbbc" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+			<style>/*! elementor - v3.21.0 - 25-04-2024 */
+.elementor-widget-image{text-align:center}.elementor-widget-image a{display:inline-block}.elementor-widget-image a img[src$=".svg"]{width:48px}.elementor-widget-image img{vertical-align:middle;display:inline-block}</style>										<img fetchpriority="high" decoding="async" width="499" height="499" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20499%20499'%3E%3C/svg%3E" class="attachment-medium_large size-medium_large wp-image-477" alt="This image is About Why Conisder AI Homework Helper" data-lazy-srcset="https://aihomeworkhelper.co/wp-content/uploads/2024/02/why-ai-homework-helper.webp 499w, https://aihomeworkhelper.co/wp-content/uploads/2024/02/why-ai-homework-helper-300x300.webp 300w, https://aihomeworkhelper.co/wp-content/uploads/2024/02/why-ai-homework-helper-150x150.webp 150w" data-lazy-sizes="(max-width: 499px) 100vw, 499px" data-lazy-src="https://aihomeworkhelper.co/wp-content/uploads/2024/02/why-ai-homework-helper.webp" /><noscript><img fetchpriority="high" decoding="async" width="499" height="499" src="https://aihomeworkhelper.co/wp-content/uploads/2024/02/why-ai-homework-helper.webp" class="attachment-medium_large size-medium_large wp-image-477" alt="This image is About Why Conisder AI Homework Helper" srcset="https://aihomeworkhelper.co/wp-content/uploads/2024/02/why-ai-homework-helper.webp 499w, https://aihomeworkhelper.co/wp-content/uploads/2024/02/why-ai-homework-helper-300x300.webp 300w, https://aihomeworkhelper.co/wp-content/uploads/2024/02/why-ai-homework-helper-150x150.webp 150w" sizes="(max-width: 499px) 100vw, 499px" /></noscript>													</div>
+				</div>
+					</div>
+				</div>
+					</div>
+				</div>
+		<div class="elementor-element elementor-element-15b8c5b e-flex e-con-boxed e-con e-parent" data-id="15b8c5b" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+					<div class="e-con-inner">
+		<div class="elementor-element elementor-element-390a19c e-con-full e-flex e-con e-child" data-id="390a19c" data-element_type="container">
+				<div class="elementor-element elementor-element-b6cfe51 elementor-widget elementor-widget-heading" data-id="b6cfe51" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">Our Pricing Plans</h2>		</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-be0f8a5 e-con-full e-flex e-con e-child" data-id="be0f8a5" data-element_type="container">
+				<div class="elementor-element elementor-element-21794af premium-pricing-features-left elementor-widget elementor-widget-premium-addon-pricing-table" data-id="21794af" data-element_type="widget" data-widget_type="premium-addon-pricing-table.default">
+				<div class="elementor-widget-container">
+			
+	<div class="premium-pricing-table-container">
+					<div class="premium-pricing-badge-container premium-badge-right premium-badge-stripe">
+				<div class="corner">
+					<span >
+						NEW					</span>
+				</div>
+			</div>
+						<h3 class="premium-pricing-table-title">
+				BASIC			</h3>
+						<div class="premium-pricing-price-container">
+
+			
+							<span class="premium-pricing-price-currency">
+					$				</span>
+			
+							<span class="premium-pricing-price-value">
+					1.99				</span>
+			
+							<span class="premium-pricing-price-separator">
+					/				</span>
+			
+							<span class="premium-pricing-price-duration">
+					month				</span>
+					</div>
+						<ul class="premium-pricing-list">
+											<li class="elementor-repeater-item-b0e2bbd premium-pricing-list-item premium-drawable-icon premium-svg-nodraw">
+															<svg class="premium-pricing-feature-icon premium-svg-nodraw premium-drawable-icon e-font-icon-svg e-fas-check" aria-hidden="true" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg>							
+														<span class="premium-pricing-list-span">
+								5000 words							</span>
+											</li>
+											<li class="elementor-repeater-item-3542814 premium-pricing-list-item premium-drawable-icon premium-svg-nodraw">
+															<svg class="premium-pricing-feature-icon premium-svg-nodraw premium-drawable-icon e-font-icon-svg e-fas-check" aria-hidden="true" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg>							
+														<span class="premium-pricing-list-span">
+								1 user 							</span>
+											</li>
+											<li class="elementor-repeater-item-afa3825 premium-pricing-list-item premium-drawable-icon premium-svg-nodraw">
+															<svg class="premium-pricing-feature-icon premium-svg-nodraw premium-drawable-icon e-font-icon-svg e-fas-check" aria-hidden="true" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg>							
+														<span class="premium-pricing-list-span">
+								All Tools							</span>
+											</li>
+									</ul>
+								<div class="premium-pricing-button-container">
+			<a class="premium-pricing-price-button premium-button-none " data-text="Get Started" href="https://aihomeworkhelper.co/login/">
+				<div class="premium-button-text-icon-wrapper">
+					<span>Get Started</span>
+				</div>
+				
+				
+			</a>
+		</div>
+			</div>
+
+				</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-dab40ee e-con-full e-flex e-con e-child" data-id="dab40ee" data-element_type="container">
+				<div class="elementor-element elementor-element-e1dedb2 premium-pricing-features-left elementor-widget elementor-widget-premium-addon-pricing-table" data-id="e1dedb2" data-element_type="widget" data-widget_type="premium-addon-pricing-table.default">
+				<div class="elementor-widget-container">
+			
+	<div class="premium-pricing-table-container">
+					<div class="premium-pricing-badge-container premium-badge-right premium-badge-stripe">
+				<div class="corner">
+					<span >
+						NEW					</span>
+				</div>
+			</div>
+						<h3 class="premium-pricing-table-title">
+				EXECUTIVE			</h3>
+						<div class="premium-pricing-price-container">
+
+			
+							<span class="premium-pricing-price-currency">
+					$				</span>
+			
+							<span class="premium-pricing-price-value">
+					2.99				</span>
+			
+							<span class="premium-pricing-price-separator">
+					/				</span>
+			
+							<span class="premium-pricing-price-duration">
+					month				</span>
+					</div>
+						<ul class="premium-pricing-list">
+											<li class="elementor-repeater-item-b0e2bbd premium-pricing-list-item premium-drawable-icon premium-svg-nodraw">
+															<svg class="premium-pricing-feature-icon premium-svg-nodraw premium-drawable-icon e-font-icon-svg e-fas-check" aria-hidden="true" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg>							
+														<span class="premium-pricing-list-span">
+								8000 words							</span>
+											</li>
+											<li class="elementor-repeater-item-3542814 premium-pricing-list-item premium-drawable-icon premium-svg-nodraw">
+															<svg class="premium-pricing-feature-icon premium-svg-nodraw premium-drawable-icon e-font-icon-svg e-fas-check" aria-hidden="true" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg>							
+														<span class="premium-pricing-list-span">
+								1 user 							</span>
+											</li>
+											<li class="elementor-repeater-item-afa3825 premium-pricing-list-item premium-drawable-icon premium-svg-nodraw">
+															<svg class="premium-pricing-feature-icon premium-svg-nodraw premium-drawable-icon e-font-icon-svg e-fas-check" aria-hidden="true" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg>							
+														<span class="premium-pricing-list-span">
+								All Tools							</span>
+											</li>
+									</ul>
+								<div class="premium-pricing-button-container">
+			<a class="premium-pricing-price-button premium-button-none " data-text="Get Started" href="https://aihomeworkhelper.co/login/">
+				<div class="premium-button-text-icon-wrapper">
+					<span>Get Started</span>
+				</div>
+				
+				
+			</a>
+		</div>
+			</div>
+
+				</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-374ce0a e-con-full e-flex e-con e-child" data-id="374ce0a" data-element_type="container">
+				<div class="elementor-element elementor-element-e857629 premium-pricing-features-left elementor-widget elementor-widget-premium-addon-pricing-table" data-id="e857629" data-element_type="widget" data-widget_type="premium-addon-pricing-table.default">
+				<div class="elementor-widget-container">
+			
+	<div class="premium-pricing-table-container">
+					<div class="premium-pricing-badge-container premium-badge-right premium-badge-stripe">
+				<div class="corner">
+					<span >
+						NEW					</span>
+				</div>
+			</div>
+						<h3 class="premium-pricing-table-title">
+				PREMIUM			</h3>
+						<div class="premium-pricing-price-container">
+
+			
+							<span class="premium-pricing-price-currency">
+					$				</span>
+			
+							<span class="premium-pricing-price-value">
+					3.99				</span>
+			
+							<span class="premium-pricing-price-separator">
+					/				</span>
+			
+							<span class="premium-pricing-price-duration">
+					month				</span>
+					</div>
+						<ul class="premium-pricing-list">
+											<li class="elementor-repeater-item-b0e2bbd premium-pricing-list-item premium-drawable-icon premium-svg-nodraw">
+															<svg class="premium-pricing-feature-icon premium-svg-nodraw premium-drawable-icon e-font-icon-svg e-fas-check" aria-hidden="true" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg>							
+														<span class="premium-pricing-list-span">
+								Unlimited words							</span>
+											</li>
+											<li class="elementor-repeater-item-3542814 premium-pricing-list-item premium-drawable-icon premium-svg-nodraw">
+															<svg class="premium-pricing-feature-icon premium-svg-nodraw premium-drawable-icon e-font-icon-svg e-fas-check" aria-hidden="true" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg>							
+														<span class="premium-pricing-list-span">
+								1 user 							</span>
+											</li>
+											<li class="elementor-repeater-item-afa3825 premium-pricing-list-item premium-drawable-icon premium-svg-nodraw">
+															<svg class="premium-pricing-feature-icon premium-svg-nodraw premium-drawable-icon e-font-icon-svg e-fas-check" aria-hidden="true" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg>							
+														<span class="premium-pricing-list-span">
+								All Tools							</span>
+											</li>
+									</ul>
+								<div class="premium-pricing-button-container">
+			<a class="premium-pricing-price-button premium-button-none " data-text="Get Started" href="https://aihomeworkhelper.co/login/">
+				<div class="premium-button-text-icon-wrapper">
+					<span>Get Started</span>
+				</div>
+				
+				
+			</a>
+		</div>
+			</div>
+
+				</div>
+				</div>
+				</div>
+					</div>
+				</div>
+		<div class="elementor-element elementor-element-70436e6 e-flex e-con-boxed e-con e-parent" data-id="70436e6" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+					<div class="e-con-inner">
+		<div class="elementor-element elementor-element-a1337e2 e-con-full e-flex e-con e-child" data-id="a1337e2" data-element_type="container">
+				<div class="elementor-element elementor-element-3ec8990 elementor-widget elementor-widget-heading" data-id="3ec8990" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">What Our Users Say</h2>		</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-e8684fe e-con-full e-flex e-con e-child" data-id="e8684fe" data-element_type="container">
+				<div class="elementor-element elementor-element-0ebba8d usersays premium-testimonial__skin1 elementor-widget elementor-widget-premium-addon-testimonials" data-id="0ebba8d" data-element_type="widget" data-settings="{&quot;skin&quot;:&quot;skin1&quot;,&quot;testimonials_per_row&quot;:&quot;33.33%&quot;,&quot;testimonials_per_row_tablet&quot;:&quot;100%&quot;,&quot;testimonials_per_row_mobile&quot;:&quot;100%&quot;}" data-widget_type="premium-addon-testimonials.default">
+				<div class="elementor-widget-container">
+			
+		
+		<div class="premium-testimonial-box multiple-testimonials">
+
+			
+				
+				
+					<div class="premium-testimonial-container">
+
+													<div class="premium-testimonial-upper-quote">
+								<svg id="Layer_1" class="premium-testimonial-quote" xmlns="http://www.w3.org/2000/svg" width="48" height="37" viewBox="0 0 48 37"><path class="cls-1" d="m37,37c6.07,0,11-4.93,11-11s-4.93-11-11-11c-.32,0-.63.02-.94.05.54-4.81,2.18-9.43,4.79-13.52.19-.31.2-.7.03-1.01-.18-.32-.51-.52-.88-.52h-2c-.27,0-.54.11-.73.31-5.14,5.41-11.27,14.26-11.27,25.69,0,6.07,4.93,10.99,11,11h0Zm-26,0c6.07,0,11-4.93,11-11s-4.93-11-11-11c-.32,0-.63.02-.94.05.54-4.81,2.18-9.43,4.79-13.52.19-.31.2-.7.03-1.01-.18-.32-.51-.52-.87-.52h-2c-.27,0-.54.11-.73.31C6.13,5.72,0,14.57,0,26c0,6.07,4.93,10.99,11,11h0Zm0,0"/></svg>							</div>
+						
+						<div class="premium-testimonial-content-wrapper">
+
+															<div class="premium-testimonial-heading">
+									<p >
+										Improved Grade									</p>
+								</div>
+							
+							<div class="premium-testimonial-text-wrapper">
+								<div >
+									<p style="text-align: center;">Ai Homework Helper has been a game-changer for my academic journey. The AI-based assistance provided here is not only precise but also incredibly helpful. It&#8217;s like having a personal tutor at my fingertips. Thanks to this platform, I&#8217;ve not only improved my grades but gained a deeper understanding of AI concepts.  Highly recommend!</p>								</div>
+							</div>
+
+							
+							
+																									
+								<div class="premium-testimonial-author-info">
+									<h3 class="premium-testimonial-person-name">
+										<span >
+											Joseph L.Mabie										</span>
+									</h3>
+
+																	</div>
+
+							
+						</div>
+
+													<div class="premium-testimonial-lower-quote">
+								<svg id="Layer_1" class="premium-testimonial-quote" xmlns="http://www.w3.org/2000/svg" width="48" height="37" viewBox="0 0 48 37"><path class="cls-1" d="m37,37c6.07,0,11-4.93,11-11s-4.93-11-11-11c-.32,0-.63.02-.94.05.54-4.81,2.18-9.43,4.79-13.52.19-.31.2-.7.03-1.01-.18-.32-.51-.52-.88-.52h-2c-.27,0-.54.11-.73.31-5.14,5.41-11.27,14.26-11.27,25.69,0,6.07,4.93,10.99,11,11h0Zm-26,0c6.07,0,11-4.93,11-11s-4.93-11-11-11c-.32,0-.63.02-.94.05.54-4.81,2.18-9.43,4.79-13.52.19-.31.2-.7.03-1.01-.18-.32-.51-.52-.87-.52h-2c-.27,0-.54.11-.73.31C6.13,5.72,0,14.57,0,26c0,6.07,4.93,10.99,11,11h0Zm0,0"/></svg>							</div>
+						
+					</div>
+
+				
+					<div class="premium-testimonial-container">
+
+													<div class="premium-testimonial-upper-quote">
+								<svg id="Layer_1" class="premium-testimonial-quote" xmlns="http://www.w3.org/2000/svg" width="48" height="37" viewBox="0 0 48 37"><path class="cls-1" d="m37,37c6.07,0,11-4.93,11-11s-4.93-11-11-11c-.32,0-.63.02-.94.05.54-4.81,2.18-9.43,4.79-13.52.19-.31.2-.7.03-1.01-.18-.32-.51-.52-.88-.52h-2c-.27,0-.54.11-.73.31-5.14,5.41-11.27,14.26-11.27,25.69,0,6.07,4.93,10.99,11,11h0Zm-26,0c6.07,0,11-4.93,11-11s-4.93-11-11-11c-.32,0-.63.02-.94.05.54-4.81,2.18-9.43,4.79-13.52.19-.31.2-.7.03-1.01-.18-.32-.51-.52-.87-.52h-2c-.27,0-.54.11-.73.31C6.13,5.72,0,14.57,0,26c0,6.07,4.93,10.99,11,11h0Zm0,0"/></svg>							</div>
+						
+						<div class="premium-testimonial-content-wrapper">
+
+															<div class="premium-testimonial-heading">
+									<p >
+										Very Powerful									</p>
+								</div>
+							
+							<div class="premium-testimonial-text-wrapper">
+								<div >
+									<p>I was initially skeptical about using an AI-based assistant for my assignments, but Ai Homework Helper exceeded my expectations. The personalized guidance I received was spot-on, and the platform&#8217;s efficiency saved me valuable time. It&#8217;s become an indispensable tool in my academic arsenal, and I can&#8217;t imagine navigating my AI coursework without it.</p>								</div>
+							</div>
+
+							
+							
+																									
+								<div class="premium-testimonial-author-info">
+									<h3 class="premium-testimonial-person-name">
+										<span >
+											Debra Campbell										</span>
+									</h3>
+
+																	</div>
+
+							
+						</div>
+
+													<div class="premium-testimonial-lower-quote">
+								<svg id="Layer_1" class="premium-testimonial-quote" xmlns="http://www.w3.org/2000/svg" width="48" height="37" viewBox="0 0 48 37"><path class="cls-1" d="m37,37c6.07,0,11-4.93,11-11s-4.93-11-11-11c-.32,0-.63.02-.94.05.54-4.81,2.18-9.43,4.79-13.52.19-.31.2-.7.03-1.01-.18-.32-.51-.52-.88-.52h-2c-.27,0-.54.11-.73.31-5.14,5.41-11.27,14.26-11.27,25.69,0,6.07,4.93,10.99,11,11h0Zm-26,0c6.07,0,11-4.93,11-11s-4.93-11-11-11c-.32,0-.63.02-.94.05.54-4.81,2.18-9.43,4.79-13.52.19-.31.2-.7.03-1.01-.18-.32-.51-.52-.87-.52h-2c-.27,0-.54.11-.73.31C6.13,5.72,0,14.57,0,26c0,6.07,4.93,10.99,11,11h0Zm0,0"/></svg>							</div>
+						
+					</div>
+
+				
+					<div class="premium-testimonial-container">
+
+													<div class="premium-testimonial-upper-quote">
+								<svg id="Layer_1" class="premium-testimonial-quote" xmlns="http://www.w3.org/2000/svg" width="48" height="37" viewBox="0 0 48 37"><path class="cls-1" d="m37,37c6.07,0,11-4.93,11-11s-4.93-11-11-11c-.32,0-.63.02-.94.05.54-4.81,2.18-9.43,4.79-13.52.19-.31.2-.7.03-1.01-.18-.32-.51-.52-.88-.52h-2c-.27,0-.54.11-.73.31-5.14,5.41-11.27,14.26-11.27,25.69,0,6.07,4.93,10.99,11,11h0Zm-26,0c6.07,0,11-4.93,11-11s-4.93-11-11-11c-.32,0-.63.02-.94.05.54-4.81,2.18-9.43,4.79-13.52.19-.31.2-.7.03-1.01-.18-.32-.51-.52-.87-.52h-2c-.27,0-.54.11-.73.31C6.13,5.72,0,14.57,0,26c0,6.07,4.93,10.99,11,11h0Zm0,0"/></svg>							</div>
+						
+						<div class="premium-testimonial-content-wrapper">
+
+															<div class="premium-testimonial-heading">
+									<p >
+										Excellent Service									</p>
+								</div>
+							
+							<div class="premium-testimonial-text-wrapper">
+								<div >
+									<p>Ai Homework Helper provides a perfect blend of technology and expertise. The virtual assistant is intuitive, and the team behind it is responsive and knowledgeable. I&#8217;ve experienced a noticeable improvement in both the quality of my assignments and my overall understanding of AI concepts. This platform has become my go-to resource for academic success.</p>								</div>
+							</div>
+
+							
+							
+																									
+								<div class="premium-testimonial-author-info">
+									<h3 class="premium-testimonial-person-name">
+										<span >
+											Joanne Ellis										</span>
+									</h3>
+
+																	</div>
+
+							
+						</div>
+
+													<div class="premium-testimonial-lower-quote">
+								<svg id="Layer_1" class="premium-testimonial-quote" xmlns="http://www.w3.org/2000/svg" width="48" height="37" viewBox="0 0 48 37"><path class="cls-1" d="m37,37c6.07,0,11-4.93,11-11s-4.93-11-11-11c-.32,0-.63.02-.94.05.54-4.81,2.18-9.43,4.79-13.52.19-.31.2-.7.03-1.01-.18-.32-.51-.52-.88-.52h-2c-.27,0-.54.11-.73.31-5.14,5.41-11.27,14.26-11.27,25.69,0,6.07,4.93,10.99,11,11h0Zm-26,0c6.07,0,11-4.93,11-11s-4.93-11-11-11c-.32,0-.63.02-.94.05.54-4.81,2.18-9.43,4.79-13.52.19-.31.2-.7.03-1.01-.18-.32-.51-.52-.87-.52h-2c-.27,0-.54.11-.73.31C6.13,5.72,0,14.57,0,26c0,6.07,4.93,10.99,11,11h0Zm0,0"/></svg>							</div>
+						
+					</div>
+
+							
+
+		</div>
+				</div>
+				</div>
+				</div>
+					</div>
+				</div>
+		<div class="elementor-element elementor-element-7f74e57 e-flex e-con-boxed e-con e-parent" data-id="7f74e57" data-element_type="container">
+					<div class="e-con-inner">
+		<div class="elementor-element elementor-element-33d3f1c e-con-full e-flex e-con e-child" data-id="33d3f1c" data-element_type="container">
+				<div class="elementor-element elementor-element-be90f79 elementor-widget elementor-widget-heading" data-id="be90f79" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">Benefits of availing our AI Homework Helper services</h2>		</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-e5287db e-flex e-con-boxed e-con e-child" data-id="e5287db" data-element_type="container">
+					<div class="e-con-inner">
+		<div class="elementor-element elementor-element-cc629cd e-con-full e-flex e-con e-child" data-id="cc629cd" data-element_type="container">
+				<div class="elementor-element elementor-element-402feed elementor-view-stacked elementor-shape-circle elementor-mobile-position-top elementor-vertical-align-top elementor-widget elementor-widget-icon-box" data-id="402feed" data-element_type="widget" data-widget_type="icon-box.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-icon-box-wrapper">
+
+						<div class="elementor-icon-box-icon">
+				<span  class="elementor-icon elementor-animation-">
+				<svg aria-hidden="true" class="e-font-icon-svg e-fas-assistive-listening-systems" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M216 260c0 15.464-12.536 28-28 28s-28-12.536-28-28c0-44.112 35.888-80 80-80s80 35.888 80 80c0 15.464-12.536 28-28 28s-28-12.536-28-28c0-13.234-10.767-24-24-24s-24 10.766-24 24zm24-176c-97.047 0-176 78.953-176 176 0 15.464 12.536 28 28 28s28-12.536 28-28c0-66.168 53.832-120 120-120s120 53.832 120 120c0 75.164-71.009 70.311-71.997 143.622L288 404c0 28.673-23.327 52-52 52-15.464 0-28 12.536-28 28s12.536 28 28 28c59.475 0 107.876-48.328 108-107.774.595-34.428 72-48.24 72-144.226 0-97.047-78.953-176-176-176zm-80 236c-17.673 0-32 14.327-32 32s14.327 32 32 32 32-14.327 32-32-14.327-32-32-32zM32 448c-17.673 0-32 14.327-32 32s14.327 32 32 32 32-14.327 32-32-14.327-32-32-32zm480-187.993c0-1.518-.012-3.025-.045-4.531C510.076 140.525 436.157 38.47 327.994 1.511c-14.633-4.998-30.549 2.809-35.55 17.442-5 14.633 2.81 30.549 17.442 35.55 85.906 29.354 144.61 110.513 146.077 201.953l.003.188c.026 1.118.033 2.236.033 3.363 0 15.464 12.536 28 28 28s28.001-12.536 28.001-28zM152.971 439.029l-80-80L39.03 392.97l80 80 33.941-33.941z"></path></svg>				</span>
+			</div>
+			
+						<div class="elementor-icon-box-content">
+
+									<h3 class="elementor-icon-box-title">
+						<span  >
+							Personalized Assistance						</span>
+					</h3>
+				
+									<p class="elementor-icon-box-description">
+						Our AI Homework Helper offers personalized support tailored to each student's individual learning needs, ensuring that they receive targeted help with their homework assignments.					</p>
+				
+			</div>
+			
+		</div>
+				</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-88812c0 e-con-full e-flex e-con e-child" data-id="88812c0" data-element_type="container">
+				<div class="elementor-element elementor-element-11d1abb elementor-view-stacked elementor-shape-circle elementor-mobile-position-top elementor-vertical-align-top elementor-widget elementor-widget-icon-box" data-id="11d1abb" data-element_type="widget" data-widget_type="icon-box.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-icon-box-wrapper">
+
+						<div class="elementor-icon-box-icon">
+				<span  class="elementor-icon elementor-animation-">
+				<svg aria-hidden="true" class="e-font-icon-svg e-fas-hourglass-end" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M360 64c13.255 0 24-10.745 24-24V24c0-13.255-10.745-24-24-24H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24 0 90.965 51.016 167.734 120.842 192C75.016 280.266 24 357.035 24 448c-13.255 0-24 10.745-24 24v16c0 13.255 10.745 24 24 24h336c13.255 0 24-10.745 24-24v-16c0-13.255-10.745-24-24-24 0-90.965-51.016-167.734-120.842-192C308.984 231.734 360 154.965 360 64zM192 208c-57.787 0-104-66.518-104-144h208c0 77.945-46.51 144-104 144z"></path></svg>				</span>
+			</div>
+			
+						<div class="elementor-icon-box-content">
+
+									<h3 class="elementor-icon-box-title">
+						<span  >
+							Instant Solutions						</span>
+					</h3>
+				
+									<p class="elementor-icon-box-description">
+						With our AI Homework Helper, students can access instant solutions to their homework problems, saving them time and enabling them to complete assignments more efficiently.					</p>
+				
+			</div>
+			
+		</div>
+				</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-d2c56e9 e-con-full e-flex e-con e-child" data-id="d2c56e9" data-element_type="container">
+				<div class="elementor-element elementor-element-4f74071 elementor-view-stacked elementor-shape-circle elementor-mobile-position-top elementor-vertical-align-top elementor-widget elementor-widget-icon-box" data-id="4f74071" data-element_type="widget" data-widget_type="icon-box.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-icon-box-wrapper">
+
+						<div class="elementor-icon-box-icon">
+				<span  class="elementor-icon elementor-animation-">
+				<svg aria-hidden="true" class="e-font-icon-svg e-far-check-square" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M400 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zm0 400H48V80h352v352zm-35.864-241.724L191.547 361.48c-4.705 4.667-12.303 4.637-16.97-.068l-90.781-91.516c-4.667-4.705-4.637-12.303.069-16.971l22.719-22.536c4.705-4.667 12.303-4.637 16.97.069l59.792 60.277 141.352-140.216c4.705-4.667 12.303-4.637 16.97.068l22.536 22.718c4.667 4.706 4.637 12.304-.068 16.971z"></path></svg>				</span>
+			</div>
+			
+						<div class="elementor-icon-box-content">
+
+									<h3 class="elementor-icon-box-title">
+						<span  >
+							Accuracy and Reliability						</span>
+					</h3>
+				
+									<p class="elementor-icon-box-description">
+						Our AI Homework Helper utilizes advanced algorithms to generate accurate and reliable answers, helping students achieve better grades and academic success.					</p>
+				
+			</div>
+			
+		</div>
+				</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-4ae2014 e-con-full e-flex e-con e-child" data-id="4ae2014" data-element_type="container">
+				<div class="elementor-element elementor-element-1af3718 elementor-view-stacked elementor-shape-circle elementor-mobile-position-top elementor-vertical-align-top elementor-widget elementor-widget-icon-box" data-id="1af3718" data-element_type="widget" data-widget_type="icon-box.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-icon-box-wrapper">
+
+						<div class="elementor-icon-box-icon">
+				<span  class="elementor-icon elementor-animation-">
+				<svg aria-hidden="true" class="e-font-icon-svg e-fas-asterisk" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M478.21 334.093L336 256l142.21-78.093c11.795-6.477 15.961-21.384 9.232-33.037l-19.48-33.741c-6.728-11.653-21.72-15.499-33.227-8.523L296 186.718l3.475-162.204C299.763 11.061 288.937 0 275.48 0h-38.96c-13.456 0-24.283 11.061-23.994 24.514L216 186.718 77.265 102.607c-11.506-6.976-26.499-3.13-33.227 8.523l-19.48 33.741c-6.728 11.653-2.562 26.56 9.233 33.037L176 256 33.79 334.093c-11.795 6.477-15.961 21.384-9.232 33.037l19.48 33.741c6.728 11.653 21.721 15.499 33.227 8.523L216 325.282l-3.475 162.204C212.237 500.939 223.064 512 236.52 512h38.961c13.456 0 24.283-11.061 23.995-24.514L296 325.282l138.735 84.111c11.506 6.976 26.499 3.13 33.227-8.523l19.48-33.741c6.728-11.653 2.563-26.559-9.232-33.036z"></path></svg>				</span>
+			</div>
+			
+						<div class="elementor-icon-box-content">
+
+									<h3 class="elementor-icon-box-title">
+						<span  >
+							Comprehensive Coverage						</span>
+					</h3>
+				
+									<p class="elementor-icon-box-description">
+						From math and science to language arts and history, our AI Homework Helper covers a wide range of subjects and topics, providing assistance across the curriculum.					</p>
+				
+			</div>
+			
+		</div>
+				</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-50af096 e-con-full e-flex e-con e-child" data-id="50af096" data-element_type="container">
+				<div class="elementor-element elementor-element-8c74cad elementor-view-stacked elementor-shape-circle elementor-mobile-position-top elementor-vertical-align-top elementor-widget elementor-widget-icon-box" data-id="8c74cad" data-element_type="widget" data-widget_type="icon-box.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-icon-box-wrapper">
+
+						<div class="elementor-icon-box-icon">
+				<span  class="elementor-icon elementor-animation-">
+				<svg aria-hidden="true" class="e-font-icon-svg e-far-clock" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"></path></svg>				</span>
+			</div>
+			
+						<div class="elementor-icon-box-content">
+
+									<h3 class="elementor-icon-box-title">
+						<span  >
+							24/7 Availability						</span>
+					</h3>
+				
+									<p class="elementor-icon-box-description">
+						Our AI Homework Helper is available round-the-clock, allowing students to get help with their homework whenever they need it, even during late-night study sessions or early morning cramming sessions					</p>
+				
+			</div>
+			
+		</div>
+				</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-9ee2cdb e-con-full e-flex e-con e-child" data-id="9ee2cdb" data-element_type="container">
+				<div class="elementor-element elementor-element-60f955c elementor-view-stacked elementor-shape-circle elementor-mobile-position-top elementor-vertical-align-top elementor-widget elementor-widget-icon-box" data-id="60f955c" data-element_type="widget" data-widget_type="icon-box.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-icon-box-wrapper">
+
+						<div class="elementor-icon-box-icon">
+				<span  class="elementor-icon elementor-animation-">
+				<svg aria-hidden="true" class="e-font-icon-svg e-fab-simplybuilt" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M481.2 64h-106c-14.5 0-26.6 11.8-26.6 26.3v39.6H163.3V90.3c0-14.5-12-26.3-26.6-26.3h-106C16.1 64 4.3 75.8 4.3 90.3v331.4c0 14.5 11.8 26.3 26.6 26.3h450.4c14.8 0 26.6-11.8 26.6-26.3V90.3c-.2-14.5-12-26.3-26.7-26.3zM149.8 355.8c-36.6 0-66.4-29.7-66.4-66.4 0-36.9 29.7-66.6 66.4-66.6 36.9 0 66.6 29.7 66.6 66.6 0 36.7-29.7 66.4-66.6 66.4zm212.4 0c-36.9 0-66.6-29.7-66.6-66.6 0-36.6 29.7-66.4 66.6-66.4 36.6 0 66.4 29.7 66.4 66.4 0 36.9-29.8 66.6-66.4 66.6z"></path></svg>				</span>
+			</div>
+			
+						<div class="elementor-icon-box-content">
+
+									<h3 class="elementor-icon-box-title">
+						<span  >
+							Easy-to-Use Interface						</span>
+					</h3>
+				
+									<p class="elementor-icon-box-description">
+						Our platform features a user-friendly interface that makes it easy for students to navigate and access the assistance they need, without any technical hassles					</p>
+				
+			</div>
+			
+		</div>
+				</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-0ac61b7 e-con-full e-flex e-con e-child" data-id="0ac61b7" data-element_type="container">
+				<div class="elementor-element elementor-element-868b08a elementor-view-stacked elementor-shape-circle elementor-mobile-position-top elementor-vertical-align-top elementor-widget elementor-widget-icon-box" data-id="868b08a" data-element_type="widget" data-widget_type="icon-box.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-icon-box-wrapper">
+
+						<div class="elementor-icon-box-icon">
+				<span  class="elementor-icon elementor-animation-">
+				<svg aria-hidden="true" class="e-font-icon-svg e-fas-dollar-sign" viewBox="0 0 288 512" xmlns="http://www.w3.org/2000/svg"><path d="M209.2 233.4l-108-31.6C88.7 198.2 80 186.5 80 173.5c0-16.3 13.2-29.5 29.5-29.5h66.3c12.2 0 24.2 3.7 34.2 10.5 6.1 4.1 14.3 3.1 19.5-2l34.8-34c7.1-6.9 6.1-18.4-1.8-24.5C238 74.8 207.4 64.1 176 64V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48h-2.5C45.8 64-5.4 118.7.5 183.6c4.2 46.1 39.4 83.6 83.8 96.6l102.5 30c12.5 3.7 21.2 15.3 21.2 28.3 0 16.3-13.2 29.5-29.5 29.5h-66.3C100 368 88 364.3 78 357.5c-6.1-4.1-14.3-3.1-19.5 2l-34.8 34c-7.1 6.9-6.1 18.4 1.8 24.5 24.5 19.2 55.1 29.9 86.5 30v48c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-48.2c46.6-.9 90.3-28.6 105.7-72.7 21.5-61.6-14.6-124.8-72.5-141.7z"></path></svg>				</span>
+			</div>
+			
+						<div class="elementor-icon-box-content">
+
+									<h3 class="elementor-icon-box-title">
+						<span  >
+							Cost-Effective						</span>
+					</h3>
+				
+									<p class="elementor-icon-box-description">
+						Availing our AI Homework Helper services is a cost-effective solution compared to hiring tutors or attending traditional tutoring sessions, making it accessible to students of all budgets.					</p>
+				
+			</div>
+			
+		</div>
+				</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-fb794f9 e-con-full e-flex e-con e-child" data-id="fb794f9" data-element_type="container">
+				<div class="elementor-element elementor-element-debc09c elementor-view-stacked elementor-shape-circle elementor-mobile-position-top elementor-vertical-align-top elementor-widget elementor-widget-icon-box" data-id="debc09c" data-element_type="widget" data-widget_type="icon-box.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-icon-box-wrapper">
+
+						<div class="elementor-icon-box-icon">
+				<span  class="elementor-icon elementor-animation-">
+				<svg aria-hidden="true" class="e-font-icon-svg e-fab-leanpub" viewBox="0 0 576 512" xmlns="http://www.w3.org/2000/svg"><path d="M386.539 111.485l15.096 248.955-10.979-.275c-36.232-.824-71.64 8.783-102.657 27.997-31.016-19.214-66.424-27.997-102.657-27.997-45.564 0-82.07 10.705-123.516 27.723L93.117 129.6c28.546-11.803 61.484-18.115 92.226-18.115 41.173 0 73.836 13.175 102.657 42.544 27.723-28.271 59.013-41.721 98.539-42.544zM569.07 448c-25.526 0-47.485-5.215-70.542-15.645-34.31-15.645-69.993-24.978-107.871-24.978-38.977 0-74.934 12.901-102.657 40.623-27.723-27.723-63.68-40.623-102.657-40.623-37.878 0-73.561 9.333-107.871 24.978C55.239 442.236 32.731 448 8.303 448H6.93L49.475 98.859C88.726 76.626 136.486 64 181.775 64 218.83 64 256.984 71.685 288 93.095 319.016 71.685 357.17 64 394.225 64c45.289 0 93.049 12.626 132.3 34.859L569.07 448zm-43.368-44.741l-34.036-280.246c-30.742-13.999-67.248-21.41-101.009-21.41-38.428 0-74.385 12.077-102.657 38.702-28.272-26.625-64.228-38.702-102.657-38.702-33.761 0-70.267 7.411-101.009 21.41L50.298 403.259c47.211-19.487 82.894-33.486 135.045-33.486 37.604 0 70.817 9.606 102.657 29.644 31.84-20.038 65.052-29.644 102.657-29.644 52.151 0 87.834 13.999 135.045 33.486z"></path></svg>				</span>
+			</div>
+			
+						<div class="elementor-icon-box-content">
+
+									<h3 class="elementor-icon-box-title">
+						<span  >
+							Enhanced Learning Experience						</span>
+					</h3>
+				
+									<p class="elementor-icon-box-description">
+						By using our AI Homework Helper, students can reinforce their understanding of key concepts and improve their problem-solving skills, leading to a more enriching learning experience.					</p>
+				
+			</div>
+			
+		</div>
+				</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-a5c035a e-con-full e-flex e-con e-child" data-id="a5c035a" data-element_type="container">
+				<div class="elementor-element elementor-element-0ccfc6f elementor-view-stacked elementor-shape-circle elementor-mobile-position-top elementor-vertical-align-top elementor-widget elementor-widget-icon-box" data-id="0ccfc6f" data-element_type="widget" data-widget_type="icon-box.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-icon-box-wrapper">
+
+						<div class="elementor-icon-box-icon">
+				<span  class="elementor-icon elementor-animation-">
+				<svg aria-hidden="true" class="e-font-icon-svg e-far-id-badge" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M336 0H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zm0 464H48V48h288v416zM144 112h96c8.8 0 16-7.2 16-16s-7.2-16-16-16h-96c-8.8 0-16 7.2-16 16s7.2 16 16 16zm48 176c35.3 0 64-28.7 64-64s-28.7-64-64-64-64 28.7-64 64 28.7 64 64 64zm-89.6 128h179.2c12.4 0 22.4-8.6 22.4-19.2v-19.2c0-31.8-30.1-57.6-67.2-57.6-10.8 0-18.7 8-44.8 8-26.9 0-33.4-8-44.8-8-37.1 0-67.2 25.8-67.2 57.6v19.2c0 10.6 10 19.2 22.4 19.2z"></path></svg>				</span>
+			</div>
+			
+						<div class="elementor-icon-box-content">
+
+									<h3 class="elementor-icon-box-title">
+						<span  >
+							Confidence Boost						</span>
+					</h3>
+				
+									<p class="elementor-icon-box-description">
+						With the support of our AI Homework Helper, students can approach their homework assignments with confidence, knowing that they have a reliable resource to help them succeed.					</p>
+				
+			</div>
+			
+		</div>
+				</div>
+				</div>
+				</div>
+					</div>
+				</div>
+					</div>
+				</div>
+		<div class="elementor-element elementor-element-ba7de24 e-flex e-con-boxed e-con e-parent" data-id="ba7de24" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+					<div class="e-con-inner">
+		<div class="elementor-element elementor-element-44338ab e-con-full e-flex e-con e-child" data-id="44338ab" data-element_type="container">
+				<div class="elementor-element elementor-element-f877b75 elementor-widget elementor-widget-heading" data-id="f877b75" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">Frequently Asked Questions (FAQs) 
+<br>about our AI Homework Helper Assistant</h2>		</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-520be42 e-flex e-con-boxed e-con e-child" data-id="520be42" data-element_type="container">
+					<div class="e-con-inner">
+		<div class="elementor-element elementor-element-768937f e-con-full e-flex e-con e-child" data-id="768937f" data-element_type="container">
+				<div class="elementor-element elementor-element-1f1c206 elementor-widget elementor-widget-toggle" data-id="1f1c206" data-element_type="widget" data-widget_type="toggle.default">
+				<div class="elementor-widget-container">
+			<style>/*! elementor - v3.21.0 - 25-04-2024 */
+.elementor-toggle{text-align:start}.elementor-toggle .elementor-tab-title{font-weight:700;line-height:1;margin:0;padding:15px;border-bottom:1px solid #d5d8dc;cursor:pointer;outline:none}.elementor-toggle .elementor-tab-title .elementor-toggle-icon{display:inline-block;width:1em}.elementor-toggle .elementor-tab-title .elementor-toggle-icon svg{margin-inline-start:-5px;width:1em;height:1em}.elementor-toggle .elementor-tab-title .elementor-toggle-icon.elementor-toggle-icon-right{float:right;text-align:right}.elementor-toggle .elementor-tab-title .elementor-toggle-icon.elementor-toggle-icon-left{float:left;text-align:left}.elementor-toggle .elementor-tab-title .elementor-toggle-icon .elementor-toggle-icon-closed{display:block}.elementor-toggle .elementor-tab-title .elementor-toggle-icon .elementor-toggle-icon-opened{display:none}.elementor-toggle .elementor-tab-title.elementor-active{border-bottom:none}.elementor-toggle .elementor-tab-title.elementor-active .elementor-toggle-icon-closed{display:none}.elementor-toggle .elementor-tab-title.elementor-active .elementor-toggle-icon-opened{display:block}.elementor-toggle .elementor-tab-content{padding:15px;border-bottom:1px solid #d5d8dc;display:none}@media (max-width:767px){.elementor-toggle .elementor-tab-title{padding:12px}.elementor-toggle .elementor-tab-content{padding:12px 10px}}.e-con-inner>.elementor-widget-toggle,.e-con>.elementor-widget-toggle{width:var(--container-widget-width);--flex-grow:var(--container-widget-flex-grow)}</style>		<div class="elementor-toggle">
+							<div class="elementor-toggle-item">
+					<h3 id="elementor-tab-title-3261" class="elementor-tab-title" data-tab="1" role="button" aria-controls="elementor-tab-content-3261" aria-expanded="false">
+												<span class="elementor-toggle-icon elementor-toggle-icon-left" aria-hidden="true">
+															<span class="elementor-toggle-icon-closed"><svg class="e-font-icon-svg e-fas-caret-right" viewBox="0 0 192 512" xmlns="http://www.w3.org/2000/svg"><path d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path></svg></span>
+								<span class="elementor-toggle-icon-opened"><svg class="elementor-toggle-icon-opened e-font-icon-svg e-fas-caret-up" viewBox="0 0 320 512" xmlns="http://www.w3.org/2000/svg"><path d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"></path></svg></span>
+													</span>
+												<a class="elementor-toggle-title" tabindex="0">What is an AI Homework Helper?</a>
+					</h3>
+
+					<div id="elementor-tab-content-3261" class="elementor-tab-content elementor-clearfix" data-tab="1" role="region" aria-labelledby="elementor-tab-title-3261"><p><span style="font-weight: 400;">Our AI Homework Helper is an innovative platform powered by artificial intelligence technology, designed to assist students with their homework assignments across various subjects.</span></p></div>
+				</div>
+							<div class="elementor-toggle-item">
+					<h3 id="elementor-tab-title-3262" class="elementor-tab-title" data-tab="2" role="button" aria-controls="elementor-tab-content-3262" aria-expanded="false">
+												<span class="elementor-toggle-icon elementor-toggle-icon-left" aria-hidden="true">
+															<span class="elementor-toggle-icon-closed"><svg class="e-font-icon-svg e-fas-caret-right" viewBox="0 0 192 512" xmlns="http://www.w3.org/2000/svg"><path d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path></svg></span>
+								<span class="elementor-toggle-icon-opened"><svg class="elementor-toggle-icon-opened e-font-icon-svg e-fas-caret-up" viewBox="0 0 320 512" xmlns="http://www.w3.org/2000/svg"><path d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"></path></svg></span>
+													</span>
+												<a class="elementor-toggle-title" tabindex="0">How does the AI Homework Helper work?</a>
+					</h3>
+
+					<div id="elementor-tab-content-3262" class="elementor-tab-content elementor-clearfix" data-tab="2" role="region" aria-labelledby="elementor-tab-title-3262"><p><span style="font-weight: 400;">Our AI Homework Helper analyzes students&#8217; homework requirements and generates customized solutions, including step-by-step explanations, relevant examples, and problem-solving strategies.</span></p></div>
+				</div>
+							<div class="elementor-toggle-item">
+					<h3 id="elementor-tab-title-3263" class="elementor-tab-title" data-tab="3" role="button" aria-controls="elementor-tab-content-3263" aria-expanded="false">
+												<span class="elementor-toggle-icon elementor-toggle-icon-left" aria-hidden="true">
+															<span class="elementor-toggle-icon-closed"><svg class="e-font-icon-svg e-fas-caret-right" viewBox="0 0 192 512" xmlns="http://www.w3.org/2000/svg"><path d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path></svg></span>
+								<span class="elementor-toggle-icon-opened"><svg class="elementor-toggle-icon-opened e-font-icon-svg e-fas-caret-up" viewBox="0 0 320 512" xmlns="http://www.w3.org/2000/svg"><path d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"></path></svg></span>
+													</span>
+												<a class="elementor-toggle-title" tabindex="0">Is the AI Homework Helper suitable for all subjects?</a>
+					</h3>
+
+					<div id="elementor-tab-content-3263" class="elementor-tab-content elementor-clearfix" data-tab="3" role="region" aria-labelledby="elementor-tab-title-3263"><p><span style="font-weight: 400;">Yes, our AI Homework Helper covers a wide range of subjects, including math, science, language arts, history, and more, making it suitable for students at all levels.</span></p></div>
+				</div>
+							<div class="elementor-toggle-item">
+					<h3 id="elementor-tab-title-3264" class="elementor-tab-title" data-tab="4" role="button" aria-controls="elementor-tab-content-3264" aria-expanded="false">
+												<span class="elementor-toggle-icon elementor-toggle-icon-left" aria-hidden="true">
+															<span class="elementor-toggle-icon-closed"><svg class="e-font-icon-svg e-fas-caret-right" viewBox="0 0 192 512" xmlns="http://www.w3.org/2000/svg"><path d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path></svg></span>
+								<span class="elementor-toggle-icon-opened"><svg class="elementor-toggle-icon-opened e-font-icon-svg e-fas-caret-up" viewBox="0 0 320 512" xmlns="http://www.w3.org/2000/svg"><path d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"></path></svg></span>
+													</span>
+												<a class="elementor-toggle-title" tabindex="0">Can I trust the accuracy of the AI Homework Helper's solutions?</a>
+					</h3>
+
+					<div id="elementor-tab-content-3264" class="elementor-tab-content elementor-clearfix" data-tab="4" role="region" aria-labelledby="elementor-tab-title-3264"><p><span style="font-weight: 400;">Absolutely. Our AI Homework Helper utilizes advanced algorithms to ensure accurate and reliable solutions for homework assignments, helping students achieve better grades and academic success.</span></p></div>
+				</div>
+							<div class="elementor-toggle-item">
+					<h3 id="elementor-tab-title-3265" class="elementor-tab-title" data-tab="5" role="button" aria-controls="elementor-tab-content-3265" aria-expanded="false">
+												<span class="elementor-toggle-icon elementor-toggle-icon-left" aria-hidden="true">
+															<span class="elementor-toggle-icon-closed"><svg class="e-font-icon-svg e-fas-caret-right" viewBox="0 0 192 512" xmlns="http://www.w3.org/2000/svg"><path d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path></svg></span>
+								<span class="elementor-toggle-icon-opened"><svg class="elementor-toggle-icon-opened e-font-icon-svg e-fas-caret-up" viewBox="0 0 320 512" xmlns="http://www.w3.org/2000/svg"><path d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"></path></svg></span>
+													</span>
+												<a class="elementor-toggle-title" tabindex="0">Is the AI Homework Helper available 24/7?</a>
+					</h3>
+
+					<div id="elementor-tab-content-3265" class="elementor-tab-content elementor-clearfix" data-tab="5" role="region" aria-labelledby="elementor-tab-title-3265"><p><span style="font-weight: 400;">Yes, our AI Homework Helper is available round-the-clock, allowing students to access instant assistance with their homework anytime, anywhere.</span><span style="font-weight: 400;"><br /></span></p></div>
+				</div>
+							<div class="elementor-toggle-item">
+					<h3 id="elementor-tab-title-3266" class="elementor-tab-title" data-tab="6" role="button" aria-controls="elementor-tab-content-3266" aria-expanded="false">
+												<span class="elementor-toggle-icon elementor-toggle-icon-left" aria-hidden="true">
+															<span class="elementor-toggle-icon-closed"><svg class="e-font-icon-svg e-fas-caret-right" viewBox="0 0 192 512" xmlns="http://www.w3.org/2000/svg"><path d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path></svg></span>
+								<span class="elementor-toggle-icon-opened"><svg class="elementor-toggle-icon-opened e-font-icon-svg e-fas-caret-up" viewBox="0 0 320 512" xmlns="http://www.w3.org/2000/svg"><path d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"></path></svg></span>
+													</span>
+												<a class="elementor-toggle-title" tabindex="0">How can I submit my homework requirements to the AI Homework Helper?</a>
+					</h3>
+
+					<div id="elementor-tab-content-3266" class="elementor-tab-content elementor-clearfix" data-tab="6" role="region" aria-labelledby="elementor-tab-title-3266"><p><span style="font-weight: 400;">You can submit your homework requirements through our user-friendly platform by providing details such as the subject, topic, specific questions, and any additional instructions from your teacher.</span></p></div>
+				</div>
+							<div class="elementor-toggle-item">
+					<h3 id="elementor-tab-title-3267" class="elementor-tab-title" data-tab="7" role="button" aria-controls="elementor-tab-content-3267" aria-expanded="false">
+												<span class="elementor-toggle-icon elementor-toggle-icon-left" aria-hidden="true">
+															<span class="elementor-toggle-icon-closed"><svg class="e-font-icon-svg e-fas-caret-right" viewBox="0 0 192 512" xmlns="http://www.w3.org/2000/svg"><path d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path></svg></span>
+								<span class="elementor-toggle-icon-opened"><svg class="elementor-toggle-icon-opened e-font-icon-svg e-fas-caret-up" viewBox="0 0 320 512" xmlns="http://www.w3.org/2000/svg"><path d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"></path></svg></span>
+													</span>
+												<a class="elementor-toggle-title" tabindex="0">Can I ask follow-up questions or request additional assistance?</a>
+					</h3>
+
+					<div id="elementor-tab-content-3267" class="elementor-tab-content elementor-clearfix" data-tab="7" role="region" aria-labelledby="elementor-tab-title-3267"><p><span style="font-weight: 400;">Of course. If you have any follow-up questions or need further assistance with your homework, you can always submit additional assignments and continue utilizing our AI Homework Helper for support.</span></p></div>
+				</div>
+							<div class="elementor-toggle-item">
+					<h3 id="elementor-tab-title-3268" class="elementor-tab-title" data-tab="8" role="button" aria-controls="elementor-tab-content-3268" aria-expanded="false">
+												<span class="elementor-toggle-icon elementor-toggle-icon-left" aria-hidden="true">
+															<span class="elementor-toggle-icon-closed"><svg class="e-font-icon-svg e-fas-caret-right" viewBox="0 0 192 512" xmlns="http://www.w3.org/2000/svg"><path d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path></svg></span>
+								<span class="elementor-toggle-icon-opened"><svg class="elementor-toggle-icon-opened e-font-icon-svg e-fas-caret-up" viewBox="0 0 320 512" xmlns="http://www.w3.org/2000/svg"><path d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"></path></svg></span>
+													</span>
+												<a class="elementor-toggle-title" tabindex="0">Is the AI Homework Helper affordable?</a>
+					</h3>
+
+					<div id="elementor-tab-content-3268" class="elementor-tab-content elementor-clearfix" data-tab="8" role="region" aria-labelledby="elementor-tab-title-3268"><p><span style="font-weight: 400;">Yes, our AI Homework Helper offers cost-effective solutions compared to traditional tutoring services, making high-quality homework help accessible to students of all budgets.</span></p></div>
+				</div>
+							<div class="elementor-toggle-item">
+					<h3 id="elementor-tab-title-3269" class="elementor-tab-title" data-tab="9" role="button" aria-controls="elementor-tab-content-3269" aria-expanded="false">
+												<span class="elementor-toggle-icon elementor-toggle-icon-left" aria-hidden="true">
+															<span class="elementor-toggle-icon-closed"><svg class="e-font-icon-svg e-fas-caret-right" viewBox="0 0 192 512" xmlns="http://www.w3.org/2000/svg"><path d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path></svg></span>
+								<span class="elementor-toggle-icon-opened"><svg class="elementor-toggle-icon-opened e-font-icon-svg e-fas-caret-up" viewBox="0 0 320 512" xmlns="http://www.w3.org/2000/svg"><path d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"></path></svg></span>
+													</span>
+												<a class="elementor-toggle-title" tabindex="0">How can I contact customer support if I encounter any issues?</a>
+					</h3>
+
+					<div id="elementor-tab-content-3269" class="elementor-tab-content elementor-clearfix" data-tab="9" role="region" aria-labelledby="elementor-tab-title-3269"><p><span style="font-weight: 400;">If you encounter any issues or have questions about our AI Homework Helper services, you can contact our customer support team via email or phone for assistance.</span></p></div>
+				</div>
+							<div class="elementor-toggle-item">
+					<h3 id="elementor-tab-title-32610" class="elementor-tab-title" data-tab="10" role="button" aria-controls="elementor-tab-content-32610" aria-expanded="false">
+												<span class="elementor-toggle-icon elementor-toggle-icon-left" aria-hidden="true">
+															<span class="elementor-toggle-icon-closed"><svg class="e-font-icon-svg e-fas-caret-right" viewBox="0 0 192 512" xmlns="http://www.w3.org/2000/svg"><path d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path></svg></span>
+								<span class="elementor-toggle-icon-opened"><svg class="elementor-toggle-icon-opened e-font-icon-svg e-fas-caret-up" viewBox="0 0 320 512" xmlns="http://www.w3.org/2000/svg"><path d="M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z"></path></svg></span>
+													</span>
+												<a class="elementor-toggle-title" tabindex="0">Can the AI Homework Helper help me improve my understanding of the material?</a>
+					</h3>
+
+					<div id="elementor-tab-content-32610" class="elementor-tab-content elementor-clearfix" data-tab="10" role="region" aria-labelledby="elementor-tab-title-32610"><p><span style="font-weight: 400;">Absolutely. Our AI Homework Helper not only provides solutions to homework assignments but also serves as a valuable learning tool, helping students reinforce their understanding of key concepts and improve their problem-solving skills.</span></p></div>
+				</div>
+										<script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is an AI Homework Helper?","acceptedAnswer":{"@type":"Answer","text":"<p><span style=\"font-weight: 400;\">Our AI Homework Helper is an innovative platform powered by artificial intelligence technology, designed to assist students with their homework assignments across various subjects.<\/span><\/p>"}},{"@type":"Question","name":"How does the AI Homework Helper work?","acceptedAnswer":{"@type":"Answer","text":"<p><span style=\"font-weight: 400;\">Our AI Homework Helper analyzes students&#8217; homework requirements and generates customized solutions, including step-by-step explanations, relevant examples, and problem-solving strategies.<\/span><\/p>"}},{"@type":"Question","name":"Is the AI Homework Helper suitable for all subjects?","acceptedAnswer":{"@type":"Answer","text":"<p><span style=\"font-weight: 400;\">Yes, our AI Homework Helper covers a wide range of subjects, including math, science, language arts, history, and more, making it suitable for students at all levels.<\/span><\/p>"}},{"@type":"Question","name":"Can I trust the accuracy of the AI Homework Helper's solutions?","acceptedAnswer":{"@type":"Answer","text":"<p><span style=\"font-weight: 400;\">Absolutely. Our AI Homework Helper utilizes advanced algorithms to ensure accurate and reliable solutions for homework assignments, helping students achieve better grades and academic success.<\/span><\/p>"}},{"@type":"Question","name":"Is the AI Homework Helper available 24\/7?","acceptedAnswer":{"@type":"Answer","text":"<p><span style=\"font-weight: 400;\">Yes, our AI Homework Helper is available round-the-clock, allowing students to access instant assistance with their homework anytime, anywhere.<\/span><span style=\"font-weight: 400;\"><br \/><\/span><\/p>"}},{"@type":"Question","name":"How can I submit my homework requirements to the AI Homework Helper?","acceptedAnswer":{"@type":"Answer","text":"<p><span style=\"font-weight: 400;\">You can submit your homework requirements through our user-friendly platform by providing details such as the subject, topic, specific questions, and any additional instructions from your teacher.<\/span><\/p>"}},{"@type":"Question","name":"Can I ask follow-up questions or request additional assistance?","acceptedAnswer":{"@type":"Answer","text":"<p><span style=\"font-weight: 400;\">Of course. If you have any follow-up questions or need further assistance with your homework, you can always submit additional assignments and continue utilizing our AI Homework Helper for support.<\/span><\/p>"}},{"@type":"Question","name":"Is the AI Homework Helper affordable?","acceptedAnswer":{"@type":"Answer","text":"<p><span style=\"font-weight: 400;\">Yes, our AI Homework Helper offers cost-effective solutions compared to traditional tutoring services, making high-quality homework help accessible to students of all budgets.<\/span><\/p>"}},{"@type":"Question","name":"How can I contact customer support if I encounter any issues?","acceptedAnswer":{"@type":"Answer","text":"<p><span style=\"font-weight: 400;\">If you encounter any issues or have questions about our AI Homework Helper services, you can contact our customer support team via email or phone for assistance.<\/span><\/p>"}},{"@type":"Question","name":"Can the AI Homework Helper help me improve my understanding of the material?","acceptedAnswer":{"@type":"Answer","text":"<p><span style=\"font-weight: 400;\">Absolutely. Our AI Homework Helper not only provides solutions to homework assignments but also serves as a valuable learning tool, helping students reinforce their understanding of key concepts and improve their problem-solving skills.<\/span><\/p>"}}]}</script>
+					</div>
+				</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-9828905 e-con-full e-flex e-con e-child" data-id="9828905" data-element_type="container">
+				<div class="elementor-element elementor-element-ebb8f15 elementor-widget elementor-widget-image" data-id="ebb8f15" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+													<img loading="lazy" decoding="async" width="625" height="363" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20625%20363'%3E%3C/svg%3E" class="attachment-large size-large wp-image-570" alt="This image is about faqs" data-lazy-srcset="https://aihomeworkhelper.co/wp-content/uploads/2024/02/faqs-1.webp 625w, https://aihomeworkhelper.co/wp-content/uploads/2024/02/faqs-1-300x174.webp 300w" data-lazy-sizes="(max-width: 625px) 100vw, 625px" data-lazy-src="https://aihomeworkhelper.co/wp-content/uploads/2024/02/faqs-1.webp" /><noscript><img loading="lazy" decoding="async" width="625" height="363" src="https://aihomeworkhelper.co/wp-content/uploads/2024/02/faqs-1.webp" class="attachment-large size-large wp-image-570" alt="This image is about faqs" srcset="https://aihomeworkhelper.co/wp-content/uploads/2024/02/faqs-1.webp 625w, https://aihomeworkhelper.co/wp-content/uploads/2024/02/faqs-1-300x174.webp 300w" sizes="(max-width: 625px) 100vw, 625px" /></noscript>													</div>
+				</div>
+				</div>
+					</div>
+				</div>
+					</div>
+				</div>
+				</div>
+		
+	
+</div>
+
+</article>
+
+				
+			</div>
+
+			
+		</div>
+
+		
+	</div>
+
+	
+
+	</main>
+
+	
+	
+	
+				<footer itemtype="https://schema.org/WPFooter" itemscope="itemscope" id="colophon" role="contentinfo">
+			<div class='footer-width-fixer'>		<div data-elementor-type="wp-post" data-elementor-id="341" class="elementor elementor-341">
+				<div class="elementor-element elementor-element-f30beca e-flex e-con-boxed e-con e-parent" data-id="f30beca" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+					<div class="e-con-inner">
+		<div class="elementor-element elementor-element-6e64389 e-con-full e-flex e-con e-child" data-id="6e64389" data-element_type="container">
+				<div class="elementor-element elementor-element-0b211fb elementor-widget elementor-widget-image" data-id="0b211fb" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+													<img width="300" height="83" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%2083'%3E%3C/svg%3E" class="attachment-medium size-medium wp-image-987" alt="This Image Depicts Site Logo" data-lazy-src="https://aihomeworkhelper.co/wp-content/uploads/2024/03/cropped-ai_homework_helper_co_logo.webp" /><noscript><img width="300" height="83" src="https://aihomeworkhelper.co/wp-content/uploads/2024/03/cropped-ai_homework_helper_co_logo.webp" class="attachment-medium size-medium wp-image-987" alt="This Image Depicts Site Logo" /></noscript>													</div>
+				</div>
+				<div class="elementor-element elementor-element-27b3da4 elementor-widget elementor-widget-text-editor" data-id="27b3da4" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p><span style="font-weight: 400;">Our AI Homework Helper is an innovative solution designed to assist students in completing their homework assignments efficiently and effectively.</span></p>						</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-8e92082 e-con-full e-flex e-con e-child" data-id="8e92082" data-element_type="container">
+				<div class="elementor-element elementor-element-b124206 elementor-widget elementor-widget-heading" data-id="b124206" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">Pages</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-2149159 hfe-submenu-icon-plus hfe-nav-menu__breakpoint-none hfe-nav-menu__align-left hfe-link-redirect-child elementor-widget elementor-widget-navigation-menu" data-id="2149159" data-element_type="widget" data-settings="{&quot;padding_horizontal_menu_item&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:0,&quot;sizes&quot;:[]},&quot;padding_vertical_menu_item&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:5,&quot;sizes&quot;:[]},&quot;menu_space_between&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:3,&quot;sizes&quot;:[]},&quot;padding_vertical_menu_item_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]},&quot;padding_horizontal_menu_item_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;padding_horizontal_menu_item_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;padding_vertical_menu_item_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;menu_space_between_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;menu_space_between_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;dropdown_border_radius&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;top&quot;:&quot;&quot;,&quot;right&quot;:&quot;&quot;,&quot;bottom&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;isLinked&quot;:true},&quot;dropdown_border_radius_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;top&quot;:&quot;&quot;,&quot;right&quot;:&quot;&quot;,&quot;bottom&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;isLinked&quot;:true},&quot;dropdown_border_radius_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;top&quot;:&quot;&quot;,&quot;right&quot;:&quot;&quot;,&quot;bottom&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;isLinked&quot;:true},&quot;padding_horizontal_dropdown_item&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;padding_horizontal_dropdown_item_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;padding_horizontal_dropdown_item_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;padding_vertical_dropdown_item&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:15,&quot;sizes&quot;:[]},&quot;padding_vertical_dropdown_item_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;padding_vertical_dropdown_item_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;distance_from_menu&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;distance_from_menu_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;distance_from_menu_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_size&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_size_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_size_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_border_width&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_border_width_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_border_width_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_border_radius&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_border_radius_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_border_radius_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]}}" data-widget_type="navigation-menu.default">
+				<div class="elementor-widget-container">
+						<div class="hfe-nav-menu hfe-layout-vertical hfe-nav-menu-layout vertical" data-layout="vertical">
+				<div role="button" class="hfe-nav-menu__toggle elementor-clickable">
+					<span class="screen-reader-text">Menu</span>
+					<div class="hfe-nav-menu-icon">
+											</div>
+				</div>
+				<nav class="hfe-nav-menu__layout-vertical hfe-nav-menu__submenu-plus" data-toggle-icon="" data-close-icon="" data-full-width="">
+					<ul id="menu-1-2149159" class="hfe-nav-menu"><li id="menu-item-324" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-204 current_page_item parent hfe-creative-menu"><a href="https://aihomeworkhelper.co/" class = "hfe-menu-item">Home</a></li>
+<li id="menu-item-325" class="menu-item menu-item-type-post_type menu-item-object-page parent hfe-creative-menu"><a href="https://aihomeworkhelper.co/assistant/" class = "hfe-menu-item">Assistant</a></li>
+<li id="menu-item-338" class="menu-item menu-item-type-post_type menu-item-object-page parent hfe-creative-menu"><a href="https://aihomeworkhelper.co/blogs/" class = "hfe-menu-item">Blogs</a></li>
+<li id="menu-item-339" class="menu-item menu-item-type-post_type menu-item-object-page parent hfe-creative-menu"><a href="https://aihomeworkhelper.co/login/" class = "hfe-menu-item">Login</a></li>
+<li id="menu-item-340" class="menu-item menu-item-type-post_type menu-item-object-page parent hfe-creative-menu"><a href="https://aihomeworkhelper.co/testimonials/" class = "hfe-menu-item">Testimonials</a></li>
+</ul> 
+				</nav>
+			</div>
+					</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-d224cea e-con-full e-flex e-con e-child" data-id="d224cea" data-element_type="container">
+				<div class="elementor-element elementor-element-6ccb30f elementor-widget elementor-widget-heading" data-id="6ccb30f" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">Services</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-b1bb481 hfe-submenu-icon-plus hfe-nav-menu__breakpoint-none hfe-nav-menu__align-left hfe-link-redirect-child elementor-widget elementor-widget-navigation-menu" data-id="b1bb481" data-element_type="widget" data-settings="{&quot;padding_horizontal_menu_item&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:0,&quot;sizes&quot;:[]},&quot;padding_vertical_menu_item&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:8,&quot;sizes&quot;:[]},&quot;menu_space_between&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:3,&quot;sizes&quot;:[]},&quot;padding_vertical_menu_item_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:13,&quot;sizes&quot;:[]},&quot;padding_horizontal_menu_item_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;padding_horizontal_menu_item_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;padding_vertical_menu_item_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;menu_space_between_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;menu_space_between_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;dropdown_border_radius&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;top&quot;:&quot;&quot;,&quot;right&quot;:&quot;&quot;,&quot;bottom&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;isLinked&quot;:true},&quot;dropdown_border_radius_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;top&quot;:&quot;&quot;,&quot;right&quot;:&quot;&quot;,&quot;bottom&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;isLinked&quot;:true},&quot;dropdown_border_radius_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;top&quot;:&quot;&quot;,&quot;right&quot;:&quot;&quot;,&quot;bottom&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;isLinked&quot;:true},&quot;padding_horizontal_dropdown_item&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;padding_horizontal_dropdown_item_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;padding_horizontal_dropdown_item_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;padding_vertical_dropdown_item&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:15,&quot;sizes&quot;:[]},&quot;padding_vertical_dropdown_item_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;padding_vertical_dropdown_item_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;distance_from_menu&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;distance_from_menu_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;distance_from_menu_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_size&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_size_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_size_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_border_width&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_border_width_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_border_width_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_border_radius&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_border_radius_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_border_radius_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]}}" data-widget_type="navigation-menu.default">
+				<div class="elementor-widget-container">
+						<div class="hfe-nav-menu hfe-layout-vertical hfe-nav-menu-layout vertical" data-layout="vertical">
+				<div role="button" class="hfe-nav-menu__toggle elementor-clickable">
+					<span class="screen-reader-text">Menu</span>
+					<div class="hfe-nav-menu-icon">
+											</div>
+				</div>
+				<nav class="hfe-nav-menu__layout-vertical hfe-nav-menu__submenu-plus" data-toggle-icon="" data-close-icon="" data-full-width="">
+					<ul id="menu-1-b1bb481" class="hfe-nav-menu"><li id="menu-item-856" class="menu-item menu-item-type-post_type menu-item-object-page parent hfe-creative-menu"><a href="https://aihomeworkhelper.co/ai-for-writing-research-papers/" class = "hfe-menu-item">AI For Writing Research Papers</a></li>
+<li id="menu-item-857" class="menu-item menu-item-type-post_type menu-item-object-page parent hfe-creative-menu"><a href="https://aihomeworkhelper.co/ai-for-thesis-writing/" class = "hfe-menu-item">AI For Thesis Writing</a></li>
+<li id="menu-item-858" class="menu-item menu-item-type-post_type menu-item-object-page parent hfe-creative-menu"><a href="https://aihomeworkhelper.co/ai-tutor/" class = "hfe-menu-item">AI Tutor</a></li>
+<li id="menu-item-859" class="menu-item menu-item-type-post_type menu-item-object-page parent hfe-creative-menu"><a href="https://aihomeworkhelper.co/ai-math-solver-tool/" class = "hfe-menu-item">AI Math Problem Solver</a></li>
+</ul> 
+				</nav>
+			</div>
+					</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-030fefc e-con-full e-flex e-con e-child" data-id="030fefc" data-element_type="container">
+				<div class="elementor-element elementor-element-746125d elementor-widget elementor-widget-heading" data-id="746125d" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">Social  Icons</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-1cf61f1 elementor-widget elementor-widget-html" data-id="1cf61f1" data-element_type="widget" data-widget_type="html.default">
+				<div class="elementor-widget-container">
+			<div style="display:flex;">
+     <a href="https://www.facebook.com/profile.php?id=61556416524407">
+    <div class="facebook-icon">
+    
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000" class="bi bi-facebook" viewBox="0 0 16 16">
+  <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
+</svg>
+   
+    </div>
+      </a>
+       <a href="https://twitter.com/aihomework09">
+    <div class="twitter-icon">
+      
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000" class="bi bi-twitter-x" viewBox="0 0 16 16">
+  <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
+</svg>
+      
+    </div>
+     </a>
+      <a href="https://www.instagram.com/aihomeworkhelper2/">
+    <div class="instagram-icon">
+    
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000" class="bi bi-instagram" viewBox="0 0 16 16">
+  <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
+</svg>
+   
+    </div>
+      </a>
+       <a href="https://www.threads.net/@aihomeworkhelper2">
+    <div class="thread-icon">
+       
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000" class="bi bi-threads" viewBox="0 0 16 16">
+  <path d="M6.321 6.016c-.27-.18-1.166-.802-1.166-.802.756-1.081 1.753-1.502 3.132-1.502.975 0 1.803.327 2.394.948s.928 1.509 1.005 2.644q.492.207.905.484c1.109.745 1.719 1.86 1.719 3.137 0 2.716-2.226 5.075-6.256 5.075C4.594 16 1 13.987 1 7.994 1 2.034 4.482 0 8.044 0 9.69 0 13.55.243 15 5.036l-1.36.353C12.516 1.974 10.163 1.43 8.006 1.43c-3.565 0-5.582 2.171-5.582 6.79 0 4.143 2.254 6.343 5.63 6.343 2.777 0 4.847-1.443 4.847-3.556 0-1.438-1.208-2.127-1.27-2.127-.236 1.234-.868 3.31-3.644 3.31-1.618 0-3.013-1.118-3.013-2.582 0-2.09 1.984-2.847 3.55-2.847.586 0 1.294.04 1.663.114 0-.637-.54-1.728-1.9-1.728-1.25 0-1.566.405-1.967.868ZM8.716 8.19c-2.04 0-2.304.87-2.304 1.416 0 .878 1.043 1.168 1.6 1.168 1.02 0 2.067-.282 2.232-2.423a6.2 6.2 0 0 0-1.528-.161"/>
+</svg>
+       
+    </div>
+     </a>
+</div>		</div>
+				</div>
+				<div class="elementor-element elementor-element-08d2ef2 elementor-position-left elementor-tablet-position-top elementor-view-default elementor-mobile-position-top elementor-vertical-align-top elementor-widget elementor-widget-icon-box" data-id="08d2ef2" data-element_type="widget" data-widget_type="icon-box.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-icon-box-wrapper">
+
+						<div class="elementor-icon-box-icon">
+				<a href="mailto:info@aihomeworkhelper.co" class="elementor-icon elementor-animation-" tabindex="-1">
+				<svg aria-hidden="true" class="e-font-icon-svg e-far-envelope" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 400V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V400H48z"></path></svg>				</a>
+			</div>
+			
+						<div class="elementor-icon-box-content">
+
+									<h3 class="elementor-icon-box-title">
+						<a href="mailto:info@aihomeworkhelper.co" >
+							info@aihomeworkhelper.co						</a>
+					</h3>
+				
+				
+			</div>
+			
+		</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-1050d2a elementor-position-left elementor-tablet-position-top elementor-view-default elementor-mobile-position-top elementor-vertical-align-top elementor-widget elementor-widget-icon-box" data-id="1050d2a" data-element_type="widget" data-widget_type="icon-box.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-icon-box-wrapper">
+
+						<div class="elementor-icon-box-icon">
+				<a href="https://wa.me/+16163145029" class="elementor-icon elementor-animation-" tabindex="-1">
+				<svg aria-hidden="true" class="e-font-icon-svg e-fab-whatsapp" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"></path></svg>				</a>
+			</div>
+			
+						<div class="elementor-icon-box-content">
+
+									<h3 class="elementor-icon-box-title">
+						<a href="https://wa.me/+16163145029" >
+							+1 (616) 314-5029						</a>
+					</h3>
+				
+				
+			</div>
+			
+		</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-9637907 elementor-position-left elementor-tablet-position-top elementor-view-default elementor-mobile-position-top elementor-vertical-align-top elementor-widget elementor-widget-icon-box" data-id="9637907" data-element_type="widget" data-widget_type="icon-box.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-icon-box-wrapper">
+
+						<div class="elementor-icon-box-icon">
+				<span  class="elementor-icon elementor-animation-">
+				<svg aria-hidden="true" class="e-font-icon-svg e-fas-map-marker-alt" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"></path></svg>				</span>
+			</div>
+			
+						<div class="elementor-icon-box-content">
+
+									<h3 class="elementor-icon-box-title">
+						<span  >
+							appartment 2, 8647 s Lawler Ave, Burbank, IL, 60459						</span>
+					</h3>
+				
+				
+			</div>
+			
+		</div>
+				</div>
+				</div>
+				</div>
+					</div>
+				</div>
+		<div class="elementor-element elementor-element-c7c98ca e-flex e-con-boxed e-con e-parent" data-id="c7c98ca" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+					<div class="e-con-inner">
+		<div class="elementor-element elementor-element-89a1bf6 e-con-full e-flex e-con e-child" data-id="89a1bf6" data-element_type="container">
+				<div class="elementor-element elementor-element-f5e66bd elementor-widget elementor-widget-text-editor" data-id="f5e66bd" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p><span style="color: #000000;">Copyright © 2024 <span style="color: #0000ff;"><a style="color: #0000ff;" href="https://aihomeworkhelper.co/">aihomeworkhelper.co </a></span>|  All Rights Reserved.</span></p>						</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-4e75bf2 e-con-full e-flex e-con e-child" data-id="4e75bf2" data-element_type="container">
+				<div class="elementor-element elementor-element-766f306 elementor-widget elementor-widget-text-editor" data-id="766f306" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p><strong><span style="color: #003366;"><a style="color: #003366;" href="https://aihomeworkhelper.co/privacy-policy/">Privacy Policy</a></span></strong></p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-429b7a2 elementor-widget elementor-widget-text-editor" data-id="429b7a2" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p><strong><span style="color: #003366;"><a style="color: #003366;" href="https://aihomeworkhelper.co/cookie-policy/">Cookie Policy</a></span></strong></p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-85a3906 elementor-widget elementor-widget-text-editor" data-id="85a3906" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p><strong><span style="color: #003366;"><a style="color: #003366;" href="https://aihomeworkhelper.co/disclaimer/">Disclaimer</a></span></strong></p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-b281578 elementor-widget elementor-widget-text-editor" data-id="b281578" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p><strong><span style="color: #003366;"><a style="color: #003366;" href="https://aihomeworkhelper.co/terms-and-conditions/">Terms &amp; Conditions</a></span></strong></p>						</div>
+				</div>
+				</div>
+					</div>
+				</div>
+				</div>
+		</div>		</footer>
+	
+	
+	
+</div>
+
+
+</div>
+
+
+
+<a aria-label="Scroll to the top of the page" href="#" id="scroll-top" class="scroll-top-right"><i class=" fa fa-angle-up" aria-hidden="true" role="img"></i></a>
+
+
+
+
+            		
+	    
+    <script type="rocketlazyloadscript" data-rocket-type='text/javascript'>
+        document.addEventListener( 'wpcf7mailsent', function( event ) {
+        if( "fb_pxl_code" in event.detail.apiResponse){
+          eval(event.detail.apiResponse.fb_pxl_code);
+        }
+      }, false );
+    </script>
+    
+    <div id='fb-pxl-ajax-code'></div>
+
+
+
+<script id="pa-frontend-js-extra">
+var PremiumSettings = {"ajaxurl":"https:\/\/aihomeworkhelper.co\/wp-admin\/admin-ajax.php","nonce":"a5a40a6416"};
+</script>
+<script type="rocketlazyloadscript"   src="https://aihomeworkhelper.co/wp-content/uploads/premium-addons-elementor/pa-frontend-34f4eaad3.min.js?ver=1714634166" id="pa-frontend-js" defer></script>
+<script type="rocketlazyloadscript" data-minify="1"   src="https://aihomeworkhelper.co/wp-content/cache/min/1/wp-content/plugins/gpt3-ai-content-generator/public/js/wpaicg-form-shortcode.js?ver=1714471897" id="wpaicg-gpt-form-js" defer></script>
+<script id="wpaicg-init-js-extra">
+var wpaicgParams = {"ajax_url":"https:\/\/aihomeworkhelper.co\/wp-admin\/admin-ajax.php","search_nonce":"5be9e3c556","logged_in":"0","languages":{"source":"Sources","no_result":"No result found","wrong":"Something went wrong","prompt_strength":"Please enter a valid prompt strength value between 0 and 1.","num_inference_steps":"Please enter a valid number of inference steps value between 1 and 500.","guidance_scale":"Please enter a valid guidance scale value between 1 and 20.","error_image":"Please select least one image for generate","save_image_success":"Save images to media successfully","select_all":"Select All","unselect":"Unselect","select_save_error":"Please select least one image to save","alternative":"Alternative Text","title":"Title","edit_image":"Edit Image","caption":"Caption","description":"Description","save":"Save","removed_pdf":"Your pdf session is cleared"}};
+</script>
+<script type="rocketlazyloadscript" data-minify="1"   src="https://aihomeworkhelper.co/wp-content/cache/min/1/wp-content/plugins/gpt3-ai-content-generator/public/js/wpaicg-init.js?ver=1714471897" id="wpaicg-init-js" defer></script>
+<script type="rocketlazyloadscript" data-minify="1"   src="https://aihomeworkhelper.co/wp-content/cache/min/1/wp-content/plugins/gpt3-ai-content-generator/public/js/wpaicg-chat.js?ver=1714471897" id="wpaicg-chat-script-js" defer></script>
+<script type="rocketlazyloadscript" id="rocket-browser-checker-js-after">
+"use strict";var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||!1,descriptor.configurable=!0,"value"in descriptor&&(descriptor.writable=!0),Object.defineProperty(target,descriptor.key,descriptor)}}return function(Constructor,protoProps,staticProps){return protoProps&&defineProperties(Constructor.prototype,protoProps),staticProps&&defineProperties(Constructor,staticProps),Constructor}}();function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor))throw new TypeError("Cannot call a class as a function")}var RocketBrowserCompatibilityChecker=function(){function RocketBrowserCompatibilityChecker(options){_classCallCheck(this,RocketBrowserCompatibilityChecker),this.passiveSupported=!1,this._checkPassiveOption(this),this.options=!!this.passiveSupported&&options}return _createClass(RocketBrowserCompatibilityChecker,[{key:"_checkPassiveOption",value:function(self){try{var options={get passive(){return!(self.passiveSupported=!0)}};window.addEventListener("test",null,options),window.removeEventListener("test",null,options)}catch(err){self.passiveSupported=!1}}},{key:"initRequestIdleCallback",value:function(){!1 in window&&(window.requestIdleCallback=function(cb){var start=Date.now();return setTimeout(function(){cb({didTimeout:!1,timeRemaining:function(){return Math.max(0,50-(Date.now()-start))}})},1)}),!1 in window&&(window.cancelIdleCallback=function(id){return clearTimeout(id)})}},{key:"isDataSaverModeOn",value:function(){return"connection"in navigator&&!0===navigator.connection.saveData}},{key:"supportsLinkPrefetch",value:function(){var elem=document.createElement("link");return elem.relList&&elem.relList.supports&&elem.relList.supports("prefetch")&&window.IntersectionObserver&&"isIntersecting"in IntersectionObserverEntry.prototype}},{key:"isSlowConnection",value:function(){return"connection"in navigator&&"effectiveType"in navigator.connection&&("2g"===navigator.connection.effectiveType||"slow-2g"===navigator.connection.effectiveType)}}]),RocketBrowserCompatibilityChecker}();
+</script>
+<script id="rocket-preload-links-js-extra">
+var RocketPreloadLinksConfig = {"excludeUris":"\/(.+\/)?feed\/?.+\/?|\/(?:.+\/)?embed\/|\/(index\\.php\/)?wp\\-json(\/.*|$)|\/wp-admin\/|\/logout\/|\/login\/","usesTrailingSlash":"1","imageExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif","fileExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif|php|pdf|html|htm","siteUrl":"https:\/\/aihomeworkhelper.co","onHoverDelay":"100","rateThrottle":"3"};
+</script>
+<script type="rocketlazyloadscript" id="rocket-preload-links-js-after">
+(function() {
+"use strict";var r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},e=function(){function i(e,t){for(var n=0;n<t.length;n++){var i=t[n];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(e,i.key,i)}}return function(e,t,n){return t&&i(e.prototype,t),n&&i(e,n),e}}();function i(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}var t=function(){function n(e,t){i(this,n),this.browser=e,this.config=t,this.options=this.browser.options,this.prefetched=new Set,this.eventTime=null,this.threshold=1111,this.numOnHover=0}return e(n,[{key:"init",value:function(){!this.browser.supportsLinkPrefetch()||this.browser.isDataSaverModeOn()||this.browser.isSlowConnection()||(this.regex={excludeUris:RegExp(this.config.excludeUris,"i"),images:RegExp(".("+this.config.imageExt+")$","i"),fileExt:RegExp(".("+this.config.fileExt+")$","i")},this._initListeners(this))}},{key:"_initListeners",value:function(e){-1<this.config.onHoverDelay&&document.addEventListener("mouseover",e.listener.bind(e),e.listenerOptions),document.addEventListener("mousedown",e.listener.bind(e),e.listenerOptions),document.addEventListener("touchstart",e.listener.bind(e),e.listenerOptions)}},{key:"listener",value:function(e){var t=e.target.closest("a"),n=this._prepareUrl(t);if(null!==n)switch(e.type){case"mousedown":case"touchstart":this._addPrefetchLink(n);break;case"mouseover":this._earlyPrefetch(t,n,"mouseout")}}},{key:"_earlyPrefetch",value:function(t,e,n){var i=this,r=setTimeout(function(){if(r=null,0===i.numOnHover)setTimeout(function(){return i.numOnHover=0},1e3);else if(i.numOnHover>i.config.rateThrottle)return;i.numOnHover++,i._addPrefetchLink(e)},this.config.onHoverDelay);t.addEventListener(n,function e(){t.removeEventListener(n,e,{passive:!0}),null!==r&&(clearTimeout(r),r=null)},{passive:!0})}},{key:"_addPrefetchLink",value:function(i){return this.prefetched.add(i.href),new Promise(function(e,t){var n=document.createElement("link");n.rel="prefetch",n.href=i.href,n.onload=e,n.onerror=t,document.head.appendChild(n)}).catch(function(){})}},{key:"_prepareUrl",value:function(e){if(null===e||"object"!==(void 0===e?"undefined":r(e))||!1 in e||-1===["http:","https:"].indexOf(e.protocol))return null;var t=e.href.substring(0,this.config.siteUrl.length),n=this._getPathname(e.href,t),i={original:e.href,protocol:e.protocol,origin:t,pathname:n,href:t+n};return this._isLinkOk(i)?i:null}},{key:"_getPathname",value:function(e,t){var n=t?e.substring(this.config.siteUrl.length):e;return n.startsWith("/")||(n="/"+n),this._shouldAddTrailingSlash(n)?n+"/":n}},{key:"_shouldAddTrailingSlash",value:function(e){return this.config.usesTrailingSlash&&!e.endsWith("/")&&!this.regex.fileExt.test(e)}},{key:"_isLinkOk",value:function(e){return null!==e&&"object"===(void 0===e?"undefined":r(e))&&(!this.prefetched.has(e.href)&&e.origin===this.config.siteUrl&&-1===e.href.indexOf("?")&&-1===e.href.indexOf("#")&&!this.regex.excludeUris.test(e.href)&&!this.regex.images.test(e.href))}}],[{key:"run",value:function(){"undefined"!=typeof RocketPreloadLinksConfig&&new n(new RocketBrowserCompatibilityChecker({capture:!0,passive:!0}),RocketPreloadLinksConfig).init()}}]),n}();t.run();
+}());
+</script>
+<script type="rocketlazyloadscript"   src="https://aihomeworkhelper.co/wp-includes/js/imagesloaded.min.js?ver=5.0.0" id="imagesloaded-js" defer></script>
+<script id="oceanwp-main-js-extra">
+var oceanwpLocalize = {"nonce":"abec3794d4","isRTL":"","menuSearchStyle":"disabled","mobileMenuSearchStyle":"disabled","sidrSource":null,"sidrDisplace":"","sidrSide":"right","sidrDropdownTarget":"icon","verticalHeaderTarget":"link","customScrollOffset":"0","customSelects":".woocommerce-ordering .orderby, #dropdown_product_cat, .widget_categories select, .widget_archive select, .single-product .variations_form .variations select","ajax_url":"https:\/\/aihomeworkhelper.co\/wp-admin\/admin-ajax.php","oe_mc_wpnonce":"02cfadd111"};
+</script>
+<script type="rocketlazyloadscript"   src="https://aihomeworkhelper.co/wp-content/themes/oceanwp/assets/js/theme.min.js?ver=3.5.3" id="oceanwp-main-js" defer></script>
+<script type="rocketlazyloadscript"   src="https://aihomeworkhelper.co/wp-content/themes/oceanwp/assets/js/drop-down-mobile-menu.min.js?ver=3.5.3" id="oceanwp-drop-down-mobile-menu-js" defer></script>
+<script type="rocketlazyloadscript"   src="https://aihomeworkhelper.co/wp-content/themes/oceanwp/assets/js/vendors/magnific-popup.min.js?ver=3.5.3" id="ow-magnific-popup-js" defer></script>
+<script type="rocketlazyloadscript"   src="https://aihomeworkhelper.co/wp-content/themes/oceanwp/assets/js/ow-lightbox.min.js?ver=3.5.3" id="oceanwp-lightbox-js" defer></script>
+<script type="rocketlazyloadscript"   src="https://aihomeworkhelper.co/wp-content/themes/oceanwp/assets/js/vendors/flickity.pkgd.min.js?ver=3.5.3" id="ow-flickity-js" defer></script>
+<script type="rocketlazyloadscript"   src="https://aihomeworkhelper.co/wp-content/themes/oceanwp/assets/js/ow-slider.min.js?ver=3.5.3" id="oceanwp-slider-js" defer></script>
+<script type="rocketlazyloadscript"   src="https://aihomeworkhelper.co/wp-content/themes/oceanwp/assets/js/scroll-effect.min.js?ver=3.5.3" id="oceanwp-scroll-effect-js" defer></script>
+<script type="rocketlazyloadscript"   src="https://aihomeworkhelper.co/wp-content/themes/oceanwp/assets/js/scroll-top.min.js?ver=3.5.3" id="oceanwp-scroll-top-js" defer></script>
+<script type="rocketlazyloadscript"   src="https://aihomeworkhelper.co/wp-content/themes/oceanwp/assets/js/select.min.js?ver=3.5.3" id="oceanwp-select-js" defer></script>
+<script type="rocketlazyloadscript"   src="https://aihomeworkhelper.co/wp-content/plugins/premium-addons-for-elementor/assets/frontend/min-js/premium-wrapper-link.min.js?ver=4.10.30" id="pa-wrapper-link-js" defer></script>
+<script type="rocketlazyloadscript"   src="https://aihomeworkhelper.co/wp-content/plugins/elementor/assets/lib/waypoints/waypoints.min.js?ver=4.0.2" id="elementor-waypoints-js" defer></script>
+<script type="rocketlazyloadscript"   src="https://aihomeworkhelper.co/wp-content/plugins/premium-addons-for-elementor/assets/frontend/min-js/lottie.min.js?ver=4.10.30" id="lottie-js-js" defer></script>
+<script type="rocketlazyloadscript"   src="https://aihomeworkhelper.co/wp-content/plugins/premium-addons-for-elementor/assets/frontend/min-js/slick.min.js?ver=4.10.30" id="pa-slick-js" defer></script>
+<script type="rocketlazyloadscript" data-minify="1"   src="https://aihomeworkhelper.co/wp-content/cache/min/1/wp-content/plugins/header-footer-elementor/inc/js/frontend.js?ver=1714471897" id="hfe-frontend-js-js" defer></script>
+<script type="rocketlazyloadscript"   src="https://aihomeworkhelper.co/wp-content/plugins/elementor/assets/js/webpack.runtime.min.js?ver=3.21.3" id="elementor-webpack-runtime-js" defer></script>
+<script type="rocketlazyloadscript"   src="https://aihomeworkhelper.co/wp-content/plugins/elementor/assets/js/frontend-modules.min.js?ver=3.21.3" id="elementor-frontend-modules-js" defer></script>
+<script type="rocketlazyloadscript"   src="https://aihomeworkhelper.co/wp-includes/js/jquery/ui/core.min.js?ver=1.13.2" id="jquery-ui-core-js" defer></script>
+<script type="rocketlazyloadscript"   id="elementor-frontend-js-before">
+var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":false},"i18n":{"shareOnFacebook":"Share on Facebook","shareOnTwitter":"Share on Twitter","pinIt":"Pin it","download":"Download","downloadImage":"Download image","fullscreen":"Fullscreen","zoom":"Zoom","share":"Share","playVideo":"Play Video","previous":"Previous","next":"Next","close":"Close","a11yCarouselWrapperAriaLabel":"Carousel | Horizontal scrolling: Arrow Left & Right","a11yCarouselPrevSlideMessage":"Previous slide","a11yCarouselNextSlideMessage":"Next slide","a11yCarouselFirstSlideMessage":"This is the first slide","a11yCarouselLastSlideMessage":"This is the last slide","a11yCarouselPaginationBulletMessage":"Go to slide"},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":768,"lg":1025,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"Mobile Portrait","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Mobile Landscape","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablet Portrait","value":1024,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablet Landscape","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Laptop","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Widescreen","value":2400,"default_value":2400,"direction":"min","is_enabled":false}}},"version":"3.21.3","is_static":false,"experimentalFeatures":{"e_optimized_assets_loading":true,"e_optimized_css_loading":true,"e_font_icon_svg":true,"additional_custom_breakpoints":true,"container":true,"e_swiper_latest":true,"container_grid":true,"home_screen":true,"ai-layout":true,"landing-pages":true},"urls":{"assets":"https:\/\/aihomeworkhelper.co\/wp-content\/plugins\/elementor\/assets\/"},"swiperClass":"swiper","settings":{"page":[],"editorPreferences":[]},"kit":{"active_breakpoints":["viewport_mobile","viewport_tablet"],"global_image_lightbox":"yes","lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description"},"post":{"id":204,"title":"Get%20Instant%20Homework%20Help%20with%20our%20AI%20Homework%20Assistant%21","excerpt":"","featuredImage":false}};
+</script>
+<script type="rocketlazyloadscript"   src="https://aihomeworkhelper.co/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=3.21.3" id="elementor-frontend-js" defer></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript">(function (undefined) {let scriptOptions={"_localizedStrings":{"redirect_overlay_title":"Hold On","redirect_overlay_text":"You are being redirected to another page,<br>it may take a few seconds.","webview_notification_text":"The selected provider doesn't support embedded browsers!"},"_targetWindow":"prefer-popup","_redirectOverlay":"overlay-with-spinner-and-message","_unsupportedWebviewBehavior":""};
+/**
+ * Used when Cross-Origin-Opener-Policy blocked the access to the opener. We can't have a reference of the opened windows, so we should attempt to refresh only the windows that has opened popups.
+ */
+window._nslHasOpenedPopup = false;
+window._nslWebViewNoticeElement = null;
+
+window.NSLPopup = function (url, title, w, h) {
+    const userAgent = navigator.userAgent,
+        mobile = function () {
+            return /\b(iPhone|iP[ao]d)/.test(userAgent) ||
+                /\b(iP[ao]d)/.test(userAgent) ||
+                /Android/i.test(userAgent) ||
+                /Mobile/i.test(userAgent);
+        },
+        screenX = window.screenX !== undefined ? window.screenX : window.screenLeft,
+        screenY = window.screenY !== undefined ? window.screenY : window.screenTop,
+        outerWidth = window.outerWidth !== undefined ? window.outerWidth : document.documentElement.clientWidth,
+        outerHeight = window.outerHeight !== undefined ? window.outerHeight : document.documentElement.clientHeight - 22,
+        targetWidth = mobile() ? null : w,
+        targetHeight = mobile() ? null : h,
+        left = parseInt(screenX + (outerWidth - targetWidth) / 2, 10),
+        right = parseInt(screenY + (outerHeight - targetHeight) / 2.5, 10),
+        features = [];
+    if (targetWidth !== null) {
+        features.push('width=' + targetWidth);
+    }
+    if (targetHeight !== null) {
+        features.push('height=' + targetHeight);
+    }
+    features.push('left=' + left);
+    features.push('top=' + right);
+    features.push('scrollbars=1');
+
+    const newWindow = window.open(url, title, features.join(','));
+
+    if (window.focus) {
+        newWindow.focus();
+    }
+
+    window._nslHasOpenedPopup = true;
+
+    return newWindow;
+};
+
+let isWebView = null;
+
+function checkWebView() {
+    if (isWebView === null) {
+        function _detectOS(ua) {
+            if (/Android/.test(ua)) {
+                return "Android";
+            } else if (/iPhone|iPad|iPod/.test(ua)) {
+                return "iOS";
+            } else if (/Windows/.test(ua)) {
+                return "Windows";
+            } else if (/Mac OS X/.test(ua)) {
+                return "Mac";
+            } else if (/CrOS/.test(ua)) {
+                return "Chrome OS";
+            } else if (/Firefox/.test(ua)) {
+                return "Firefox OS";
+            }
+            return "";
+        }
+
+        function _detectBrowser(ua) {
+            let android = /Android/.test(ua);
+
+            if (/Opera Mini/.test(ua) || / OPR/.test(ua) || / OPT/.test(ua)) {
+                return "Opera";
+            } else if (/CriOS/.test(ua)) {
+                return "Chrome for iOS";
+            } else if (/Edge/.test(ua)) {
+                return "Edge";
+            } else if (android && /Silk\//.test(ua)) {
+                return "Silk";
+            } else if (/Chrome/.test(ua)) {
+                return "Chrome";
+            } else if (/Firefox/.test(ua)) {
+                return "Firefox";
+            } else if (android) {
+                return "AOSP";
+            } else if (/MSIE|Trident/.test(ua)) {
+                return "IE";
+            } else if (/Safari\//.test(ua)) {
+                return "Safari";
+            } else if (/AppleWebKit/.test(ua)) {
+                return "WebKit";
+            }
+            return "";
+        }
+
+        function _detectBrowserVersion(ua, browser) {
+            if (browser === "Opera") {
+                return /Opera Mini/.test(ua) ? _getVersion(ua, "Opera Mini/") :
+                    / OPR/.test(ua) ? _getVersion(ua, " OPR/") :
+                        _getVersion(ua, " OPT/");
+            } else if (browser === "Chrome for iOS") {
+                return _getVersion(ua, "CriOS/");
+            } else if (browser === "Edge") {
+                return _getVersion(ua, "Edge/");
+            } else if (browser === "Chrome") {
+                return _getVersion(ua, "Chrome/");
+            } else if (browser === "Firefox") {
+                return _getVersion(ua, "Firefox/");
+            } else if (browser === "Silk") {
+                return _getVersion(ua, "Silk/");
+            } else if (browser === "AOSP") {
+                return _getVersion(ua, "Version/");
+            } else if (browser === "IE") {
+                return /IEMobile/.test(ua) ? _getVersion(ua, "IEMobile/") :
+                    /MSIE/.test(ua) ? _getVersion(ua, "MSIE ")
+                        :
+                        _getVersion(ua, "rv:");
+            } else if (browser === "Safari") {
+                return _getVersion(ua, "Version/");
+            } else if (browser === "WebKit") {
+                return _getVersion(ua, "WebKit/");
+            }
+            return "0.0.0";
+        }
+
+        function _getVersion(ua, token) {
+            try {
+                return _normalizeSemverString(ua.split(token)[1].trim().split(/[^\w\.]/)[0]);
+            } catch (o_O) {
+            }
+            return "0.0.0";
+        }
+
+        function _normalizeSemverString(version) {
+            const ary = version.split(/[\._]/);
+            return (parseInt(ary[0], 10) || 0) + "." +
+                (parseInt(ary[1], 10) || 0) + "." +
+                (parseInt(ary[2], 10) || 0);
+        }
+
+        function _isWebView(ua, os, browser, version, options) {
+            switch (os + browser) {
+                case "iOSSafari":
+                    return false;
+                case "iOSWebKit":
+                    return _isWebView_iOS(options);
+                case "AndroidAOSP":
+                    return false;
+                case "AndroidChrome":
+                    return parseFloat(version) >= 42 ? /; wv/.test(ua) : /\d{2}\.0\.0/.test(version) ? true : _isWebView_Android(options);
+            }
+            return false;
+        }
+
+        function _isWebView_iOS(options) {
+            const document = (window["document"] || {});
+
+            if ("WEB_VIEW" in options) {
+                return options["WEB_VIEW"];
+            }
+            return !("fullscreenEnabled" in document || "webkitFullscreenEnabled" in document || false);
+        }
+
+        function _isWebView_Android(options) {
+            if ("WEB_VIEW" in options) {
+                return options["WEB_VIEW"];
+            }
+            return !("requestFileSystem" in window || "webkitRequestFileSystem" in window || false);
+        }
+
+        const options = {},
+            nav = window.navigator || {},
+            ua = nav.userAgent || "",
+            os = _detectOS(ua),
+            browser = _detectBrowser(ua),
+            browserVersion = _detectBrowserVersion(ua, browser);
+
+        isWebView = _isWebView(ua, os, browser, browserVersion, options);
+    }
+
+    return isWebView;
+}
+
+function isAllowedWebViewForUserAgent(provider) {
+    const facebookAllowedWebViews = [
+        'Instagram',
+        'FBAV',
+        'FBAN'
+    ];
+    let whitelist = [];
+
+    if (provider && provider === 'facebook') {
+        whitelist = facebookAllowedWebViews;
+    }
+
+    const nav = window.navigator || {},
+        ua = nav.userAgent || "";
+
+    if (whitelist.length && ua.match(new RegExp(whitelist.join('|')))) {
+        return true;
+    }
+
+    return false;
+}
+
+function disableButtonInWebView(providerButtonElement) {
+    if (providerButtonElement) {
+        providerButtonElement.classList.add('nsl-disabled-provider');
+        providerButtonElement.setAttribute('href', '#');
+
+        providerButtonElement.addEventListener('pointerdown', (e) => {
+            if (!window._nslWebViewNoticeElement) {
+                window._nslWebViewNoticeElement = document.createElement('div');
+                window._nslWebViewNoticeElement.id = "nsl-notices-fallback";
+                window._nslWebViewNoticeElement.addEventListener('pointerdown', function (e) {
+                    this.parentNode.removeChild(this);
+                    window._nslWebViewNoticeElement = null;
+                });
+                const webviewNoticeHTML = '<div class="error"><p>' + scriptOptions._localizedStrings.webview_notification_text + '</p></div>';
+
+                window._nslWebViewNoticeElement.insertAdjacentHTML("afterbegin", webviewNoticeHTML);
+                document.body.appendChild(window._nslWebViewNoticeElement);
+            }
+        });
+    }
+
+}
+
+window._nslDOMReady(function () {
+
+    window.nslRedirect = function (url) {
+        if (scriptOptions._redirectOverlay) {
+            const overlay = document.createElement('div');
+            overlay.id = "nsl-redirect-overlay";
+            let overlayHTML = '';
+            const overlayContainer = "<div id='nsl-redirect-overlay-container'>",
+                overlayContainerClose = "</div>",
+                overlaySpinner = "<div id='nsl-redirect-overlay-spinner'></div>",
+                overlayTitle = "<p id='nsl-redirect-overlay-title'>" + scriptOptions._localizedStrings.redirect_overlay_title + "</p>",
+                overlayText = "<p id='nsl-redirect-overlay-text'>" + scriptOptions._localizedStrings.redirect_overlay_text + "</p>";
+
+            switch (scriptOptions._redirectOverlay) {
+                case "overlay-only":
+                    break;
+                case "overlay-with-spinner":
+                    overlayHTML = overlayContainer + overlaySpinner + overlayContainerClose;
+                    break;
+                default:
+                    overlayHTML = overlayContainer + overlaySpinner + overlayTitle + overlayText + overlayContainerClose;
+                    break;
+            }
+
+            overlay.insertAdjacentHTML("afterbegin", overlayHTML);
+            document.body.appendChild(overlay);
+        }
+
+        window.location = url;
+    };
+
+    let targetWindow = scriptOptions._targetWindow || 'prefer-popup',
+        lastPopup = false;
+
+
+    const buttonLinks = document.querySelectorAll(' a[data-plugin="nsl"][data-action="connect"], a[data-plugin="nsl"][data-action="link"]');
+    buttonLinks.forEach(function (buttonLink) {
+        buttonLink.addEventListener('click', function (e) {
+            if (lastPopup && !lastPopup.closed) {
+                e.preventDefault();
+                lastPopup.focus();
+            } else {
+
+                let href = this.href,
+                    success = false;
+                if (href.indexOf('?') !== -1) {
+                    href += '&';
+                } else {
+                    href += '?';
+                }
+
+                const redirectTo = this.dataset.redirect;
+                if (redirectTo === 'current') {
+                    href += 'redirect=' + encodeURIComponent(window.location.href) + '&';
+                } else if (redirectTo && redirectTo !== '') {
+                    href += 'redirect=' + encodeURIComponent(redirectTo) + '&';
+                }
+
+                if (targetWindow !== 'prefer-same-window' && checkWebView()) {
+                    targetWindow = 'prefer-same-window';
+                }
+
+                if (targetWindow === 'prefer-popup') {
+                    lastPopup = NSLPopup(href + 'display=popup', 'nsl-social-connect', this.dataset.popupwidth, this.dataset.popupheight);
+                    if (lastPopup) {
+                        success = true;
+                        e.preventDefault();
+                    }
+                } else if (targetWindow === 'prefer-new-tab') {
+                    const newTab = window.open(href + 'display=popup', '_blank');
+                    if (newTab) {
+                        if (window.focus) {
+                            newTab.focus();
+                        }
+                        success = true;
+                        window._nslHasOpenedPopup = true;
+                        e.preventDefault();
+                    }
+                }
+
+                if (!success) {
+                    window.location = href;
+                    e.preventDefault();
+                }
+            }
+        });
+    });
+
+    let buttonCountChanged = false;
+
+    const googleLoginButtons = document.querySelectorAll(' a[data-plugin="nsl"][data-provider="google"]');
+    if (googleLoginButtons.length && checkWebView()) {
+        googleLoginButtons.forEach(function (googleLoginButton) {
+            if (scriptOptions._unsupportedWebviewBehavior === 'disable-button') {
+                disableButtonInWebView(googleLoginButton);
+            } else {
+                googleLoginButton.remove();
+                buttonCountChanged = true;
+            }
+        });
+    }
+
+    const facebookLoginButtons = document.querySelectorAll(' a[data-plugin="nsl"][data-provider="facebook"]');
+    if (facebookLoginButtons.length && checkWebView() && /Android/.test(window.navigator.userAgent) && !isAllowedWebViewForUserAgent('facebook')) {
+        facebookLoginButtons.forEach(function (facebookLoginButton) {
+            if (scriptOptions._unsupportedWebviewBehavior === 'disable-button') {
+                disableButtonInWebView(facebookLoginButton);
+            } else {
+                facebookLoginButton.remove();
+                buttonCountChanged = true;
+            }
+        });
+    }
+
+    const separators = document.querySelectorAll('div.nsl-separator');
+    if (buttonCountChanged && separators.length) {
+        separators.forEach(function (separator) {
+            const separatorParentNode = separator.parentNode;
+            if (separatorParentNode) {
+                const separatorButtonContainer = separatorParentNode.querySelector('div.nsl-container-buttons');
+                if (separatorButtonContainer && !separatorButtonContainer.hasChildNodes()) {
+                    separator.remove();
+                }
+            }
+        })
+    }
+});
+
+/**
+ * Cross-Origin-Opener-Policy blocked the access to the opener
+ */
+if (typeof BroadcastChannel === "function") {
+    const _nslLoginBroadCastChannel = new BroadcastChannel('nsl_login_broadcast_channel');
+    _nslLoginBroadCastChannel.onmessage = (event) => {
+        if (window?._nslHasOpenedPopup && event.data?.action === 'redirect') {
+            window._nslHasOpenedPopup = false;
+
+            const url = event.data?.href;
+            _nslLoginBroadCastChannel.close();
+            if (typeof window.nslRedirect === 'function') {
+                window.nslRedirect(url);
+            } else {
+                window.opener.location = url;
+            }
+        }
+    };
+}})();</script><script>window.lazyLoadOptions={elements_selector:"img[data-lazy-src],.rocket-lazyload,iframe[data-lazy-src]",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,callback_loaded:function(element){if(element.tagName==="IFRAME"&&element.dataset.rocketLazyload=="fitvidscompatible"){if(element.classList.contains("lazyloaded")){if(typeof window.jQuery!="undefined"){if(jQuery.fn.fitVids){jQuery(element).parent().fitVids()}}}}}};window.addEventListener('LazyLoad::Initialized',function(e){var lazyLoadInstance=e.detail.instance;if(window.MutationObserver){var observer=new MutationObserver(function(mutations){var image_count=0;var iframe_count=0;var rocketlazy_count=0;mutations.forEach(function(mutation){for(i=0;i<mutation.addedNodes.length;i++){if(typeof mutation.addedNodes[i].getElementsByTagName!=='function'){continue}
+if(typeof mutation.addedNodes[i].getElementsByClassName!=='function'){continue}
+images=mutation.addedNodes[i].getElementsByTagName('img');is_image=mutation.addedNodes[i].tagName=="IMG";iframes=mutation.addedNodes[i].getElementsByTagName('iframe');is_iframe=mutation.addedNodes[i].tagName=="IFRAME";rocket_lazy=mutation.addedNodes[i].getElementsByClassName('rocket-lazyload');image_count+=images.length;iframe_count+=iframes.length;rocketlazy_count+=rocket_lazy.length;if(is_image){image_count+=1}
+if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_count>0){lazyLoadInstance.update()}});var b=document.getElementsByTagName("body")[0];var config={childList:!0,subtree:!0};observer.observe(b,config)}},!1)</script><script data-no-minify="1" async src="https://aihomeworkhelper.co/wp-content/plugins/wp-rocket/assets/js/lazyload/16.1/lazyload.min.js"></script></body>
+</html>
+
+<!-- This website is like a Rocket, isn't it? Performance optimized by WP Rocket. Learn more: https://wp-rocket.me - Debug: cached@1714634174 -->

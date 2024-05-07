@@ -1,0 +1,1723 @@
+<!DOCTYPE html>
+<html class="html" lang="en-US">
+<head><script>if(navigator.userAgent.match(/MSIE|Internet Explorer/i)||navigator.userAgent.match(/Trident\/7\..*?rv:11/i)){var href=document.location.href;if(!href.match(/[?&]nowprocket/)){if(href.indexOf("?")==-1){if(href.indexOf("#")==-1){document.location.href=href+"?nowprocket=1"}else{document.location.href=href.replace("#","?nowprocket=1#")}}else{if(href.indexOf("#")==-1){document.location.href=href+"&nowprocket=1"}else{document.location.href=href.replace("#","&nowprocket=1#")}}}}</script><script>class RocketLazyLoadScripts{constructor(e){this.triggerEvents=e,this.eventOptions={passive:!0},this.userEventListener=this.triggerListener.bind(this),this.delayedScripts={normal:[],async:[],defer:[]},this.allJQueries=[]}_addUserInteractionListener(e){this.triggerEvents.forEach((t=>window.addEventListener(t,e.userEventListener,e.eventOptions)))}_removeUserInteractionListener(e){this.triggerEvents.forEach((t=>window.removeEventListener(t,e.userEventListener,e.eventOptions)))}triggerListener(){this._removeUserInteractionListener(this),"loading"===document.readyState?document.addEventListener("DOMContentLoaded",this._loadEverythingNow.bind(this)):this._loadEverythingNow()}async _loadEverythingNow(){this._delayEventListeners(),this._delayJQueryReady(this),this._handleDocumentWrite(),this._registerAllDelayedScripts(),this._preloadAllScripts(),await this._loadScriptsFromList(this.delayedScripts.normal),await this._loadScriptsFromList(this.delayedScripts.defer),await this._loadScriptsFromList(this.delayedScripts.async),await this._triggerDOMContentLoaded(),await this._triggerWindowLoad(),window.dispatchEvent(new Event("rocket-allScriptsLoaded"))}_registerAllDelayedScripts(){document.querySelectorAll("script[type=rocketlazyloadscript]").forEach((e=>{e.hasAttribute("src")?e.hasAttribute("async")&&!1!==e.async?this.delayedScripts.async.push(e):e.hasAttribute("defer")&&!1!==e.defer||"module"===e.getAttribute("data-rocket-type")?this.delayedScripts.defer.push(e):this.delayedScripts.normal.push(e):this.delayedScripts.normal.push(e)}))}async _transformScript(e){return await this._requestAnimFrame(),new Promise((t=>{const n=document.createElement("script");let i;[...e.attributes].forEach((e=>{let t=e.nodeName;"type"!==t&&("data-rocket-type"===t&&(t="type",i=e.nodeValue),n.setAttribute(t,e.nodeValue))})),e.hasAttribute("src")&&this._isValidScriptType(i)?(n.addEventListener("load",t),n.addEventListener("error",t)):(n.text=e.text,t()),e.parentNode.replaceChild(n,e)}))}_isValidScriptType(e){return!e||""===e||"string"==typeof e&&["text/javascript","text/x-javascript","text/ecmascript","text/jscript","application/javascript","application/x-javascript","application/ecmascript","application/jscript","module"].includes(e.toLowerCase())}async _loadScriptsFromList(e){const t=e.shift();return t?(await this._transformScript(t),this._loadScriptsFromList(e)):Promise.resolve()}_preloadAllScripts(){var e=document.createDocumentFragment();[...this.delayedScripts.normal,...this.delayedScripts.defer,...this.delayedScripts.async].forEach((t=>{const n=t.getAttribute("src");if(n){const t=document.createElement("link");t.href=n,t.rel="preload",t.as="script",e.appendChild(t)}})),document.head.appendChild(e)}_delayEventListeners(){let e={};function t(t,n){!function(t){function n(n){return e[t].eventsToRewrite.indexOf(n)>=0?"rocket-"+n:n}e[t]||(e[t]={originalFunctions:{add:t.addEventListener,remove:t.removeEventListener},eventsToRewrite:[]},t.addEventListener=function(){arguments[0]=n(arguments[0]),e[t].originalFunctions.add.apply(t,arguments)},t.removeEventListener=function(){arguments[0]=n(arguments[0]),e[t].originalFunctions.remove.apply(t,arguments)})}(t),e[t].eventsToRewrite.push(n)}function n(e,t){const n=e[t];Object.defineProperty(e,t,{get:n||function(){},set:n=>{e["rocket"+t]=n}})}t(document,"DOMContentLoaded"),t(window,"DOMContentLoaded"),t(window,"load"),t(window,"pageshow"),t(document,"readystatechange"),n(document,"onreadystatechange"),n(window,"onload"),n(window,"onpageshow")}_delayJQueryReady(e){let t=window.jQuery;Object.defineProperty(window,"jQuery",{get:()=>t,set(n){if(n&&n.fn&&!e.allJQueries.includes(n)){n.fn.ready=n.fn.init.prototype.ready=function(t){e.domReadyFired?t.bind(document)(n):document.addEventListener("rocket-DOMContentLoaded",(()=>t.bind(document)(n)))};const t=n.fn.on;n.fn.on=n.fn.init.prototype.on=function(){if(this[0]===window){function e(e){return e.split(" ").map((e=>"load"===e||0===e.indexOf("load.")?"rocket-jquery-load":e)).join(" ")}"string"==typeof arguments[0]||arguments[0]instanceof String?arguments[0]=e(arguments[0]):"object"==typeof arguments[0]&&Object.keys(arguments[0]).forEach((t=>{delete Object.assign(arguments[0],{[e(t)]:arguments[0][t]})[t]}))}return t.apply(this,arguments),this},e.allJQueries.push(n)}t=n}})}async _triggerDOMContentLoaded(){this.domReadyFired=!0,await this._requestAnimFrame(),document.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._requestAnimFrame(),window.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._requestAnimFrame(),document.dispatchEvent(new Event("rocket-readystatechange")),await this._requestAnimFrame(),document.rocketonreadystatechange&&document.rocketonreadystatechange()}async _triggerWindowLoad(){await this._requestAnimFrame(),window.dispatchEvent(new Event("rocket-load")),await this._requestAnimFrame(),window.rocketonload&&window.rocketonload(),await this._requestAnimFrame(),this.allJQueries.forEach((e=>e(window).trigger("rocket-jquery-load"))),window.dispatchEvent(new Event("rocket-pageshow")),await this._requestAnimFrame(),window.rocketonpageshow&&window.rocketonpageshow()}_handleDocumentWrite(){const e=new Map;document.write=document.writeln=function(t){const n=document.currentScript,i=document.createRange(),r=n.parentElement;let a=e.get(n);void 0===a&&(a=n.nextSibling,e.set(n,a));const o=document.createDocumentFragment();i.setStart(o,0),o.appendChild(i.createContextualFragment(t)),r.insertBefore(o,a)}}async _requestAnimFrame(){return new Promise((e=>requestAnimationFrame(e)))}static run(){const e=new RocketLazyLoadScripts(["keydown","mousemove","touchmove","touchstart","touchend","touchcancel","touchforcechange","wheel"]);e._addUserInteractionListener(e)}}RocketLazyLoadScripts.run();
+</script>
+	<meta charset="UTF-8">
+	<link rel="profile" href="https://gmpg.org/xfn/11">
+	 
+    <noscript></noscript>
+	<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+
+                                <style>
+                        .toc_post_list h2{
+                            margin-bottom: 20px;
+                        }
+                        .toc_post_list{
+                            list-style: none;
+                            margin: 0 0 30px 0!important;
+                            padding: 0!important;
+                        }
+                        .toc_post_list li{}
+                        .toc_post_list li ul{
+                            list-style: decimal;
+                        }
+                        .toc_post_list a{}
+                    </style>
+                                            
+            <link rel="pingback" href="https://aihomeworkhelper.co/xmlrpc.php">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>How to avoid plagiarism when using an AI essay writing tool - AI HomeWork Helper</title><link rel="stylesheet" href="https://aihomeworkhelper.co/wp-content/cache/min/1/98596b3183a1e29adb0158fa6e676a6c.css" media="all" data-minify="1" />
+	<link rel="canonical" href="https://aihomeworkhelper.co/how-to-avoid-plagiarism-when-using-an-ai/" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="How to avoid plagiarism when using an AI essay writing tool - AI HomeWork Helper" />
+	<meta property="og:description" content="Table of Contents Understanding the Importance of Plagiarism-Free Writing with AI Tools Tips for Properly Citing Sources in AI-Generated Essays How to Paraphrase Effectively with an AI Essay Writing Tool Recognizing and Avoiding Plagiarism Risks in AI-Generated Content Best Practices for Using AI Essay Writing Tools to Maintain Originality &#8220;Originality made easy: Master the art [&hellip;]" />
+	<meta property="og:url" content="https://aihomeworkhelper.co/how-to-avoid-plagiarism-when-using-an-ai/" />
+	<meta property="og:site_name" content="AI HomeWork Helper" />
+	<meta property="article:published_time" content="2024-03-13T21:57:00+00:00" />
+	<meta property="article:modified_time" content="2024-03-13T21:57:04+00:00" />
+	<meta property="og:image" content="https://aihomeworkhelper.co/wp-content/uploads/2024/03/bcb2f7865a2420ca58f7073c7899808e.png" />
+	<meta property="og:image:width" content="1024" />
+	<meta property="og:image:height" content="1024" />
+	<meta property="og:image:type" content="image/png" />
+	<meta name="author" content="admin" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:label1" content="Written by" />
+	<meta name="twitter:data1" content="admin" />
+	<meta name="twitter:label2" content="Est. reading time" />
+	<meta name="twitter:data2" content="15 minutes" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"Article","@id":"https://aihomeworkhelper.co/how-to-avoid-plagiarism-when-using-an-ai/#article","isPartOf":{"@id":"https://aihomeworkhelper.co/how-to-avoid-plagiarism-when-using-an-ai/"},"author":{"name":"admin","@id":"https://aihomeworkhelper.co/#/schema/person/f84e9d2f8b074ed9f7f6c2eec9dd019a"},"headline":"How to avoid plagiarism when using an AI essay writing tool","datePublished":"2024-03-13T21:57:00+00:00","dateModified":"2024-03-13T21:57:04+00:00","mainEntityOfPage":{"@id":"https://aihomeworkhelper.co/how-to-avoid-plagiarism-when-using-an-ai/"},"wordCount":3198,"commentCount":0,"publisher":{"@id":"https://aihomeworkhelper.co/#organization"},"image":{"@id":"https://aihomeworkhelper.co/how-to-avoid-plagiarism-when-using-an-ai/#primaryimage"},"thumbnailUrl":"https://aihomeworkhelper.co/wp-content/uploads/2024/03/bcb2f7865a2420ca58f7073c7899808e.png","keywords":["Ai","ai homework helper","Ai Plagiarism Checker","Ai Research Paper Writing Tool"],"inLanguage":"en-US","potentialAction":[{"@type":"CommentAction","name":"Comment","target":["https://aihomeworkhelper.co/how-to-avoid-plagiarism-when-using-an-ai/#respond"]}]},{"@type":"WebPage","@id":"https://aihomeworkhelper.co/how-to-avoid-plagiarism-when-using-an-ai/","url":"https://aihomeworkhelper.co/how-to-avoid-plagiarism-when-using-an-ai/","name":"How to avoid plagiarism when using an AI essay writing tool - AI HomeWork Helper","isPartOf":{"@id":"https://aihomeworkhelper.co/#website"},"primaryImageOfPage":{"@id":"https://aihomeworkhelper.co/how-to-avoid-plagiarism-when-using-an-ai/#primaryimage"},"image":{"@id":"https://aihomeworkhelper.co/how-to-avoid-plagiarism-when-using-an-ai/#primaryimage"},"thumbnailUrl":"https://aihomeworkhelper.co/wp-content/uploads/2024/03/bcb2f7865a2420ca58f7073c7899808e.png","datePublished":"2024-03-13T21:57:00+00:00","dateModified":"2024-03-13T21:57:04+00:00","breadcrumb":{"@id":"https://aihomeworkhelper.co/how-to-avoid-plagiarism-when-using-an-ai/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https://aihomeworkhelper.co/how-to-avoid-plagiarism-when-using-an-ai/"]}]},{"@type":"ImageObject","inLanguage":"en-US","@id":"https://aihomeworkhelper.co/how-to-avoid-plagiarism-when-using-an-ai/#primaryimage","url":"https://aihomeworkhelper.co/wp-content/uploads/2024/03/bcb2f7865a2420ca58f7073c7899808e.png","contentUrl":"https://aihomeworkhelper.co/wp-content/uploads/2024/03/bcb2f7865a2420ca58f7073c7899808e.png","width":1024,"height":1024,"caption":"How to avoid plagiarism when using an AI essay writing tool"},{"@type":"BreadcrumbList","@id":"https://aihomeworkhelper.co/how-to-avoid-plagiarism-when-using-an-ai/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://aihomeworkhelper.co/"},{"@type":"ListItem","position":2,"name":"Blogs","item":"https://aihomeworkhelper.co/blogs/"},{"@type":"ListItem","position":3,"name":"How to avoid plagiarism when using an AI essay writing tool"}]},{"@type":"WebSite","@id":"https://aihomeworkhelper.co/#website","url":"https://aihomeworkhelper.co/","name":"AI HomeWork Helper","description":"","publisher":{"@id":"https://aihomeworkhelper.co/#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://aihomeworkhelper.co/?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"en-US"},{"@type":"Organization","@id":"https://aihomeworkhelper.co/#organization","name":"AI HomeWork Helper","url":"https://aihomeworkhelper.co/","logo":{"@type":"ImageObject","inLanguage":"en-US","@id":"https://aihomeworkhelper.co/#/schema/logo/image/","url":"https://aihomeworkhelper.co/wp-content/uploads/2024/03/cropped-cropped-ai_homework_helper_co_logo.webp","contentUrl":"https://aihomeworkhelper.co/wp-content/uploads/2024/03/cropped-cropped-ai_homework_helper_co_logo.webp","width":300,"height":82,"caption":"AI HomeWork Helper"},"image":{"@id":"https://aihomeworkhelper.co/#/schema/logo/image/"}},{"@type":"Person","@id":"https://aihomeworkhelper.co/#/schema/person/f84e9d2f8b074ed9f7f6c2eec9dd019a","name":"admin","image":{"@type":"ImageObject","inLanguage":"en-US","@id":"https://aihomeworkhelper.co/#/schema/person/image/","url":"https://secure.gravatar.com/avatar/c469db22ccb1b79a8571dfa008413b4d?s=96&d=mm&r=g","contentUrl":"https://secure.gravatar.com/avatar/c469db22ccb1b79a8571dfa008413b4d?s=96&d=mm&r=g","caption":"admin"},"sameAs":["https://aihomeworkhelper.co"],"url":"https://aihomeworkhelper.co/author/admin/"}]}</script>
+	
+
+
+<link rel='dns-prefetch' href='//www.googletagmanager.com' />
+
+<link rel="alternate" type="application/rss+xml" title="AI HomeWork Helper &raquo; Feed" href="https://aihomeworkhelper.co/feed/" />
+<link rel="alternate" type="application/rss+xml" title="AI HomeWork Helper &raquo; Comments Feed" href="https://aihomeworkhelper.co/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="AI HomeWork Helper &raquo; How to avoid plagiarism when using an AI essay writing tool Comments Feed" href="https://aihomeworkhelper.co/how-to-avoid-plagiarism-when-using-an-ai/feed/" />
+<style id='wp-emoji-styles-inline-css'>
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+</style>
+
+<style id='wp-block-library-theme-inline-css'>
+.wp-block-audio figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-audio figcaption{color:#ffffffa6}.wp-block-audio{margin:0 0 1em}.wp-block-code{border:1px solid #ccc;border-radius:4px;font-family:Menlo,Consolas,monaco,monospace;padding:.8em 1em}.wp-block-embed figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-embed figcaption{color:#ffffffa6}.wp-block-embed{margin:0 0 1em}.blocks-gallery-caption{color:#555;font-size:13px;text-align:center}.is-dark-theme .blocks-gallery-caption{color:#ffffffa6}.wp-block-image figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-image figcaption{color:#ffffffa6}.wp-block-image{margin:0 0 1em}.wp-block-pullquote{border-bottom:4px solid;border-top:4px solid;color:currentColor;margin-bottom:1.75em}.wp-block-pullquote cite,.wp-block-pullquote footer,.wp-block-pullquote__citation{color:currentColor;font-size:.8125em;font-style:normal;text-transform:uppercase}.wp-block-quote{border-left:.25em solid;margin:0 0 1.75em;padding-left:1em}.wp-block-quote cite,.wp-block-quote footer{color:currentColor;font-size:.8125em;font-style:normal;position:relative}.wp-block-quote.has-text-align-right{border-left:none;border-right:.25em solid;padding-left:0;padding-right:1em}.wp-block-quote.has-text-align-center{border:none;padding-left:0}.wp-block-quote.is-large,.wp-block-quote.is-style-large,.wp-block-quote.is-style-plain{border:none}.wp-block-search .wp-block-search__label{font-weight:700}.wp-block-search__button{border:1px solid #ccc;padding:.375em .625em}:where(.wp-block-group.has-background){padding:1.25em 2.375em}.wp-block-separator.has-css-opacity{opacity:.4}.wp-block-separator{border:none;border-bottom:2px solid;margin-left:auto;margin-right:auto}.wp-block-separator.has-alpha-channel-opacity{opacity:1}.wp-block-separator:not(.is-style-wide):not(.is-style-dots){width:100px}.wp-block-separator.has-background:not(.is-style-dots){border-bottom:none;height:1px}.wp-block-separator.has-background:not(.is-style-wide):not(.is-style-dots){height:2px}.wp-block-table{margin:0 0 1em}.wp-block-table td,.wp-block-table th{word-break:normal}.wp-block-table figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-table figcaption{color:#ffffffa6}.wp-block-video figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-video figcaption{color:#ffffffa6}.wp-block-video{margin:0 0 1em}.wp-block-template-part.has-background{margin-bottom:0;margin-top:0;padding:1.25em 2.375em}
+</style>
+<style id='classic-theme-styles-inline-css'>
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+</style>
+<style id='global-styles-inline-css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}body .is-layout-flex{flex-wrap: wrap;align-items: center;}body .is-layout-flex > *{margin: 0;}body .is-layout-grid{display: grid;}body .is-layout-grid > *{margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+.wp-block-navigation a:where(:not(.wp-element-button)){color: inherit;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+.wp-block-pullquote{font-size: 1.5em;line-height: 1.6;}
+</style>
+<style   data-wpacu-inline-css-file='1'>
+/**
+ * All of the CSS for your public-facing functionality should be
+ * included in this file.
+ */
+</style>
+
+<style  media='print' data-wpacu-inline-css-file='1'>
+@media print {
+	.pmpro_a-print {display: none; position: absolute; left: -9999px; }
+}
+
+</style>
+<style   data-wpacu-inline-css-file='1'>
+.footer-width-fixer {
+    width: 100%;
+}
+
+/* Container fix for genesis themes */
+
+.ehf-template-genesis.ehf-header .site-header .wrap,
+.ehf-template-genesis.ehf-footer .site-footer .wrap,
+.ehf-template-generatepress.ehf-header .site-header .inside-header {
+    width: 100%;
+    padding: 0;
+    max-width: 100%;
+}
+
+/* Container fix for generatepress theme */
+
+.ehf-template-generatepress.ehf-header .site-header,
+.ehf-template-generatepress.ehf-footer .site-footer {
+    width: 100%;
+    padding: 0;
+    max-width: 100%;
+    background-color: transparent !important; /* override generatepress default white color for header */
+}
+
+.bhf-hidden {
+    display: none
+}
+
+/* Fix: Header hidden below the page content */
+.ehf-header #masthead {
+	z-index: 99;
+    position: relative;
+}
+
+</style>
+
+
+<style   data-wpacu-inline-css-file='1'>
+.elementor-kit-6{--e-global-color-primary:#FFFFFF;--e-global-color-secondary:#F6C916;--e-global-color-text:#000000;--e-global-color-accent:#67686A;--e-global-typography-primary-font-family:"Roboto";--e-global-typography-primary-font-weight:600;--e-global-typography-secondary-font-family:"Roboto Slab";--e-global-typography-secondary-font-weight:400;--e-global-typography-text-font-family:"Roboto";--e-global-typography-text-font-weight:400;--e-global-typography-accent-font-family:"Roboto";--e-global-typography-accent-font-weight:500;}.elementor-section.elementor-section-boxed > .elementor-container{max-width:1140px;}.e-con{--container-max-width:1140px;}.elementor-widget:not(:last-child){margin-block-end:20px;}.elementor-element{--widgets-spacing:20px 20px;}{}h1.entry-title{display:var(--page-title-display);}@media(max-width:1024px){.elementor-section.elementor-section-boxed > .elementor-container{max-width:1024px;}.e-con{--container-max-width:1024px;}}@media(max-width:767px){.elementor-section.elementor-section-boxed > .elementor-container{max-width:767px;}.e-con{--container-max-width:767px;}}
+</style>
+
+
+
+
+
+<style   data-wpacu-inline-css-file='1'>
+/*!
+ * Project   : OceanWP WordPress Theme
+ * Purpose   : Hamburgers Icons
+ * Author    : https://jonsuh.com/hamburgers/
+ */.hamburger{display:inline-block;cursor:pointer;transition-property:opacity,filter;transition-duration:.15s;transition-timing-function:linear;font:inherit;color:inherit;text-transform:none;background-color:transparent;border:0;margin:0;overflow:visible}a:hover .hamburger{opacity:.7}.hamburger-box{width:20px;height:16px;display:inline-block;position:relative}.hamburger-inner{display:block;top:50%;margin-top:2px}.hamburger-inner,.hamburger-inner::after,.hamburger-inner::before{width:20px;height:2px;background-color:#000;border-radius:3px;position:absolute;transition-property:transform;transition-duration:.15s;transition-timing-function:ease}.hamburger-inner::after,.hamburger-inner::before{content:"";display:block}.hamburger-inner::before{top:-7px}.hamburger-inner::after{bottom:-7px}
+</style>
+<style   data-wpacu-inline-css-file='1'>
+/*
+ * 3DX
+*/
+.hamburger--3dx .hamburger-box {
+	-webkit-perspective: 40px;
+	        perspective: 40px;
+}
+
+.hamburger--3dx .hamburger-inner {
+	-webkit-transition: -webkit-transform 0.15s cubic-bezier(0.645, 0.045, 0.355, 1), background-color 0s 0.1s cubic-bezier(0.645, 0.045, 0.355, 1);
+	      transition: transform 0.15s cubic-bezier(0.645, 0.045, 0.355, 1), background-color 0s 0.1s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.hamburger--3dx .hamburger-inner::before, .hamburger--3dx .hamburger-inner::after {
+	-webkit-transition: -webkit-transform 0s 0.1s cubic-bezier(0.645, 0.045, 0.355, 1);
+	      transition: transform 0s 0.1s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.hamburger--3dx.is-active .hamburger-inner {
+	background-color: transparent;
+	-webkit-transform: rotateY(180deg);
+	      transform: rotateY(180deg);
+}
+
+.hamburger--3dx.is-active .hamburger-inner::before {
+	-webkit-transform: translate3d(0, 7px, 0) rotate(45deg);
+	      transform: translate3d(0, 7px, 0) rotate(45deg);
+}
+
+.hamburger--3dx.is-active .hamburger-inner::after {
+	-webkit-transform: translate3d(0, -7px, 0) rotate(-45deg);
+	      transform: translate3d(0, -7px, 0) rotate(-45deg);
+}
+</style>
+
+
+
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript">
+            window._nslDOMReady = function (callback) {
+                if ( document.readyState === "complete" || document.readyState === "interactive" ) {
+                    callback();
+                } else {
+                    document.addEventListener( "DOMContentLoaded", callback );
+                }
+            };
+            </script><script type="rocketlazyloadscript"   src="https://aihomeworkhelper.co/wp-includes/js/jquery/jquery.min.js?ver=3.7.1" id="jquery-core-js" defer></script>
+<script type="rocketlazyloadscript"   src="https://aihomeworkhelper.co/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" id="jquery-migrate-js" defer></script>
+<script type="rocketlazyloadscript" data-minify="1"   src="https://aihomeworkhelper.co/wp-content/cache/min/1/wp-content/plugins/gpt3-ai-content-generator/public/js/wp-ai-content-generator-public.js?ver=1714471897" id="wp-ai-content-generator-js" defer></script>
+
+
+
+
+<script type="rocketlazyloadscript"   src="https://www.googletagmanager.com/gtag/js?id=GT-MR29D3NF" id="google_gtagjs-js" async></script>
+<script type="rocketlazyloadscript"   id="google_gtagjs-js-after">
+window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}
+gtag("set","linker",{"domains":["aihomeworkhelper.co"]});
+gtag("js", new Date());
+gtag("set", "developer_id.dZTNiMT", true);
+gtag("config", "GT-MR29D3NF");
+</script>
+
+
+<link rel="https://api.w.org/" href="https://aihomeworkhelper.co/wp-json/" /><link rel="alternate" type="application/json" href="https://aihomeworkhelper.co/wp-json/wp/v2/posts/919" /><link rel='shortlink' href='https://aihomeworkhelper.co/?p=919' />
+<link rel="alternate" type="application/json+oembed" href="https://aihomeworkhelper.co/wp-json/oembed/1.0/embed?url=https%3A%2F%2Faihomeworkhelper.co%2Fhow-to-avoid-plagiarism-when-using-an-ai%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://aihomeworkhelper.co/wp-json/oembed/1.0/embed?url=https%3A%2F%2Faihomeworkhelper.co%2Fhow-to-avoid-plagiarism-when-using-an-ai%2F&#038;format=xml" />
+<meta name="generator" content="Site Kit by Google 1.125.0" />
+ <script type="rocketlazyloadscript" async src="https://www.googletagmanager.com/gtag/js?id=AW-10991826776"></script> <script type="rocketlazyloadscript"> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-10991826776'); </script>
+
+		<script type="rocketlazyloadscript" data-rocket-type="text/javascript">
+				(function(c,l,a,r,i,t,y){
+					c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;
+					t.src="https://www.clarity.ms/tag/"+i+"?ref=wordpress";y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+				})(window, document, "clarity", "script", "m22x466p3i");
+		</script>
+		<meta name="generator" content="Elementor 3.21.3; features: e_optimized_assets_loading, e_optimized_css_loading, e_font_icon_svg, additional_custom_breakpoints; settings: css_print_method-external, google_font-enabled, font_display-swap">
+
+
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript'>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js?v=next');
+</script>
+
+
+      <script type="rocketlazyloadscript" data-rocket-type='text/javascript'>
+        var url = window.location.origin + '?ob=open-bridge';
+        fbq('set', 'openbridge', '7234422609998957', url);
+      </script>
+    <script type="rocketlazyloadscript" data-rocket-type='text/javascript'>fbq('init', '7234422609998957', {}, {
+    "agent": "wordpress-6.5.2-3.0.16"
+})</script><script type="rocketlazyloadscript" data-rocket-type='text/javascript'>
+    fbq('track', 'PageView', []);
+  </script>
+
+<noscript>
+<img height="1" width="1" style="display:none" alt="fbpx"
+src="https://www.facebook.com/tr?id=7234422609998957&ev=PageView&noscript=1" />
+</noscript>
+
+<link rel="icon" href="https://aihomeworkhelper.co/wp-content/uploads/2024/03/cropped-favicon-removebg-preview-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://aihomeworkhelper.co/wp-content/uploads/2024/03/cropped-favicon-removebg-preview-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://aihomeworkhelper.co/wp-content/uploads/2024/03/cropped-favicon-removebg-preview-180x180.png" />
+<meta name="msapplication-TileImage" content="https://aihomeworkhelper.co/wp-content/uploads/2024/03/cropped-favicon-removebg-preview-270x270.png" />
+<style type="text/css">div.nsl-container[data-align="left"] {
+    text-align: left;
+}
+
+div.nsl-container[data-align="center"] {
+    text-align: center;
+}
+
+div.nsl-container[data-align="right"] {
+    text-align: right;
+}
+
+
+div.nsl-container div.nsl-container-buttons a[data-plugin="nsl"] {
+    text-decoration: none;
+    box-shadow: none;
+    border: 0;
+}
+
+div.nsl-container .nsl-container-buttons {
+    display: flex;
+    padding: 5px 0;
+}
+
+div.nsl-container.nsl-container-block .nsl-container-buttons {
+    display: inline-grid;
+    grid-template-columns: minmax(145px, auto);
+}
+
+div.nsl-container-block-fullwidth .nsl-container-buttons {
+    flex-flow: column;
+    align-items: center;
+}
+
+div.nsl-container-block-fullwidth .nsl-container-buttons a,
+div.nsl-container-block .nsl-container-buttons a {
+    flex: 1 1 auto;
+    display: block;
+    margin: 5px 0;
+    width: 100%;
+}
+
+div.nsl-container-inline {
+    margin: -5px;
+    text-align: left;
+}
+
+div.nsl-container-inline .nsl-container-buttons {
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+div.nsl-container-inline .nsl-container-buttons a {
+    margin: 5px;
+    display: inline-block;
+}
+
+div.nsl-container-grid .nsl-container-buttons {
+    flex-flow: row;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+div.nsl-container-grid .nsl-container-buttons a {
+    flex: 1 1 auto;
+    display: block;
+    margin: 5px;
+    max-width: 280px;
+    width: 100%;
+}
+
+@media only screen and (min-width: 650px) {
+    div.nsl-container-grid .nsl-container-buttons a {
+        width: auto;
+    }
+}
+
+div.nsl-container .nsl-button {
+    cursor: pointer;
+    vertical-align: top;
+    border-radius: 4px;
+}
+
+div.nsl-container .nsl-button-default {
+    color: #fff;
+    display: flex;
+}
+
+div.nsl-container .nsl-button-icon {
+    display: inline-block;
+}
+
+div.nsl-container .nsl-button-svg-container {
+    flex: 0 0 auto;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+}
+
+div.nsl-container svg {
+    height: 24px;
+    width: 24px;
+    vertical-align: top;
+}
+
+div.nsl-container .nsl-button-default div.nsl-button-label-container {
+    margin: 0 24px 0 12px;
+    padding: 10px 0;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: .25px;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: clip;
+    white-space: nowrap;
+    flex: 1 1 auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-transform: none;
+    display: inline-block;
+}
+
+div.nsl-container .nsl-button-google[data-skin="dark"] .nsl-button-svg-container {
+    margin: 1px;
+    padding: 7px;
+    border-radius: 3px;
+    background: #fff;
+}
+
+div.nsl-container .nsl-button-google[data-skin="light"] {
+    border-radius: 1px;
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .25);
+    color: RGBA(0, 0, 0, 0.54);
+}
+
+div.nsl-container .nsl-button-apple .nsl-button-svg-container {
+    padding: 0 6px;
+}
+
+div.nsl-container .nsl-button-apple .nsl-button-svg-container svg {
+    height: 40px;
+    width: auto;
+}
+
+div.nsl-container .nsl-button-apple[data-skin="light"] {
+    color: #000;
+    box-shadow: 0 0 0 1px #000;
+}
+
+div.nsl-container .nsl-button-facebook[data-skin="white"] {
+    color: #000;
+    box-shadow: inset 0 0 0 1px #000;
+}
+
+div.nsl-container .nsl-button-facebook[data-skin="light"] {
+    color: #1877F2;
+    box-shadow: inset 0 0 0 1px #1877F2;
+}
+
+div.nsl-container .nsl-button-spotify[data-skin="white"] {
+    color: #191414;
+    box-shadow: inset 0 0 0 1px #191414;
+}
+
+div.nsl-container .nsl-button-apple div.nsl-button-label-container {
+    font-size: 17px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+div.nsl-container .nsl-button-slack div.nsl-button-label-container {
+    font-size: 17px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+div.nsl-container .nsl-button-slack[data-skin="light"] {
+    color: #000000;
+    box-shadow: inset 0 0 0 1px #DDDDDD;
+}
+
+div.nsl-container .nsl-button-tiktok[data-skin="light"] {
+    color: #161823;
+    box-shadow: 0 0 0 1px rgba(22, 24, 35, 0.12);
+}
+
+
+div.nsl-container .nsl-button-kakao {
+    color: rgba(0, 0, 0, 0.85);
+}
+
+.nsl-clear {
+    clear: both;
+}
+
+.nsl-container {
+    clear: both;
+}
+
+.nsl-disabled-provider .nsl-button {
+    filter: grayscale(1);
+    opacity: 0.8;
+}
+
+/*Button align start*/
+
+div.nsl-container-inline[data-align="left"] .nsl-container-buttons {
+    justify-content: flex-start;
+}
+
+div.nsl-container-inline[data-align="center"] .nsl-container-buttons {
+    justify-content: center;
+}
+
+div.nsl-container-inline[data-align="right"] .nsl-container-buttons {
+    justify-content: flex-end;
+}
+
+
+div.nsl-container-grid[data-align="left"] .nsl-container-buttons {
+    justify-content: flex-start;
+}
+
+div.nsl-container-grid[data-align="center"] .nsl-container-buttons {
+    justify-content: center;
+}
+
+div.nsl-container-grid[data-align="right"] .nsl-container-buttons {
+    justify-content: flex-end;
+}
+
+div.nsl-container-grid[data-align="space-around"] .nsl-container-buttons {
+    justify-content: space-around;
+}
+
+div.nsl-container-grid[data-align="space-between"] .nsl-container-buttons {
+    justify-content: space-between;
+}
+
+/* Button align end*/
+
+/* Redirect */
+
+#nsl-redirect-overlay {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 1000000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(1px);
+    background-color: RGBA(0, 0, 0, .32);;
+}
+
+#nsl-redirect-overlay-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+#nsl-redirect-overlay-spinner {
+    content: '';
+    display: block;
+    margin: 20px;
+    border: 9px solid RGBA(0, 0, 0, .6);
+    border-top: 9px solid #fff;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1px RGBA(0, 0, 0, .6), 0 0 0 1px RGBA(0, 0, 0, .6);
+    width: 40px;
+    height: 40px;
+    animation: nsl-loader-spin 2s linear infinite;
+}
+
+@keyframes nsl-loader-spin {
+    0% {
+        transform: rotate(0deg)
+    }
+    to {
+        transform: rotate(360deg)
+    }
+}
+
+#nsl-redirect-overlay-title {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    color: #3C434A;
+}
+
+#nsl-redirect-overlay-text {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    text-align: center;
+    font-size: 14px;
+    color: #3C434A;
+}
+
+/* Redirect END*/</style><style type="text/css">/* Notice fallback */
+#nsl-notices-fallback {
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    z-index: 10000;
+}
+
+.admin-bar #nsl-notices-fallback {
+    top: 42px;
+}
+
+#nsl-notices-fallback > div {
+    position: relative;
+    background: #fff;
+    border-left: 4px solid #fff;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .1);
+    margin: 5px 15px 2px;
+    padding: 1px 20px;
+}
+
+#nsl-notices-fallback > div.error {
+    display: block;
+    border-left-color: #dc3232;
+}
+
+#nsl-notices-fallback > div.updated {
+    display: block;
+    border-left-color: #46b450;
+}
+
+#nsl-notices-fallback p {
+    margin: .5em 0;
+    padding: 2px;
+}
+
+#nsl-notices-fallback > div:after {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    content: '\00d7';
+    display: block;
+    height: 16px;
+    width: 16px;
+    line-height: 16px;
+    text-align: center;
+    font-size: 20px;
+    cursor: pointer;
+}</style>		<style id="wp-custom-css">
+			h1,h2,h3,h4,h5,h6,span,p,li,a{font-family:calibri !important}.elementor-59 .elementor-element.elementor-element-bb18483 >.elementor-widget-container{height:40rem}#nsl-custom-login-form-1 .nsl-container-embedded-login-layout-below{clear:both;padding:20px 0 0}div.nsl-container.nsl-container-block .nsl-container-buttons{display:inline-grid;grid-template-columns:minmax(145px,auto)}div.nsl-container .nsl-container-buttons{display:flex;padding:5px 0}div.nsl-container div.nsl-container-buttons a[data-plugin="nsl"]{text-decoration:none;box-shadow:none;border:0}form.pmpro_form .pmpro_checkout-fields div,#loginform p{margin:0 0 1em 0}form.pmpro_form label,#loginform label{font-weight:700;display:block;margin:0;text-align:left}form.pmpro_form input[type=text],form.pmpro_form input[type=password],form.pmpro_form input[type=email],form.pmpro_form input[type=number],form.pmpro_form textarea,form.pmpro_form select,#loginform input[type=text],#loginform input[type=password]{display:inline-block;max-width:90%;min-height:1.5rem}form input[type=text]{display:inline-block;min-height:40px;width:100%;font-size:14px;line-height:1.8;padding:6px 12px;vertical-align:middle;background-color:rgba(0,0,0,0);color:#333;border:1px solid #ddd;-webkit-border-radius:3px;-moz-border-radius:3px;-ms-border-radius:3px;border-radius:3px;-webkit-transition:all .3s ease;-moz-transition:all .3s ease;-ms-transition:all .3s ease;-o-transition:all .3s ease;transition:all .3s ease}form input[type=text],form input[type=password],form input[type=email],form input[type=url],form input[type=date],form input[type=month],form input[type=time],form input[type=datetime],form input[type=datetime-local],form input[type=week],form input[type=number],form input[type=search],form input[type=tel],form input[type=color],form select,form textarea{color:#fff}html,body,applet,object,iframe,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{color:white}form input[type=text],form input[type=password],form input[type=email],form input[type=url],form input[type=date],form input[type=month],form input[type=time],form input[type=datetime],form input[type=datetime-local],form input[type=week],form input[type=number],form input[type=search],form input[type=tel],form input[type=color],form select,form textarea{color:#ffca40}.um a.um-button,.um a.um-button.um-disabled:active,.um a.um-button.um-disabled:focus,.um a.um-button.um-disabled:hover,.um input[type=submit].um-button,.um input[type=submit].um-button:focus{background:#FFCA40}		</style>
+		
+<style type="text/css">
+/* General CSS */a:hover,a.light:hover,.theme-heading .text::before,.theme-heading .text::after,#top-bar-content >a:hover,#top-bar-social li.oceanwp-email a:hover,#site-navigation-wrap .dropdown-menu >li >a:hover,#site-header.medium-header #medium-searchform button:hover,.oceanwp-mobile-menu-icon a:hover,.blog-entry.post .blog-entry-header .entry-title a:hover,.blog-entry.post .blog-entry-readmore a:hover,.blog-entry.thumbnail-entry .blog-entry-category a,ul.meta li a:hover,.dropcap,.single nav.post-navigation .nav-links .title,body .related-post-title a:hover,body #wp-calendar caption,body .contact-info-widget.default i,body .contact-info-widget.big-icons i,body .custom-links-widget .oceanwp-custom-links li a:hover,body .custom-links-widget .oceanwp-custom-links li a:hover:before,body .posts-thumbnails-widget li a:hover,body .social-widget li.oceanwp-email a:hover,.comment-author .comment-meta .comment-reply-link,#respond #cancel-comment-reply-link:hover,#footer-widgets .footer-box a:hover,#footer-bottom a:hover,#footer-bottom #footer-bottom-menu a:hover,.sidr a:hover,.sidr-class-dropdown-toggle:hover,.sidr-class-menu-item-has-children.active >a,.sidr-class-menu-item-has-children.active >a >.sidr-class-dropdown-toggle,input[type=checkbox]:checked:before{color:#ffca40}.single nav.post-navigation .nav-links .title .owp-icon use,.blog-entry.post .blog-entry-readmore a:hover .owp-icon use,body .contact-info-widget.default .owp-icon use,body .contact-info-widget.big-icons .owp-icon use{stroke:#ffca40}input[type="button"],input[type="reset"],input[type="submit"],button[type="submit"],.button,#site-navigation-wrap .dropdown-menu >li.btn >a >span,.thumbnail:hover i,.post-quote-content,.omw-modal .omw-close-modal,body .contact-info-widget.big-icons li:hover i,body div.wpforms-container-full .wpforms-form input[type=submit],body div.wpforms-container-full .wpforms-form button[type=submit],body div.wpforms-container-full .wpforms-form .wpforms-page-button{background-color:#ffca40}.thumbnail:hover .link-post-svg-icon{background-color:#ffca40}body .contact-info-widget.big-icons li:hover .owp-icon{background-color:#ffca40}.widget-title{border-color:#ffca40}blockquote{border-color:#ffca40}#searchform-dropdown{border-color:#ffca40}.dropdown-menu .sub-menu{border-color:#ffca40}.blog-entry.large-entry .blog-entry-readmore a:hover{border-color:#ffca40}.oceanwp-newsletter-form-wrap input[type="email"]:focus{border-color:#ffca40}.social-widget li.oceanwp-email a:hover{border-color:#ffca40}#respond #cancel-comment-reply-link:hover{border-color:#ffca40}body .contact-info-widget.big-icons li:hover i{border-color:#ffca40}#footer-widgets .oceanwp-newsletter-form-wrap input[type="email"]:focus{border-color:#ffca40}blockquote,.wp-block-quote{border-left-color:#ffca40}body .contact-info-widget.big-icons li:hover .owp-icon{border-color:#ffca40}input[type="button"]:hover,input[type="reset"]:hover,input[type="submit"]:hover,button[type="submit"]:hover,input[type="button"]:focus,input[type="reset"]:focus,input[type="submit"]:focus,button[type="submit"]:focus,.button:hover,.button:focus,#site-navigation-wrap .dropdown-menu >li.btn >a:hover >span,.post-quote-author,.omw-modal .omw-close-modal:hover,body div.wpforms-container-full .wpforms-form input[type=submit]:hover,body div.wpforms-container-full .wpforms-form button[type=submit]:hover,body div.wpforms-container-full .wpforms-form .wpforms-page-button:hover{background-color:#ffb600}body,.has-parallax-footer:not(.separate-layout) #main{background-color:#201e34}a{color:#ffffff}a .owp-icon use{stroke:#ffffff}a:hover{color:#ffca40}a:hover .owp-icon use{stroke:#ffca40}/* Header CSS */#site-logo #site-logo-inner,.oceanwp-social-menu .social-menu-inner,#site-header.full_screen-header .menu-bar-inner,.after-header-content .after-header-content-inner{height:78px}#site-navigation-wrap .dropdown-menu >li >a,.oceanwp-mobile-menu-icon a,.mobile-menu-close,.after-header-content-inner >a{line-height:78px}#site-header,.has-transparent-header .is-sticky #site-header,.has-vh-transparent .is-sticky #site-header.vertical-header,#searchform-header-replace{background-color:#201e34}#site-header-inner{padding:0 50px 0 0}#site-header.has-header-media .overlay-header-media{background-color:rgba(0,0,0,0.5)}#site-logo #site-logo-inner a img,#site-header.center-header #site-navigation-wrap .middle-site-logo a img{max-width:230px}@media (max-width:768px){#site-logo #site-logo-inner a img,#site-header.center-header #site-navigation-wrap .middle-site-logo a img{max-width:162px}}@media (max-width:480px){#site-logo #site-logo-inner a img,#site-header.center-header #site-navigation-wrap .middle-site-logo a img{max-width:162px}}#site-header #site-logo #site-logo-inner a img,#site-header.center-header #site-navigation-wrap .middle-site-logo a img{max-height:150px}@media (max-width:768px){#site-header #site-logo #site-logo-inner a img,#site-header.center-header #site-navigation-wrap .middle-site-logo a img{max-height:120px}}@media (max-width:480px){#site-header #site-logo #site-logo-inner a img,#site-header.center-header #site-navigation-wrap .middle-site-logo a img{max-height:120px}}#site-logo a.site-logo-text{color:#ee6c4d}.effect-one #site-navigation-wrap .dropdown-menu >li >a.menu-link >span:after,.effect-three #site-navigation-wrap .dropdown-menu >li >a.menu-link >span:after,.effect-five #site-navigation-wrap .dropdown-menu >li >a.menu-link >span:before,.effect-five #site-navigation-wrap .dropdown-menu >li >a.menu-link >span:after,.effect-nine #site-navigation-wrap .dropdown-menu >li >a.menu-link >span:before,.effect-nine #site-navigation-wrap .dropdown-menu >li >a.menu-link >span:after{background-color:#ffca40}.effect-four #site-navigation-wrap .dropdown-menu >li >a.menu-link >span:before,.effect-four #site-navigation-wrap .dropdown-menu >li >a.menu-link >span:after,.effect-seven #site-navigation-wrap .dropdown-menu >li >a.menu-link:hover >span:after,.effect-seven #site-navigation-wrap .dropdown-menu >li.sfHover >a.menu-link >span:after{color:#ffca40}.effect-seven #site-navigation-wrap .dropdown-menu >li >a.menu-link:hover >span:after,.effect-seven #site-navigation-wrap .dropdown-menu >li.sfHover >a.menu-link >span:after{text-shadow:10px 0 #ffca40,-10px 0 #ffca40}#site-navigation-wrap .dropdown-menu >li >a,.oceanwp-mobile-menu-icon a,#searchform-header-replace-close{color:#ffffff}#site-navigation-wrap .dropdown-menu >li >a .owp-icon use,.oceanwp-mobile-menu-icon a .owp-icon use,#searchform-header-replace-close .owp-icon use{stroke:#ffffff}#site-navigation-wrap .dropdown-menu >.current-menu-item >a,#site-navigation-wrap .dropdown-menu >.current-menu-ancestor >a,#site-navigation-wrap .dropdown-menu >.current-menu-item >a:hover,#site-navigation-wrap .dropdown-menu >.current-menu-ancestor >a:hover{color:#ffca40}.dropdown-menu .sub-menu{min-width:230px}.dropdown-menu .sub-menu,#searchform-dropdown,.current-shop-items-dropdown{background-color:#232c38}.navigation li.mega-cat .mega-cat-title{background-color:#232c38}.mobile-menu .hamburger-inner,.mobile-menu .hamburger-inner::before,.mobile-menu .hamburger-inner::after{background-color:#ffffff}#sidr,#mobile-dropdown{background-color:#232c38}#sidr li,#sidr ul,#mobile-dropdown ul li,#mobile-dropdown ul li ul{border-color:rgba(255,255,255,0.035)}/* Footer Bottom CSS */#footer-bottom{background-color:#232c38}/* Typography CSS */body{font-family:Poppins;color:#ffffff}h1,h2,h3,h4,h5,h6,.theme-heading,.widget-title,.oceanwp-widget-recent-posts-title,.comment-reply-title,.entry-title,.sidebar-box .widget-title{color:#ffca40}h1{color:#ffca40}h4{color:#ffca40}#site-navigation-wrap .dropdown-menu >li >a,#site-header.full_screen-header .fs-dropdown-menu >li >a,#site-header.top-header #site-navigation-wrap .dropdown-menu >li >a,#site-header.center-header #site-navigation-wrap .dropdown-menu >li >a,#site-header.medium-header #site-navigation-wrap .dropdown-menu >li >a,.oceanwp-mobile-menu-icon a{font-family:Poppins;font-weight:600;font-size:16px;letter-spacing:1.3px;text-transform:uppercase}.page-header .page-subheading{color:#ffffff}.blog-entry.post .blog-entry-header .entry-title a{color:#ffffff}.single-post .entry-title{color:#ffffff}
+</style><noscript><style id="rocket-lazyload-nojs-css">.rll-youtube-player, [data-lazy-src]{display:none !important;}</style></noscript>	<style>
+	.facebook-icon , .instagram-icon, .thread-icon, .twitter-icon{
+	background-color:#FACC15 !important;
+    padding: 10px 10px 5px 10px;
+	border-radius:50%;
+}
+		.instagram-icon, .thread-icon, .twitter-icon{
+			margin-left:1.5rem;
+		}
+	</style>
+</head>
+
+<body class="post-template-default single single-post postid-919 single-format-standard wp-custom-logo wp-embed-responsive pmpro-body-has-access ehf-footer ehf-template-oceanwp ehf-stylesheet-oceanwp oceanwp-theme dropdown-mobile no-header-border default-breakpoint has-sidebar content-right-sidebar post-in-category-uncategorized has-breadcrumbs elementor-default elementor-kit-6" itemscope="itemscope" itemtype="https://schema.org/Article">
+
+	
+	
+	<div id="outer-wrap" class="site clr">
+
+		<a class="skip-link screen-reader-text" href="#main">Skip to content</a>
+
+		
+		<div id="wrap" class="clr">
+
+			
+			
+<header id="site-header" class="minimal-header effect-one clr" data-height="78" itemscope="itemscope" itemtype="https://schema.org/WPHeader" role="banner">
+
+	
+					
+			<div id="site-header-inner" class="clr container">
+
+				
+				
+
+<div id="site-logo" class="clr" itemscope itemtype="https://schema.org/Brand" >
+
+	
+	<div id="site-logo-inner" class="clr">
+
+		<a href="https://aihomeworkhelper.co/" class="custom-logo-link" rel="home"><img width="300" height="82" src="https://aihomeworkhelper.co/wp-content/uploads/2024/03/cropped-cropped-ai_homework_helper_co_logo.webp" class="custom-logo" alt="This Image Depicts Site Logo" decoding="async" /></a>
+	</div>
+
+	
+	
+</div>
+
+			<div id="site-navigation-wrap" class="no-top-border clr">
+			
+							
+						<nav id="site-navigation" style="display:flex;align-items:center;justify-content:space-between;" class="navigation main-navigation clr" itemscope="itemscope" itemtype="https://schema.org/SiteNavigationElement" role="navigation" >
+				
+				<ul id="menu-main_menu" class="main-menu dropdown-menu sf-menu"><li id="menu-item-1170" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1170"><a href="https://aihomeworkhelper.co/pricing/" class="menu-link"><span class="text-wrap">Pricing</span></a></li><li id="menu-item-871" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children dropdown menu-item-871"><a href="#" class="menu-link"><span class="text-wrap">Services<i class="nav-arrow fa fa-angle-down" aria-hidden="true" role="img"></i></span></a>
+<ul class="sub-menu">
+	<li id="menu-item-881" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-881"><a href="https://aihomeworkhelper.co/ai-for-writing-research-papers/" class="menu-link"><span class="text-wrap">AI For Writing Research Papers</span></a></li>	<li id="menu-item-882" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-882"><a href="https://aihomeworkhelper.co/ai-for-thesis-writing/" class="menu-link"><span class="text-wrap">AI For Thesis Writing</span></a></li>	<li id="menu-item-883" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-883"><a href="https://aihomeworkhelper.co/ai-math-solver-tool/" class="menu-link"><span class="text-wrap">AI Math Problem Solver</span></a></li>	<li id="menu-item-884" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-884"><a href="https://aihomeworkhelper.co/ai-tutor/" class="menu-link"><span class="text-wrap">AI Tutor</span></a></li></ul>
+</li><li id="menu-item-334" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-334"><a href="https://aihomeworkhelper.co/blogs/" class="menu-link"><span class="text-wrap">Blogs</span></a></li></ul>		
+			<div style="padding:8px;box-shadow: 0px 0px 3px 0px #eee;margin-left:2rem;border-radius:5px">
+   <a href="https://aihomeworkhelper.co/login/" style="display:flex;align-items:center;">
+	<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#FACC15" class="bi bi-pencil-square" viewBox="0 0 16 16">
+  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+</svg>
+    <span style="font-size:16px;font-weight:600;padding-left:8px">Start Writing - It's Free</span>
+	</a>
+</div>
+				
+			
+			</nav>
+
+			
+			
+					</div>
+			
+		
+	
+				
+	
+	<div class="oceanwp-mobile-menu-icon clr mobile-right">
+
+		
+		
+		
+		<a href="https://aihomeworkhelper.co/#mobile-menu-toggle" class="mobile-menu"  aria-label="Mobile Menu">
+							<div class="hamburger hamburger--3dx" aria-expanded="false" role="navigation">
+					<div class="hamburger-box">
+						<div class="hamburger-inner"></div>
+					</div>
+				</div>
+						</a>
+
+		
+		
+		
+	</div>
+
+	
+			</div>
+	
+	
+
+			
+<div id="mobile-dropdown" class="clr" >
+
+	<nav class="clr" itemscope="itemscope" itemtype="https://schema.org/SiteNavigationElement">
+
+		<ul id="menu-main_menu-1" class="menu"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1170"><a href="https://aihomeworkhelper.co/pricing/">Pricing</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-871"><a href="#">Services</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-881"><a href="https://aihomeworkhelper.co/ai-for-writing-research-papers/">AI For Writing Research Papers</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-882"><a href="https://aihomeworkhelper.co/ai-for-thesis-writing/">AI For Thesis Writing</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-883"><a href="https://aihomeworkhelper.co/ai-math-solver-tool/">AI Math Problem Solver</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-884"><a href="https://aihomeworkhelper.co/ai-tutor/">AI Tutor</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-334"><a href="https://aihomeworkhelper.co/blogs/">Blogs</a></li>
+</ul><div style="display:flex;align-items:center;justify-content:center;padding:20px 0;">
+				<div style="display:flex;align-items:center;padding:8px;box-shadow: 0px 2px 10px 2px #5f5b8ec7;margin-left:2rem;border-radius:5px">
+    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#FACC15" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z"/>
+        <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
+    </svg>
+    <a href="https://aihomeworkhelper.co/login/" style="font-size:16px;font-weight:600;padding-left:5px">LOGIN</a>
+</div>
+				<div style="margin-left:3rem;padding:8px 0;">
+					<a href="https://wa.me/+16163145029">
+					<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#FACC15" class="bi bi-whatsapp" viewBox="0 0 16 16">
+  <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+</svg>
+					</a>
+				</div>
+		</div>
+
+	</nav>
+
+</div>
+
+			
+			
+		
+		
+</header>
+
+
+			
+			<main id="main" class="site-main clr"  role="main">
+
+				
+
+<header class="page-header">
+
+	
+	<div class="container clr page-header-inner">
+
+		
+			<h1 class="page-header-title clr" itemprop="headline">Blog</h1>
+
+			
+		
+		<nav role="navigation" aria-label="Breadcrumbs" class="site-breadcrumbs clr position-"><ol class="trail-items" itemscope itemtype="http://schema.org/BreadcrumbList"><meta name="numberOfItems" content="3" /><meta name="itemListOrder" content="Ascending" /><li class="trail-item trail-begin" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="https://aihomeworkhelper.co" rel="home" aria-label="Home" itemprop="item"><span itemprop="name"><i class=" icon-home" aria-hidden="true" role="img"></i><span class="breadcrumb-home has-icon">Home</span></span></a><span class="breadcrumb-sep">></span><meta itemprop="position" content="1" /></li><li class="trail-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="https://aihomeworkhelper.co/category/uncategorized/" itemprop="item"><span itemprop="name">Uncategorized</span></a><span class="breadcrumb-sep">></span><meta itemprop="position" content="2" /></li><li class="trail-item trail-end" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><span itemprop="name"><a href="https://aihomeworkhelper.co/how-to-avoid-plagiarism-when-using-an-ai/">How to avoid plagiarism when using an AI essay writing tool</a></span><meta itemprop="position" content="3" /></li></ol></nav>
+	</div>
+
+	
+	
+</header>
+
+
+	
+	<div id="content-wrap" class="container clr">
+
+		
+		<div id="primary" class="content-area clr">
+
+			
+			<div id="content" class="site-content clr">
+
+				
+				
+<article id="post-919">
+
+	
+<div class="thumbnail">
+
+	<img width="1024" height="1024" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201024%201024'%3E%3C/svg%3E" class="attachment-full size-full wp-post-image" alt="You are currently viewing How to avoid plagiarism when using an AI essay writing tool" itemprop="image" decoding="async" data-lazy-srcset="https://aihomeworkhelper.co/wp-content/uploads/2024/03/bcb2f7865a2420ca58f7073c7899808e.png 1024w, https://aihomeworkhelper.co/wp-content/uploads/2024/03/bcb2f7865a2420ca58f7073c7899808e-300x300.png 300w, https://aihomeworkhelper.co/wp-content/uploads/2024/03/bcb2f7865a2420ca58f7073c7899808e-150x150.png 150w, https://aihomeworkhelper.co/wp-content/uploads/2024/03/bcb2f7865a2420ca58f7073c7899808e-768x768.png 768w, https://aihomeworkhelper.co/wp-content/uploads/2024/03/bcb2f7865a2420ca58f7073c7899808e-600x600.png 600w" data-lazy-sizes="(max-width: 1024px) 100vw, 1024px" data-lazy-src="https://aihomeworkhelper.co/wp-content/uploads/2024/03/bcb2f7865a2420ca58f7073c7899808e.png" /><noscript><img width="1024" height="1024" src="https://aihomeworkhelper.co/wp-content/uploads/2024/03/bcb2f7865a2420ca58f7073c7899808e.png" class="attachment-full size-full wp-post-image" alt="You are currently viewing How to avoid plagiarism when using an AI essay writing tool" itemprop="image" decoding="async" srcset="https://aihomeworkhelper.co/wp-content/uploads/2024/03/bcb2f7865a2420ca58f7073c7899808e.png 1024w, https://aihomeworkhelper.co/wp-content/uploads/2024/03/bcb2f7865a2420ca58f7073c7899808e-300x300.png 300w, https://aihomeworkhelper.co/wp-content/uploads/2024/03/bcb2f7865a2420ca58f7073c7899808e-150x150.png 150w, https://aihomeworkhelper.co/wp-content/uploads/2024/03/bcb2f7865a2420ca58f7073c7899808e-768x768.png 768w, https://aihomeworkhelper.co/wp-content/uploads/2024/03/bcb2f7865a2420ca58f7073c7899808e-600x600.png 600w" sizes="(max-width: 1024px) 100vw, 1024px" /></noscript>		<div class="thumbnail-caption">
+			How to avoid plagiarism when using an AI essay writing tool		</div>
+		
+</div>
+
+
+<header class="entry-header clr">
+	<h2 class="single-post-title entry-title" itemprop="headline">How to avoid plagiarism when using an AI essay writing tool</h2>
+</header>
+
+
+<ul class="meta ospm-default clr">
+
+	
+					<li class="meta-author" itemprop="name"><span class="screen-reader-text">Post author:</span><i class=" icon-user" aria-hidden="true" role="img"></i><a href="https://aihomeworkhelper.co/author/admin/" title="Posts by admin" rel="author"  itemprop="author" itemscope="itemscope" itemtype="https://schema.org/Person">admin</a></li>
+		
+		
+		
+		
+		
+		
+	
+		
+					<li class="meta-date" itemprop="datePublished"><span class="screen-reader-text">Post published:</span><i class=" icon-clock" aria-hidden="true" role="img"></i>March 13, 2024</li>
+		
+		
+		
+		
+		
+	
+		
+		
+		
+					<li class="meta-cat"><span class="screen-reader-text">Post category:</span><i class=" icon-folder" aria-hidden="true" role="img"></i><a href="https://aihomeworkhelper.co/category/uncategorized/" rel="category tag">Uncategorized</a></li>
+		
+		
+		
+	
+		
+		
+		
+		
+		
+					<li class="meta-comments"><span class="screen-reader-text">Post comments:</span><i class=" icon-bubble" aria-hidden="true" role="img"></i><a href="https://aihomeworkhelper.co/how-to-avoid-plagiarism-when-using-an-ai/#respond" class="comments-link" >0 Comments</a></li>
+		
+	
+</ul>
+
+
+
+<div class="entry-content clr" itemprop="text">
+	<ul class="toc_post_list">
+<li>
+<h2>Table of Contents</h2>
+<ul>
+<li><a href="#understanding-the-importance-of-plagiarism-free-writing-with-ai-tools-DCocmdqOZP">Understanding the Importance of Plagiarism-Free Writing with AI Tools</a></li>
+<li><a href="#tips-for-properly-citing-sources-in-ai-generated-essays-DCocmdqOZP">Tips for Properly Citing Sources in AI-Generated Essays</a></li>
+<li><a href="#how-to-paraphrase-effectively-with-an-ai-essay-writing-tool-DCocmdqOZP">How to Paraphrase Effectively with an AI Essay Writing Tool</a></li>
+<li><a href="#recognizing-and-avoiding-plagiarism-risks-in-ai-generated-content-DCocmdqOZP">Recognizing and Avoiding Plagiarism Risks in AI-Generated Content</a></li>
+<li><a href="#best-practices-for-using-ai-essay-writing-tools-to-maintain-originality-DCocmdqOZP">Best Practices for Using AI Essay Writing Tools to Maintain Originality</a></li>
+</ul>
+</li>
+</ul>
+<p>&#8220;Originality made easy: Master the art of plagiarism-free writing with AI essay tools.&#8221;</p>
+<p>Plagiarism is a serious offense that can have severe consequences in academic and professional settings. With the rise of AI essay writing tools, it is important to understand how to avoid plagiarism when utilizing these tools. This article will provide you with essential tips and guidelines to ensure that your work remains original and free from any form of plagiarism when using an AI essay writing tool.</p>
+<h1 id="understanding-the-importance-of-plagiarism-free-writing-with-ai-tools-DCocmdqOZP">Understanding the Importance of Plagiarism-Free Writing with AI Tools</h1>
+<p>Understanding the Importance of Plagiarism-Free Writing with AI Tools</p>
+<p>In today&#8217;s digital age, the use of artificial intelligence (AI) tools has become increasingly prevalent in various aspects of our lives, including academic writing. <a href="https://aihomeworkhelper.co/">AI essay writing tools</a> have gained popularity due to their ability to generate content quickly and efficiently. However, with this convenience comes the risk of unintentional plagiarism. Plagiarism is a serious offense that can have severe consequences, including academic penalties and damage to one&#8217;s reputation. Therefore, it is crucial to understand how to avoid plagiarism when using an AI essay writing tool.</p>
+<p>First and foremost, it is essential to have a clear understanding of what plagiarism entails. Plagiarism is the act of using someone else&#8217;s work or ideas without giving them proper credit. This includes copying and pasting text directly from a source without citation, paraphrasing someone else&#8217;s work without acknowledgment, or even using someone else&#8217;s ideas as your own. When using an AI essay writing tool, it is crucial to ensure that the generated content is original and properly attributed to its sources.</p>
+<p>One effective way to avoid plagiarism is to carefully review and edit the content generated by the AI tool. While AI tools can provide a great starting point for your essay, it is essential to go through the text and make necessary changes to ensure its originality. This includes rephrasing sentences, adding your own analysis and insights, and properly citing any sources used. By taking the time to review and edit the content, you can ensure that it reflects your own ideas and writing style, reducing the risk of plagiarism.</p>
+<p><strong>Read Also</strong>: <a href="https://aihomeworkhelper.co/ai-for-theswriting-research-papers/">Ai for writing Research Papers</a></p>
+<p>Another important aspect to consider is the use of proper citation and referencing. When using an AI essay writing tool, it is crucial to provide accurate citations for any sources used. This includes both in-text citations and a comprehensive reference list at the end of your essay. By properly citing your sources, you not only give credit to the original authors but also demonstrate your own credibility as a researcher and writer. Additionally, using a consistent citation style, such as APA or MLA, can help you avoid any confusion or errors in your referencing.</p>
+<p>Furthermore, it is essential to use multiple sources when conducting research for your essay. AI tools often rely on a vast database of information to generate content. However, relying solely on the AI tool&#8217;s suggestions can limit the diversity and depth of your research. By consulting multiple sources, such as academic journals, books, and reputable websites, you can gain a more <a href="https://aihomeworkhelper.co/pros-and-cons-of-ai-homework-assistance-a-comprehensive-overview/">comprehensive</a> understanding of the topic and incorporate a variety of perspectives into your essay. This not only enhances the quality of your work but also reduces the risk of unintentional plagiarism by ensuring that your ideas are well-informed and properly attributed.</p>
+<p><strong>Read Also</strong>: <a href="https://aihomeworkhelper.co/ai-for-thesis-writing/">AI for thesis writing</a></p>
+<p>Lastly, it is crucial to develop good research and writing habits. Plagiarism can often be a result of poor time management or a lack of understanding of the topic. By starting your essay early, conducting thorough research, and taking detailed notes, you can avoid the temptation to rely solely on the AI tool for content generation. Additionally, by developing your own writing skills and practicing proper citation and referencing, you can become more confident in your ability to produce original and plagiarism-free work.</p>
+<p>In conclusion, while AI essay writing tools can be a valuable resource for generating content quickly and efficiently, it is crucial to understand the importance of plagiarism-free writing. By carefully reviewing and editing the content, using proper citation and referencing, consulting multiple sources, and developing good research and writing habits, you can ensure that your work is original and properly attributed. By taking these steps, you not only avoid the severe consequences of plagiarism but also demonstrate your integrity as a writer and researcher.</p>
+<h1 id="tips-for-properly-citing-sources-in-ai-generated-essays-DCocmdqOZP">Tips for Properly Citing Sources in AI-Generated Essays</h1>
+<p>Plagiarism is a serious offense in the academic world, and with the rise of AI essay writing tools, it has become even more important to ensure that proper citation practices are followed. These tools can be incredibly helpful in generating content, but it is crucial to understand how to use them responsibly and avoid plagiarism.</p>
+<p>One of the most important tips for properly citing sources in AI-generated essays is to always give credit where credit is due. When using an AI essay writing tool, it is essential to acknowledge the sources that have been used to generate the content. This can be done by including in-text citations or footnotes throughout the essay. By doing so, you are not only avoiding plagiarism but also demonstrating your understanding of the importance of academic integrity.</p>
+<p><strong>Read Also</strong>: <a href="https://aihomeworkhelper.co/ai-writing-assistant/">AI Writing Assistant</a></p>
+<p>Another tip is to familiarize yourself with the citation style required by your institution or professor. Different academic disciplines often have specific citation styles that must be followed. Whether it is APA, MLA, Chicago, or any other style, understanding the rules and guidelines will help you properly cite your sources. AI essay writing tools often have built-in citation generators that can assist you in formatting your citations correctly according to the required style.</p>
+<p>Additionally, it is crucial to critically evaluate the content generated by the AI tool. While these tools can provide a wealth of information, they are not infallible. It is essential to review the content and ensure that it accurately represents the ideas and arguments you want to convey. This includes checking for any errors or inaccuracies in the generated text. By carefully reviewing the content, you can avoid unintentionally plagiarizing someone else&#8217;s work.</p>
+<p>Furthermore, it is important to understand the difference between paraphrasing and directly quoting a source. Paraphrasing involves rephrasing someone else&#8217;s ideas in your own words, while quoting involves directly using the author&#8217;s words. When using an AI essay writing tool, it is crucial to properly attribute any direct quotes to the original source. This can be done by using quotation marks and providing a citation. For paraphrased content, it is still necessary to provide a citation to acknowledge the source of the ideas.</p>
+<p><strong>Read Also</strong>: <a href="https://aihomeworkhelper.co/ai-tutor/">AI Tutor</a></p>
+<p>Lastly, it is advisable to use multiple sources when using an AI essay writing tool. While these tools can provide a vast amount of information, relying solely on them may limit the breadth and depth of your research. By consulting multiple sources, you can gain a more comprehensive understanding of the topic and avoid the risk of unintentionally plagiarizing a single source. This also allows you to incorporate different perspectives and strengthen your arguments.</p>
+<p>In conclusion, properly citing sources is crucial when using an AI essay writing tool to avoid plagiarism. By giving credit to the original sources, following the required citation style, critically evaluating the generated content, understanding the difference between paraphrasing and quoting, and using multiple sources, you can ensure that your essay is both original and academically sound. Remember, academic integrity is of utmost importance, and by following these tips, you can use AI essay writing tools responsibly and <a href="https://aihomeworkhelper.co/is-it-ethical-to-use-an-ai-homework-helper/">ethically</a>.</p>
+<h1 id="how-to-paraphrase-effectively-with-an-ai-essay-writing-tool-DCocmdqOZP">How to Paraphrase Effectively with an AI Essay Writing Tool</h1>
+<p><img width="1024" height="1024" decoding="async" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201024%201024'%3E%3C/svg%3E" alt="How to avoid plagiarism when using an AI essay writing tool" data-lazy-src="https://aihomeworkhelper.co/wp-content/uploads/2024/03/e27c1104de42f268b1908f60759ad243.png" /><noscript><img width="1024" height="1024" decoding="async" src="https://aihomeworkhelper.co/wp-content/uploads/2024/03/e27c1104de42f268b1908f60759ad243.png" alt="How to avoid plagiarism when using an AI essay writing tool" /></noscript><br />
+How to avoid plagiarism when using an AI essay writing tool</p>
+<p>In today&#8217;s digital age, technology has become an integral part of our lives, including the field of education. With the advent of AI essay writing tools, students now have access to a wealth of information and assistance to help them with their academic writing. However, it is important to use these tools responsibly and avoid plagiarism.</p>
+<p>Plagiarism is a serious offense that can have severe consequences, ranging from <a href="https://aihomeworkhelper.co/maximizing-academic-success-with-ai-homework-helper-assistants/">academic</a> penalties to legal repercussions. It is the act of using someone else&#8217;s work or ideas without giving them proper credit. When using an AI essay writing tool, it is crucial to understand how to paraphrase effectively to avoid plagiarism.</p>
+<p>Paraphrasing is the process of rephrasing someone else&#8217;s ideas or words in your own words. It is an essential skill for any writer, as it allows you to incorporate information from various sources while maintaining the originality of your work. When using an AI essay writing tool, here are some tips to <a href="https://aihomeworkhelper.co/how-does-ai-homework-helper-assistant-work/">help</a> you paraphrase effectively and avoid plagiarism.</p>
+<p>Firstly, it is important to understand the source material thoroughly before attempting to paraphrase it. Read the original text multiple times to grasp the main ideas and arguments presented. This will help you internalize the information and express it in your own words more effectively.</p>
+<p>Once you have a clear understanding of the source material, try to explain it to yourself or someone else without referring to the original text. This will help you identify the key points and ensure that you have truly comprehended the material. It will also make it easier for you to paraphrase it later on.</p>
+<p>When paraphrasing, it is crucial to use your own words and sentence structure. Simply replacing a few words with synonyms is not enough. Instead, try to express the same ideas using different words and sentence structures. This will demonstrate your understanding of the material and help you avoid plagiarism.</p>
+<p>Additionally, it is important to cite your sources properly when using an AI essay writing tool. Even if you have paraphrased the information, you still need to give credit to the original author. Include in-text citations and a bibliography or reference list at the end of your essay to acknowledge the sources you have used.</p>
+<p>Furthermore, it is essential to maintain a balance between your own ideas and the ideas of others. While it is acceptable to incorporate information from external sources, your essay should primarily reflect your own thoughts and analysis. Use the AI essay writing tool as a tool for guidance and inspiration, but make sure to add your own unique perspective to the discussion.</p>
+<p>Lastly, proofread your essay carefully to ensure that your paraphrasing is accurate and effective. Check for any instances of unintentional plagiarism, such as inadvertently using the same sentence structure or phrasing as the original text. Use plagiarism detection software if available to double-check your work and make any necessary revisions.</p>
+<p>In conclusion, using an AI essay writing tool can be a valuable resource for students, but it is important to use it responsibly and avoid plagiarism. Effective paraphrasing is key to maintaining the originality of your work. Understand the source material, use your own words and sentence structure, cite your sources properly, and maintain a balance between your own ideas and the ideas of others. By following these guidelines, you can ensure that your work is original, well-researched, and free from plagiarism.</p>
+<h1 id="recognizing-and-avoiding-plagiarism-risks-in-ai-generated-content-DCocmdqOZP">Recognizing and Avoiding Plagiarism Risks in AI-Generated Content</h1>
+<p>Plagiarism is a serious offense in the academic and professional world. It involves using someone else&#8217;s work or ideas without giving them proper credit. With the rise of AI essay writing tools, the risk of unintentional plagiarism has increased. These tools can generate content quickly and efficiently, but they also pose a challenge when it comes to maintaining originality. In this article, we will discuss how to avoid plagiarism when using an AI essay writing tool.</p>
+<p>First and foremost, it is important to understand the concept of plagiarism. Plagiarism can occur in various forms, such as copying and pasting text directly from a source without citation, paraphrasing someone else&#8217;s work without proper attribution, or even using someone else&#8217;s ideas without acknowledgment. When using an AI essay writing tool, it is crucial to be aware of these risks and take necessary precautions to avoid them.</p>
+<p>One effective way to avoid plagiarism is to carefully review the content generated by the AI tool. While these tools can provide a great starting point for your essay, it is essential to critically analyze the text and ensure that it is not directly copied from any source. Take the time to read through the content and compare it with your research materials. If you come across any sentences or phrases that seem familiar, make sure to rephrase them or provide proper citations.</p>
+<p>Another important aspect to consider is the use of proper citations and references. When using an AI essay writing tool, it is easy to overlook the need for citations, assuming that the generated content is original. However, it is crucial to remember that the AI tool may have used existing sources to generate the text. Therefore, it is essential to include citations and references for any information or ideas that are not your own. This will not only help you avoid plagiarism but also strengthen the credibility of your work.</p>
+<p>Furthermore, it is advisable to use multiple AI essay writing tools or combine them with your own writing skills. While these tools can be helpful in generating content, they should not be solely relied upon. By combining the AI-generated content with your own writing and research, you can ensure that your essay is unique and reflects your own understanding of the topic. This will significantly reduce the risk of plagiarism.</p>
+<p>Additionally, it is crucial to proofread and edit the content generated by the AI tool. AI tools may not always produce flawless content, and there may be instances where the text contains errors or inconsistencies. By carefully reviewing and editing the content, you can ensure that it meets your requirements and is free from any plagiarism. This step is essential in maintaining the integrity of your work.</p>
+<p>In conclusion, while AI essay writing tools can be a valuable resource, they also pose risks when it comes to plagiarism. To avoid plagiarism, it is important to carefully review the content generated by the AI tool, use proper citations and references, combine the AI-generated content with your own writing, and thoroughly proofread and edit the text. By following these guidelines, you can ensure that your work is original, credible, and free from any plagiarism.</p>
+<h1 id="best-practices-for-using-ai-essay-writing-tools-to-maintain-originality-DCocmdqOZP">Best Practices for Using AI Essay Writing Tools to Maintain Originality</h1>
+<p>Plagiarism is a serious offense in the academic world, and it can have severe consequences for students. With the rise of AI essay writing tools, it is important to understand how to use them responsibly and avoid plagiarism. In this article, we will discuss some best practices for using AI essay writing tools to maintain originality.</p>
+<p>First and foremost, it is crucial to understand the purpose of AI essay writing tools. These tools are designed to assist students in generating ideas and improving their writing skills. They should not be used as a shortcut to avoid doing the work yourself. It is essential to use these tools as a supplement to your own research and writing process.</p>
+<p>When using an AI essay writing tool, it is important to provide clear instructions. Be specific about the topic, the required length, and any specific formatting guidelines. This will help the tool generate more relevant and accurate suggestions. Additionally, make sure to review and edit the suggestions provided by the tool to ensure they align with your own ideas and writing style.</p>
+<p>Another important aspect to consider is the source of the AI essay writing tool. Choose a reputable and reliable tool that has been tested and reviewed by other users. Look for tools that have built-in plagiarism detection features to help you identify any potential issues. It is also a good idea to check if the tool has a privacy policy in place to protect your work and personal information.</p>
+<p>While using an AI essay writing tool, it is crucial to maintain a critical mindset. Remember that the tool is just a tool and it is your responsibility to evaluate and analyze the suggestions it provides. Do not blindly accept everything the tool suggests. Take the time to understand the suggestions and make sure they align with your own knowledge and understanding of the topic.</p>
+<p>To avoid plagiarism, it is important to properly cite and reference any sources used in your essay. AI essay writing tools can provide suggestions and ideas, but it is your responsibility to ensure that you give credit to the original authors. Familiarize yourself with the citation style required by your institution and use it consistently throughout your essay.</p>
+<p>Additionally, it is important to proofread and edit your essay before submitting it. AI essay writing tools can help with generating ideas and improving your writing, but they are not infallible. Take the time to review your essay for any grammatical errors, awkward phrasing, or inconsistencies. This will not only help you avoid plagiarism but also improve the overall quality of your work.</p>
+<p>In conclusion, using AI essay writing tools can be a valuable resource for students, but it is important to use them responsibly and ethically. By following these best practices, you can ensure that you maintain originality in your work and avoid plagiarism. Remember to use these tools as a supplement to your own research and writing process, provide clear instructions, critically evaluate the suggestions provided, properly cite and reference sources, and thoroughly proofread and edit your essay. By doing so, you can make the most of AI essay writing tools while maintaining academic integrity.To avoid plagiarism when using an AI essay writing tool, it is important to follow these steps:</p>
+<p>1. Understand the tool&#8217;s capabilities: Familiarize yourself with the AI essay writing tool&#8217;s features and limitations. This will help you use it effectively without relying too heavily on its content.</p>
+<p>2. Use the tool as a starting point: Treat the AI-generated content as a foundation for your essay. Use it to gather ideas and structure, but make sure to add your own analysis, insights, and original content.</p>
+<p>3. Cite and reference properly: When using information or ideas from the AI-generated content, make sure to cite and reference them correctly. Follow the appropriate citation style (e.g., APA, MLA) and include proper in-text citations and a bibliography or reference list.</p>
+<p>4. Edit and revise: After using the AI essay writing tool, thoroughly review and edit the content. Ensure that it aligns with your own writing style and voice. Make necessary changes to avoid any unintentional plagiarism.</p>
+<p>5. Use plagiarism detection tools: Before submitting your essay, run it through plagiarism detection software to identify any potential instances of plagiarism. This will help you identify and rectify any unintentional similarities with the AI-generated content.</p>
+<p>By following these steps, you can effectively use an AI essay writing tool while avoiding plagiarism and maintaining academic integrity.</p>
+
+</div>
+
+
+<div class="post-tags clr">
+	<span class="owp-tag-text">Tags: </span><a href="https://aihomeworkhelper.co/tag/ai/" rel="tag">Ai</a><span class="owp-sep">,</span> <a href="https://aihomeworkhelper.co/tag/ai-homework-helper/" rel="tag">ai homework helper</a><span class="owp-sep">,</span> <a href="https://aihomeworkhelper.co/tag/ai-plagiarism-checker/" rel="tag">Ai Plagiarism Checker</a><span class="owp-sep">,</span> <a href="https://aihomeworkhelper.co/tag/ai-research-paper-writing-tool/" rel="tag">Ai Research Paper Writing Tool</a></div>
+
+
+
+	<nav class="navigation post-navigation" aria-label="Read more articles">
+		<h2 class="screen-reader-text">Read more articles</h2>
+		<div class="nav-links"><div class="nav-previous"><a href="https://aihomeworkhelper.co/how-can-ai-homework-helper-tools-improve/" rel="prev"><span class="title"><i class=" fas fa-long-arrow-alt-left" aria-hidden="true" role="img"></i> Previous Post</span><span class="post-title">How can AI homework helper tools improve learning?</span></a></div><div class="nav-next"><a href="https://aihomeworkhelper.co/overcoming-plagiarism-concerns-when-using/" rel="next"><span class="title"><i class=" fas fa-long-arrow-alt-right" aria-hidden="true" role="img"></i> Next Post</span><span class="post-title">Overcoming plagiarism concerns when using AI for research writing</span></a></div></div>
+	</nav>
+
+	<section id="related-posts" class="clr">
+
+		<h3 class="theme-heading related-posts-title">
+			<span class="text">You Might Also Like</span>
+		</h3>
+
+		<div class="oceanwp-row clr">
+
+			
+			
+				
+				<article class="related-post clr col span_1_of_3 col-1 post-907 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized pmpro-has-access entry has-media">
+
+					
+						<figure class="related-post-media clr">
+
+							<a href="https://aihomeworkhelper.co/what-are-the-best-practices-for-using-ai/" class="related-thumb">
+
+								<img width="300" height="300" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" class="attachment-medium size-medium wp-post-image" alt="Read more about the article What are the best practices for using AI in research paper writing?" itemprop="image" decoding="async" data-lazy-srcset="https://aihomeworkhelper.co/wp-content/uploads/2024/03/1ae41e31d6852df924b8a930eb105d0e-300x300.png 300w, https://aihomeworkhelper.co/wp-content/uploads/2024/03/1ae41e31d6852df924b8a930eb105d0e-150x150.png 150w, https://aihomeworkhelper.co/wp-content/uploads/2024/03/1ae41e31d6852df924b8a930eb105d0e-768x768.png 768w, https://aihomeworkhelper.co/wp-content/uploads/2024/03/1ae41e31d6852df924b8a930eb105d0e-600x600.png 600w, https://aihomeworkhelper.co/wp-content/uploads/2024/03/1ae41e31d6852df924b8a930eb105d0e.png 1024w" data-lazy-sizes="(max-width: 300px) 100vw, 300px" data-lazy-src="https://aihomeworkhelper.co/wp-content/uploads/2024/03/1ae41e31d6852df924b8a930eb105d0e-300x300.png" /><noscript><img width="300" height="300" src="https://aihomeworkhelper.co/wp-content/uploads/2024/03/1ae41e31d6852df924b8a930eb105d0e-300x300.png" class="attachment-medium size-medium wp-post-image" alt="Read more about the article What are the best practices for using AI in research paper writing?" itemprop="image" decoding="async" srcset="https://aihomeworkhelper.co/wp-content/uploads/2024/03/1ae41e31d6852df924b8a930eb105d0e-300x300.png 300w, https://aihomeworkhelper.co/wp-content/uploads/2024/03/1ae41e31d6852df924b8a930eb105d0e-150x150.png 150w, https://aihomeworkhelper.co/wp-content/uploads/2024/03/1ae41e31d6852df924b8a930eb105d0e-768x768.png 768w, https://aihomeworkhelper.co/wp-content/uploads/2024/03/1ae41e31d6852df924b8a930eb105d0e-600x600.png 600w, https://aihomeworkhelper.co/wp-content/uploads/2024/03/1ae41e31d6852df924b8a930eb105d0e.png 1024w" sizes="(max-width: 300px) 100vw, 300px" /></noscript>							</a>
+
+						</figure>
+
+					
+					<h3 class="related-post-title">
+						<a href="https://aihomeworkhelper.co/what-are-the-best-practices-for-using-ai/" rel="bookmark">What are the best practices for using AI in research paper writing?</a>
+					</h3>
+
+								
+						<time class="published" datetime="2024-03-13T21:19:19+00:00"><i class=" icon-clock" aria-hidden="true" role="img"></i>March 13, 2024</time>
+						
+
+				</article>
+
+				
+			
+				
+				<article class="related-post clr col span_1_of_3 col-2 post-555 post type-post status-publish format-standard hentry category-uncategorized tag-ai tag-ai-homework-assistant tag-ai-homework-help tag-ai-homework-helper tag-homework-ai pmpro-has-access entry">
+
+					
+					<h3 class="related-post-title">
+						<a href="https://aihomeworkhelper.co/how-ai-homework-helpers-illuminate-the-path-with-explanations/" rel="bookmark">How AI Homework Helpers Illuminate the Path with Explanations</a>
+					</h3>
+
+								
+						<time class="published" datetime="2024-02-23T13:59:31+00:00"><i class=" icon-clock" aria-hidden="true" role="img"></i>February 23, 2024</time>
+						
+
+				</article>
+
+				
+			
+				
+				<article class="related-post clr col span_1_of_3 col-3 post-958 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized tag-ai tag-ai-homework-helper tag-ai-plagiarism-checker tag-ai-research-paper-writing-tool pmpro-has-access entry has-media">
+
+					
+						<figure class="related-post-media clr">
+
+							<a href="https://aihomeworkhelper.co/overcoming-plagiarism-concerns-when-using/" class="related-thumb">
+
+								<img width="300" height="300" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" class="attachment-medium size-medium wp-post-image" alt="Read more about the article Overcoming plagiarism concerns when using AI for research writing" itemprop="image" decoding="async" data-lazy-srcset="https://aihomeworkhelper.co/wp-content/uploads/2024/03/09d67e4f8fa5c9f7ad1a0ae8f42493d0-300x300.png 300w, https://aihomeworkhelper.co/wp-content/uploads/2024/03/09d67e4f8fa5c9f7ad1a0ae8f42493d0-150x150.png 150w, https://aihomeworkhelper.co/wp-content/uploads/2024/03/09d67e4f8fa5c9f7ad1a0ae8f42493d0-768x768.png 768w, https://aihomeworkhelper.co/wp-content/uploads/2024/03/09d67e4f8fa5c9f7ad1a0ae8f42493d0-600x600.png 600w, https://aihomeworkhelper.co/wp-content/uploads/2024/03/09d67e4f8fa5c9f7ad1a0ae8f42493d0.png 1024w" data-lazy-sizes="(max-width: 300px) 100vw, 300px" data-lazy-src="https://aihomeworkhelper.co/wp-content/uploads/2024/03/09d67e4f8fa5c9f7ad1a0ae8f42493d0-300x300.png" /><noscript><img width="300" height="300" src="https://aihomeworkhelper.co/wp-content/uploads/2024/03/09d67e4f8fa5c9f7ad1a0ae8f42493d0-300x300.png" class="attachment-medium size-medium wp-post-image" alt="Read more about the article Overcoming plagiarism concerns when using AI for research writing" itemprop="image" decoding="async" srcset="https://aihomeworkhelper.co/wp-content/uploads/2024/03/09d67e4f8fa5c9f7ad1a0ae8f42493d0-300x300.png 300w, https://aihomeworkhelper.co/wp-content/uploads/2024/03/09d67e4f8fa5c9f7ad1a0ae8f42493d0-150x150.png 150w, https://aihomeworkhelper.co/wp-content/uploads/2024/03/09d67e4f8fa5c9f7ad1a0ae8f42493d0-768x768.png 768w, https://aihomeworkhelper.co/wp-content/uploads/2024/03/09d67e4f8fa5c9f7ad1a0ae8f42493d0-600x600.png 600w, https://aihomeworkhelper.co/wp-content/uploads/2024/03/09d67e4f8fa5c9f7ad1a0ae8f42493d0.png 1024w" sizes="(max-width: 300px) 100vw, 300px" /></noscript>							</a>
+
+						</figure>
+
+					
+					<h3 class="related-post-title">
+						<a href="https://aihomeworkhelper.co/overcoming-plagiarism-concerns-when-using/" rel="bookmark">Overcoming plagiarism concerns when using AI for research writing</a>
+					</h3>
+
+								
+						<time class="published" datetime="2024-03-20T17:48:09+00:00"><i class=" icon-clock" aria-hidden="true" role="img"></i>March 20, 2024</time>
+						
+
+				</article>
+
+				
+			
+		</div>
+
+	</section>
+
+
+
+
+<section id="comments" class="comments-area clr has-comments">
+
+	
+	
+		<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/how-to-avoid-plagiarism-when-using-an-ai/#respond" style="display:none;">Cancel reply</a></small></h3><form action="https://aihomeworkhelper.co/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate><div class="comment-textarea"><label for="comment" class="screen-reader-text">Comment</label><textarea name="comment" id="comment" cols="39" rows="4" tabindex="0" class="textarea-comment" placeholder="Your comment here..."></textarea></div><div class="comment-form-author"><label for="author" class="screen-reader-text">Enter your name or username to comment</label><input type="text" name="author" id="author" value="" placeholder="Name (required)" size="22" tabindex="0" aria-required="true" class="input-name" /></div>
+<div class="comment-form-email"><label for="email" class="screen-reader-text">Enter your email address to comment</label><input type="text" name="email" id="email" value="" placeholder="Email (required)" size="22" tabindex="0" aria-required="true" class="input-email" /></div>
+<div class="comment-form-url"><label for="url" class="screen-reader-text">Enter your website URL (optional)</label><input type="text" name="url" id="url" value="" placeholder="Website" size="22" tabindex="0" class="input-website" /></div>
+<p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes" /> <label for="wp-comment-cookies-consent">Save my name, email, and website in this browser for the next time I comment.</label></p>
+<p class="form-submit"><input name="submit" type="submit" id="comment-submit" class="submit" value="Post Comment" /> <input type='hidden' name='comment_post_ID' value='919' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+</p></form>	</div>
+	
+</section>
+
+</article>
+
+				
+			</div>
+
+			
+		</div>
+
+		
+
+<aside id="right-sidebar" class="sidebar-container widget-area sidebar-primary" itemscope="itemscope" itemtype="https://schema.org/WPSideBar" role="complementary" aria-label="Primary Sidebar">
+
+	
+	<div id="right-sidebar-inner" class="clr">
+
+		<div id="block-2" class="sidebar-box widget_block widget_search clr"><form role="search" method="get" action="https://aihomeworkhelper.co/" class="wp-block-search__button-outside wp-block-search__text-button wp-block-search"    ><label class="wp-block-search__label" for="wp-block-search__input-1" >Search</label><div class="wp-block-search__inside-wrapper " ><input class="wp-block-search__input" id="wp-block-search__input-1" placeholder="" value="" type="search" name="s" required /><button aria-label="Search" class="wp-block-search__button wp-element-button" type="submit" >Search</button></div></form></div><div id="block-3" class="sidebar-box widget_block clr"><div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-flow wp-block-group-is-layout-flow"><h2 class="wp-block-heading">Recent Posts</h2><ul class="wp-block-latest-posts__list wp-block-latest-posts"><li><a class="wp-block-latest-posts__post-title" href="https://aihomeworkhelper.co/how-to-fact-check-information-generated-by/">How to fact-check information generated by AI writing assistants</a></li>
+<li><a class="wp-block-latest-posts__post-title" href="https://aihomeworkhelper.co/tips-for-integrating-ai-writing-into-your/">Tips for integrating AI writing into your thesis workflow</a></li>
+<li><a class="wp-block-latest-posts__post-title" href="https://aihomeworkhelper.co/overcoming-plagiarism-concerns-when-using/">Overcoming plagiarism concerns when using AI for research writing</a></li>
+<li><a class="wp-block-latest-posts__post-title" href="https://aihomeworkhelper.co/how-to-avoid-plagiarism-when-using-an-ai/">How to avoid plagiarism when using an AI essay writing tool</a></li>
+<li><a class="wp-block-latest-posts__post-title" href="https://aihomeworkhelper.co/how-can-ai-homework-helper-tools-improve/">How can AI homework helper tools improve learning?</a></li>
+</ul></div></div></div><div id="block-4" class="sidebar-box widget_block clr"><div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-flow wp-block-group-is-layout-flow"><h2 class="wp-block-heading">Recent Comments</h2><div class="no-comments wp-block-latest-comments">No comments to show.</div></div></div></div>
+	</div>
+
+	
+</aside>
+
+
+	</div>
+
+	
+
+	</main>
+
+	
+	
+	
+				<footer itemtype="https://schema.org/WPFooter" itemscope="itemscope" id="colophon" role="contentinfo">
+			<div class='footer-width-fixer'>		<div data-elementor-type="wp-post" data-elementor-id="341" class="elementor elementor-341">
+				<div class="elementor-element elementor-element-f30beca e-flex e-con-boxed e-con e-parent" data-id="f30beca" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+					<div class="e-con-inner">
+		<div class="elementor-element elementor-element-6e64389 e-con-full e-flex e-con e-child" data-id="6e64389" data-element_type="container">
+				<div class="elementor-element elementor-element-0b211fb elementor-widget elementor-widget-image" data-id="0b211fb" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+			<style>/*! elementor - v3.21.0 - 25-04-2024 */
+.elementor-widget-image{text-align:center}.elementor-widget-image a{display:inline-block}.elementor-widget-image a img[src$=".svg"]{width:48px}.elementor-widget-image img{vertical-align:middle;display:inline-block}</style>										<img width="300" height="83" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%2083'%3E%3C/svg%3E" class="attachment-medium size-medium wp-image-987" alt="This Image Depicts Site Logo" data-lazy-src="https://aihomeworkhelper.co/wp-content/uploads/2024/03/cropped-ai_homework_helper_co_logo.webp" /><noscript><img width="300" height="83" src="https://aihomeworkhelper.co/wp-content/uploads/2024/03/cropped-ai_homework_helper_co_logo.webp" class="attachment-medium size-medium wp-image-987" alt="This Image Depicts Site Logo" /></noscript>													</div>
+				</div>
+				<div class="elementor-element elementor-element-27b3da4 elementor-widget elementor-widget-text-editor" data-id="27b3da4" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+			<style>/*! elementor - v3.21.0 - 25-04-2024 */
+.elementor-widget-text-editor.elementor-drop-cap-view-stacked .elementor-drop-cap{background-color:#69727d;color:#fff}.elementor-widget-text-editor.elementor-drop-cap-view-framed .elementor-drop-cap{color:#69727d;border:3px solid;background-color:transparent}.elementor-widget-text-editor:not(.elementor-drop-cap-view-default) .elementor-drop-cap{margin-top:8px}.elementor-widget-text-editor:not(.elementor-drop-cap-view-default) .elementor-drop-cap-letter{width:1em;height:1em}.elementor-widget-text-editor .elementor-drop-cap{float:left;text-align:center;line-height:1;font-size:50px}.elementor-widget-text-editor .elementor-drop-cap-letter{display:inline-block}</style>				<p><span style="font-weight: 400;">Our AI Homework Helper is an innovative solution designed to assist students in completing their homework assignments efficiently and effectively.</span></p>						</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-8e92082 e-con-full e-flex e-con e-child" data-id="8e92082" data-element_type="container">
+				<div class="elementor-element elementor-element-b124206 elementor-widget elementor-widget-heading" data-id="b124206" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<style>/*! elementor - v3.21.0 - 25-04-2024 */
+.elementor-heading-title{padding:0;margin:0;line-height:1}.elementor-widget-heading .elementor-heading-title[class*=elementor-size-]>a{color:inherit;font-size:inherit;line-height:inherit}.elementor-widget-heading .elementor-heading-title.elementor-size-small{font-size:15px}.elementor-widget-heading .elementor-heading-title.elementor-size-medium{font-size:19px}.elementor-widget-heading .elementor-heading-title.elementor-size-large{font-size:29px}.elementor-widget-heading .elementor-heading-title.elementor-size-xl{font-size:39px}.elementor-widget-heading .elementor-heading-title.elementor-size-xxl{font-size:59px}</style><h2 class="elementor-heading-title elementor-size-default">Pages</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-2149159 hfe-submenu-icon-plus hfe-nav-menu__breakpoint-none hfe-nav-menu__align-left hfe-link-redirect-child elementor-widget elementor-widget-navigation-menu" data-id="2149159" data-element_type="widget" data-settings="{&quot;padding_horizontal_menu_item&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:0,&quot;sizes&quot;:[]},&quot;padding_vertical_menu_item&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:5,&quot;sizes&quot;:[]},&quot;menu_space_between&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:3,&quot;sizes&quot;:[]},&quot;padding_vertical_menu_item_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]},&quot;padding_horizontal_menu_item_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;padding_horizontal_menu_item_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;padding_vertical_menu_item_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;menu_space_between_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;menu_space_between_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;dropdown_border_radius&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;top&quot;:&quot;&quot;,&quot;right&quot;:&quot;&quot;,&quot;bottom&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;isLinked&quot;:true},&quot;dropdown_border_radius_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;top&quot;:&quot;&quot;,&quot;right&quot;:&quot;&quot;,&quot;bottom&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;isLinked&quot;:true},&quot;dropdown_border_radius_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;top&quot;:&quot;&quot;,&quot;right&quot;:&quot;&quot;,&quot;bottom&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;isLinked&quot;:true},&quot;padding_horizontal_dropdown_item&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;padding_horizontal_dropdown_item_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;padding_horizontal_dropdown_item_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;padding_vertical_dropdown_item&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:15,&quot;sizes&quot;:[]},&quot;padding_vertical_dropdown_item_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;padding_vertical_dropdown_item_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;distance_from_menu&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;distance_from_menu_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;distance_from_menu_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_size&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_size_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_size_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_border_width&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_border_width_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_border_width_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_border_radius&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_border_radius_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_border_radius_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]}}" data-widget_type="navigation-menu.default">
+				<div class="elementor-widget-container">
+						<div class="hfe-nav-menu hfe-layout-vertical hfe-nav-menu-layout vertical" data-layout="vertical">
+				<div role="button" class="hfe-nav-menu__toggle elementor-clickable">
+					<span class="screen-reader-text">Menu</span>
+					<div class="hfe-nav-menu-icon">
+											</div>
+				</div>
+				<nav class="hfe-nav-menu__layout-vertical hfe-nav-menu__submenu-plus" data-toggle-icon="" data-close-icon="" data-full-width="">
+					<ul id="menu-1-2149159" class="hfe-nav-menu"><li id="menu-item-324" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home parent hfe-creative-menu"><a href="https://aihomeworkhelper.co/" class = "hfe-menu-item">Home</a></li>
+<li id="menu-item-325" class="menu-item menu-item-type-post_type menu-item-object-page parent hfe-creative-menu"><a href="https://aihomeworkhelper.co/assistant/" class = "hfe-menu-item">Assistant</a></li>
+<li id="menu-item-338" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent parent hfe-creative-menu"><a href="https://aihomeworkhelper.co/blogs/" class = "hfe-menu-item">Blogs</a></li>
+<li id="menu-item-339" class="menu-item menu-item-type-post_type menu-item-object-page parent hfe-creative-menu"><a href="https://aihomeworkhelper.co/login/" class = "hfe-menu-item">Login</a></li>
+<li id="menu-item-340" class="menu-item menu-item-type-post_type menu-item-object-page parent hfe-creative-menu"><a href="https://aihomeworkhelper.co/testimonials/" class = "hfe-menu-item">Testimonials</a></li>
+</ul> 
+				</nav>
+			</div>
+					</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-d224cea e-con-full e-flex e-con e-child" data-id="d224cea" data-element_type="container">
+				<div class="elementor-element elementor-element-6ccb30f elementor-widget elementor-widget-heading" data-id="6ccb30f" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">Services</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-b1bb481 hfe-submenu-icon-plus hfe-nav-menu__breakpoint-none hfe-nav-menu__align-left hfe-link-redirect-child elementor-widget elementor-widget-navigation-menu" data-id="b1bb481" data-element_type="widget" data-settings="{&quot;padding_horizontal_menu_item&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:0,&quot;sizes&quot;:[]},&quot;padding_vertical_menu_item&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:8,&quot;sizes&quot;:[]},&quot;menu_space_between&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:3,&quot;sizes&quot;:[]},&quot;padding_vertical_menu_item_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:13,&quot;sizes&quot;:[]},&quot;padding_horizontal_menu_item_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;padding_horizontal_menu_item_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;padding_vertical_menu_item_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;menu_space_between_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;menu_space_between_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;dropdown_border_radius&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;top&quot;:&quot;&quot;,&quot;right&quot;:&quot;&quot;,&quot;bottom&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;isLinked&quot;:true},&quot;dropdown_border_radius_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;top&quot;:&quot;&quot;,&quot;right&quot;:&quot;&quot;,&quot;bottom&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;isLinked&quot;:true},&quot;dropdown_border_radius_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;top&quot;:&quot;&quot;,&quot;right&quot;:&quot;&quot;,&quot;bottom&quot;:&quot;&quot;,&quot;left&quot;:&quot;&quot;,&quot;isLinked&quot;:true},&quot;padding_horizontal_dropdown_item&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;padding_horizontal_dropdown_item_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;padding_horizontal_dropdown_item_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;padding_vertical_dropdown_item&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:15,&quot;sizes&quot;:[]},&quot;padding_vertical_dropdown_item_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;padding_vertical_dropdown_item_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;distance_from_menu&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;distance_from_menu_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;distance_from_menu_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_size&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_size_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_size_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_border_width&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_border_width_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_border_width_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_border_radius&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_border_radius_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;toggle_border_radius_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]}}" data-widget_type="navigation-menu.default">
+				<div class="elementor-widget-container">
+						<div class="hfe-nav-menu hfe-layout-vertical hfe-nav-menu-layout vertical" data-layout="vertical">
+				<div role="button" class="hfe-nav-menu__toggle elementor-clickable">
+					<span class="screen-reader-text">Menu</span>
+					<div class="hfe-nav-menu-icon">
+											</div>
+				</div>
+				<nav class="hfe-nav-menu__layout-vertical hfe-nav-menu__submenu-plus" data-toggle-icon="" data-close-icon="" data-full-width="">
+					<ul id="menu-1-b1bb481" class="hfe-nav-menu"><li id="menu-item-856" class="menu-item menu-item-type-post_type menu-item-object-page parent hfe-creative-menu"><a href="https://aihomeworkhelper.co/ai-for-writing-research-papers/" class = "hfe-menu-item">AI For Writing Research Papers</a></li>
+<li id="menu-item-857" class="menu-item menu-item-type-post_type menu-item-object-page parent hfe-creative-menu"><a href="https://aihomeworkhelper.co/ai-for-thesis-writing/" class = "hfe-menu-item">AI For Thesis Writing</a></li>
+<li id="menu-item-858" class="menu-item menu-item-type-post_type menu-item-object-page parent hfe-creative-menu"><a href="https://aihomeworkhelper.co/ai-tutor/" class = "hfe-menu-item">AI Tutor</a></li>
+<li id="menu-item-859" class="menu-item menu-item-type-post_type menu-item-object-page parent hfe-creative-menu"><a href="https://aihomeworkhelper.co/ai-math-solver-tool/" class = "hfe-menu-item">AI Math Problem Solver</a></li>
+</ul> 
+				</nav>
+			</div>
+					</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-030fefc e-con-full e-flex e-con e-child" data-id="030fefc" data-element_type="container">
+				<div class="elementor-element elementor-element-746125d elementor-widget elementor-widget-heading" data-id="746125d" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">Social  Icons</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-1cf61f1 elementor-widget elementor-widget-html" data-id="1cf61f1" data-element_type="widget" data-widget_type="html.default">
+				<div class="elementor-widget-container">
+			<div style="display:flex;">
+     <a href="https://www.facebook.com/profile.php?id=61556416524407">
+    <div class="facebook-icon">
+    
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000" class="bi bi-facebook" viewBox="0 0 16 16">
+  <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
+</svg>
+   
+    </div>
+      </a>
+       <a href="https://twitter.com/aihomework09">
+    <div class="twitter-icon">
+      
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000" class="bi bi-twitter-x" viewBox="0 0 16 16">
+  <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
+</svg>
+      
+    </div>
+     </a>
+      <a href="https://www.instagram.com/aihomeworkhelper2/">
+    <div class="instagram-icon">
+    
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000" class="bi bi-instagram" viewBox="0 0 16 16">
+  <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
+</svg>
+   
+    </div>
+      </a>
+       <a href="https://www.threads.net/@aihomeworkhelper2">
+    <div class="thread-icon">
+       
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000" class="bi bi-threads" viewBox="0 0 16 16">
+  <path d="M6.321 6.016c-.27-.18-1.166-.802-1.166-.802.756-1.081 1.753-1.502 3.132-1.502.975 0 1.803.327 2.394.948s.928 1.509 1.005 2.644q.492.207.905.484c1.109.745 1.719 1.86 1.719 3.137 0 2.716-2.226 5.075-6.256 5.075C4.594 16 1 13.987 1 7.994 1 2.034 4.482 0 8.044 0 9.69 0 13.55.243 15 5.036l-1.36.353C12.516 1.974 10.163 1.43 8.006 1.43c-3.565 0-5.582 2.171-5.582 6.79 0 4.143 2.254 6.343 5.63 6.343 2.777 0 4.847-1.443 4.847-3.556 0-1.438-1.208-2.127-1.27-2.127-.236 1.234-.868 3.31-3.644 3.31-1.618 0-3.013-1.118-3.013-2.582 0-2.09 1.984-2.847 3.55-2.847.586 0 1.294.04 1.663.114 0-.637-.54-1.728-1.9-1.728-1.25 0-1.566.405-1.967.868ZM8.716 8.19c-2.04 0-2.304.87-2.304 1.416 0 .878 1.043 1.168 1.6 1.168 1.02 0 2.067-.282 2.232-2.423a6.2 6.2 0 0 0-1.528-.161"/>
+</svg>
+       
+    </div>
+     </a>
+</div>		</div>
+				</div>
+				<div class="elementor-element elementor-element-08d2ef2 elementor-position-left elementor-tablet-position-top elementor-view-default elementor-mobile-position-top elementor-vertical-align-top elementor-widget elementor-widget-icon-box" data-id="08d2ef2" data-element_type="widget" data-widget_type="icon-box.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-icon-box-wrapper">
+
+						<div class="elementor-icon-box-icon">
+				<a href="mailto:info@aihomeworkhelper.co" class="elementor-icon elementor-animation-" tabindex="-1">
+				<svg aria-hidden="true" class="e-font-icon-svg e-far-envelope" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 400V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V400H48z"></path></svg>				</a>
+			</div>
+			
+						<div class="elementor-icon-box-content">
+
+									<h3 class="elementor-icon-box-title">
+						<a href="mailto:info@aihomeworkhelper.co" >
+							info@aihomeworkhelper.co						</a>
+					</h3>
+				
+				
+			</div>
+			
+		</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-1050d2a elementor-position-left elementor-tablet-position-top elementor-view-default elementor-mobile-position-top elementor-vertical-align-top elementor-widget elementor-widget-icon-box" data-id="1050d2a" data-element_type="widget" data-widget_type="icon-box.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-icon-box-wrapper">
+
+						<div class="elementor-icon-box-icon">
+				<a href="https://wa.me/+16163145029" class="elementor-icon elementor-animation-" tabindex="-1">
+				<svg aria-hidden="true" class="e-font-icon-svg e-fab-whatsapp" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"></path></svg>				</a>
+			</div>
+			
+						<div class="elementor-icon-box-content">
+
+									<h3 class="elementor-icon-box-title">
+						<a href="https://wa.me/+16163145029" >
+							+1 (616) 314-5029						</a>
+					</h3>
+				
+				
+			</div>
+			
+		</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-9637907 elementor-position-left elementor-tablet-position-top elementor-view-default elementor-mobile-position-top elementor-vertical-align-top elementor-widget elementor-widget-icon-box" data-id="9637907" data-element_type="widget" data-widget_type="icon-box.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-icon-box-wrapper">
+
+						<div class="elementor-icon-box-icon">
+				<span  class="elementor-icon elementor-animation-">
+				<svg aria-hidden="true" class="e-font-icon-svg e-fas-map-marker-alt" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg"><path d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"></path></svg>				</span>
+			</div>
+			
+						<div class="elementor-icon-box-content">
+
+									<h3 class="elementor-icon-box-title">
+						<span  >
+							appartment 2, 8647 s Lawler Ave, Burbank, IL, 60459						</span>
+					</h3>
+				
+				
+			</div>
+			
+		</div>
+				</div>
+				</div>
+				</div>
+					</div>
+				</div>
+		<div class="elementor-element elementor-element-c7c98ca e-flex e-con-boxed e-con e-parent" data-id="c7c98ca" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+					<div class="e-con-inner">
+		<div class="elementor-element elementor-element-89a1bf6 e-con-full e-flex e-con e-child" data-id="89a1bf6" data-element_type="container">
+				<div class="elementor-element elementor-element-f5e66bd elementor-widget elementor-widget-text-editor" data-id="f5e66bd" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p><span style="color: #000000;">Copyright © 2024 <span style="color: #0000ff;"><a style="color: #0000ff;" href="https://aihomeworkhelper.co/">aihomeworkhelper.co </a></span>|  All Rights Reserved.</span></p>						</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-4e75bf2 e-con-full e-flex e-con e-child" data-id="4e75bf2" data-element_type="container">
+				<div class="elementor-element elementor-element-766f306 elementor-widget elementor-widget-text-editor" data-id="766f306" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p><strong><span style="color: #003366;"><a style="color: #003366;" href="https://aihomeworkhelper.co/privacy-policy/">Privacy Policy</a></span></strong></p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-429b7a2 elementor-widget elementor-widget-text-editor" data-id="429b7a2" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p><strong><span style="color: #003366;"><a style="color: #003366;" href="https://aihomeworkhelper.co/cookie-policy/">Cookie Policy</a></span></strong></p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-85a3906 elementor-widget elementor-widget-text-editor" data-id="85a3906" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p><strong><span style="color: #003366;"><a style="color: #003366;" href="https://aihomeworkhelper.co/disclaimer/">Disclaimer</a></span></strong></p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-b281578 elementor-widget elementor-widget-text-editor" data-id="b281578" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p><strong><span style="color: #003366;"><a style="color: #003366;" href="https://aihomeworkhelper.co/terms-and-conditions/">Terms &amp; Conditions</a></span></strong></p>						</div>
+				</div>
+				</div>
+					</div>
+				</div>
+				</div>
+		</div>		</footer>
+	
+	
+	
+</div>
+
+
+</div>
+
+
+
+<a aria-label="Scroll to the top of the page" href="#" id="scroll-top" class="scroll-top-right"><i class=" fa fa-angle-up" aria-hidden="true" role="img"></i></a>
+
+
+
+
+            		
+	    
+    <script type="rocketlazyloadscript" data-rocket-type='text/javascript'>
+        document.addEventListener( 'wpcf7mailsent', function( event ) {
+        if( "fb_pxl_code" in event.detail.apiResponse){
+          eval(event.detail.apiResponse.fb_pxl_code);
+        }
+      }, false );
+    </script>
+    
+    <div id='fb-pxl-ajax-code'></div>
+<script type="rocketlazyloadscript" data-minify="1"   src="https://aihomeworkhelper.co/wp-content/cache/min/1/wp-content/plugins/gpt3-ai-content-generator/public/js/wpaicg-form-shortcode.js?ver=1714471897" id="wpaicg-gpt-form-js" defer></script>
+<script id="wpaicg-init-js-extra">
+var wpaicgParams = {"ajax_url":"https:\/\/aihomeworkhelper.co\/wp-admin\/admin-ajax.php","search_nonce":"5be9e3c556","logged_in":"0","languages":{"source":"Sources","no_result":"No result found","wrong":"Something went wrong","prompt_strength":"Please enter a valid prompt strength value between 0 and 1.","num_inference_steps":"Please enter a valid number of inference steps value between 1 and 500.","guidance_scale":"Please enter a valid guidance scale value between 1 and 20.","error_image":"Please select least one image for generate","save_image_success":"Save images to media successfully","select_all":"Select All","unselect":"Unselect","select_save_error":"Please select least one image to save","alternative":"Alternative Text","title":"Title","edit_image":"Edit Image","caption":"Caption","description":"Description","save":"Save","removed_pdf":"Your pdf session is cleared"}};
+</script>
+<script type="rocketlazyloadscript" data-minify="1"   src="https://aihomeworkhelper.co/wp-content/cache/min/1/wp-content/plugins/gpt3-ai-content-generator/public/js/wpaicg-init.js?ver=1714471897" id="wpaicg-init-js" defer></script>
+<script type="rocketlazyloadscript" data-minify="1"   src="https://aihomeworkhelper.co/wp-content/cache/min/1/wp-content/plugins/gpt3-ai-content-generator/public/js/wpaicg-chat.js?ver=1714471897" id="wpaicg-chat-script-js" defer></script>
+<script type="rocketlazyloadscript" id="rocket-browser-checker-js-after">
+"use strict";var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||!1,descriptor.configurable=!0,"value"in descriptor&&(descriptor.writable=!0),Object.defineProperty(target,descriptor.key,descriptor)}}return function(Constructor,protoProps,staticProps){return protoProps&&defineProperties(Constructor.prototype,protoProps),staticProps&&defineProperties(Constructor,staticProps),Constructor}}();function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor))throw new TypeError("Cannot call a class as a function")}var RocketBrowserCompatibilityChecker=function(){function RocketBrowserCompatibilityChecker(options){_classCallCheck(this,RocketBrowserCompatibilityChecker),this.passiveSupported=!1,this._checkPassiveOption(this),this.options=!!this.passiveSupported&&options}return _createClass(RocketBrowserCompatibilityChecker,[{key:"_checkPassiveOption",value:function(self){try{var options={get passive(){return!(self.passiveSupported=!0)}};window.addEventListener("test",null,options),window.removeEventListener("test",null,options)}catch(err){self.passiveSupported=!1}}},{key:"initRequestIdleCallback",value:function(){!1 in window&&(window.requestIdleCallback=function(cb){var start=Date.now();return setTimeout(function(){cb({didTimeout:!1,timeRemaining:function(){return Math.max(0,50-(Date.now()-start))}})},1)}),!1 in window&&(window.cancelIdleCallback=function(id){return clearTimeout(id)})}},{key:"isDataSaverModeOn",value:function(){return"connection"in navigator&&!0===navigator.connection.saveData}},{key:"supportsLinkPrefetch",value:function(){var elem=document.createElement("link");return elem.relList&&elem.relList.supports&&elem.relList.supports("prefetch")&&window.IntersectionObserver&&"isIntersecting"in IntersectionObserverEntry.prototype}},{key:"isSlowConnection",value:function(){return"connection"in navigator&&"effectiveType"in navigator.connection&&("2g"===navigator.connection.effectiveType||"slow-2g"===navigator.connection.effectiveType)}}]),RocketBrowserCompatibilityChecker}();
+</script>
+<script id="rocket-preload-links-js-extra">
+var RocketPreloadLinksConfig = {"excludeUris":"\/(.+\/)?feed\/?.+\/?|\/(?:.+\/)?embed\/|\/(index\\.php\/)?wp\\-json(\/.*|$)|\/wp-admin\/|\/logout\/|\/login\/","usesTrailingSlash":"1","imageExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif","fileExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif|php|pdf|html|htm","siteUrl":"https:\/\/aihomeworkhelper.co","onHoverDelay":"100","rateThrottle":"3"};
+</script>
+<script type="rocketlazyloadscript" id="rocket-preload-links-js-after">
+(function() {
+"use strict";var r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},e=function(){function i(e,t){for(var n=0;n<t.length;n++){var i=t[n];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(e,i.key,i)}}return function(e,t,n){return t&&i(e.prototype,t),n&&i(e,n),e}}();function i(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}var t=function(){function n(e,t){i(this,n),this.browser=e,this.config=t,this.options=this.browser.options,this.prefetched=new Set,this.eventTime=null,this.threshold=1111,this.numOnHover=0}return e(n,[{key:"init",value:function(){!this.browser.supportsLinkPrefetch()||this.browser.isDataSaverModeOn()||this.browser.isSlowConnection()||(this.regex={excludeUris:RegExp(this.config.excludeUris,"i"),images:RegExp(".("+this.config.imageExt+")$","i"),fileExt:RegExp(".("+this.config.fileExt+")$","i")},this._initListeners(this))}},{key:"_initListeners",value:function(e){-1<this.config.onHoverDelay&&document.addEventListener("mouseover",e.listener.bind(e),e.listenerOptions),document.addEventListener("mousedown",e.listener.bind(e),e.listenerOptions),document.addEventListener("touchstart",e.listener.bind(e),e.listenerOptions)}},{key:"listener",value:function(e){var t=e.target.closest("a"),n=this._prepareUrl(t);if(null!==n)switch(e.type){case"mousedown":case"touchstart":this._addPrefetchLink(n);break;case"mouseover":this._earlyPrefetch(t,n,"mouseout")}}},{key:"_earlyPrefetch",value:function(t,e,n){var i=this,r=setTimeout(function(){if(r=null,0===i.numOnHover)setTimeout(function(){return i.numOnHover=0},1e3);else if(i.numOnHover>i.config.rateThrottle)return;i.numOnHover++,i._addPrefetchLink(e)},this.config.onHoverDelay);t.addEventListener(n,function e(){t.removeEventListener(n,e,{passive:!0}),null!==r&&(clearTimeout(r),r=null)},{passive:!0})}},{key:"_addPrefetchLink",value:function(i){return this.prefetched.add(i.href),new Promise(function(e,t){var n=document.createElement("link");n.rel="prefetch",n.href=i.href,n.onload=e,n.onerror=t,document.head.appendChild(n)}).catch(function(){})}},{key:"_prepareUrl",value:function(e){if(null===e||"object"!==(void 0===e?"undefined":r(e))||!1 in e||-1===["http:","https:"].indexOf(e.protocol))return null;var t=e.href.substring(0,this.config.siteUrl.length),n=this._getPathname(e.href,t),i={original:e.href,protocol:e.protocol,origin:t,pathname:n,href:t+n};return this._isLinkOk(i)?i:null}},{key:"_getPathname",value:function(e,t){var n=t?e.substring(this.config.siteUrl.length):e;return n.startsWith("/")||(n="/"+n),this._shouldAddTrailingSlash(n)?n+"/":n}},{key:"_shouldAddTrailingSlash",value:function(e){return this.config.usesTrailingSlash&&!e.endsWith("/")&&!this.regex.fileExt.test(e)}},{key:"_isLinkOk",value:function(e){return null!==e&&"object"===(void 0===e?"undefined":r(e))&&(!this.prefetched.has(e.href)&&e.origin===this.config.siteUrl&&-1===e.href.indexOf("?")&&-1===e.href.indexOf("#")&&!this.regex.excludeUris.test(e.href)&&!this.regex.images.test(e.href))}}],[{key:"run",value:function(){"undefined"!=typeof RocketPreloadLinksConfig&&new n(new RocketBrowserCompatibilityChecker({capture:!0,passive:!0}),RocketPreloadLinksConfig).init()}}]),n}();t.run();
+}());
+</script>
+<script type="rocketlazyloadscript"   src="https://aihomeworkhelper.co/wp-includes/js/comment-reply.min.js?ver=6.5.2" id="comment-reply-js" async data-wp-strategy="async"></script>
+<script type="rocketlazyloadscript"   src="https://aihomeworkhelper.co/wp-includes/js/imagesloaded.min.js?ver=5.0.0" id="imagesloaded-js" defer></script>
+<script id="oceanwp-main-js-extra">
+var oceanwpLocalize = {"nonce":"abec3794d4","isRTL":"","menuSearchStyle":"disabled","mobileMenuSearchStyle":"disabled","sidrSource":null,"sidrDisplace":"","sidrSide":"right","sidrDropdownTarget":"icon","verticalHeaderTarget":"link","customScrollOffset":"0","customSelects":".woocommerce-ordering .orderby, #dropdown_product_cat, .widget_categories select, .widget_archive select, .single-product .variations_form .variations select","ajax_url":"https:\/\/aihomeworkhelper.co\/wp-admin\/admin-ajax.php","oe_mc_wpnonce":"02cfadd111"};
+</script>
+<script type="rocketlazyloadscript"   src="https://aihomeworkhelper.co/wp-content/themes/oceanwp/assets/js/theme.min.js?ver=3.5.3" id="oceanwp-main-js" defer></script>
+<script type="rocketlazyloadscript"   src="https://aihomeworkhelper.co/wp-content/themes/oceanwp/assets/js/drop-down-mobile-menu.min.js?ver=3.5.3" id="oceanwp-drop-down-mobile-menu-js" defer></script>
+<script type="rocketlazyloadscript"   src="https://aihomeworkhelper.co/wp-content/themes/oceanwp/assets/js/vendors/magnific-popup.min.js?ver=3.5.3" id="ow-magnific-popup-js" defer></script>
+<script type="rocketlazyloadscript"   src="https://aihomeworkhelper.co/wp-content/themes/oceanwp/assets/js/ow-lightbox.min.js?ver=3.5.3" id="oceanwp-lightbox-js" defer></script>
+<script type="rocketlazyloadscript"   src="https://aihomeworkhelper.co/wp-content/themes/oceanwp/assets/js/vendors/flickity.pkgd.min.js?ver=3.5.3" id="ow-flickity-js" defer></script>
+<script type="rocketlazyloadscript"   src="https://aihomeworkhelper.co/wp-content/themes/oceanwp/assets/js/ow-slider.min.js?ver=3.5.3" id="oceanwp-slider-js" defer></script>
+<script type="rocketlazyloadscript"   src="https://aihomeworkhelper.co/wp-content/themes/oceanwp/assets/js/scroll-effect.min.js?ver=3.5.3" id="oceanwp-scroll-effect-js" defer></script>
+<script type="rocketlazyloadscript"   src="https://aihomeworkhelper.co/wp-content/themes/oceanwp/assets/js/scroll-top.min.js?ver=3.5.3" id="oceanwp-scroll-top-js" defer></script>
+<script type="rocketlazyloadscript"   src="https://aihomeworkhelper.co/wp-content/themes/oceanwp/assets/js/select.min.js?ver=3.5.3" id="oceanwp-select-js" defer></script>
+<script type="rocketlazyloadscript"   src="https://aihomeworkhelper.co/wp-content/plugins/premium-addons-for-elementor/assets/frontend/min-js/premium-wrapper-link.min.js?ver=4.10.30" id="pa-wrapper-link-js" defer></script>
+<script type="rocketlazyloadscript" data-minify="1"   src="https://aihomeworkhelper.co/wp-content/cache/min/1/wp-content/plugins/header-footer-elementor/inc/js/frontend.js?ver=1714471897" id="hfe-frontend-js-js" defer></script>
+<script type="rocketlazyloadscript"   src="https://aihomeworkhelper.co/wp-content/plugins/elementor/assets/js/webpack.runtime.min.js?ver=3.21.3" id="elementor-webpack-runtime-js" defer></script>
+<script type="rocketlazyloadscript"   src="https://aihomeworkhelper.co/wp-content/plugins/elementor/assets/js/frontend-modules.min.js?ver=3.21.3" id="elementor-frontend-modules-js" defer></script>
+<script type="rocketlazyloadscript"   src="https://aihomeworkhelper.co/wp-content/plugins/elementor/assets/lib/waypoints/waypoints.min.js?ver=4.0.2" id="elementor-waypoints-js" defer></script>
+<script type="rocketlazyloadscript"   src="https://aihomeworkhelper.co/wp-includes/js/jquery/ui/core.min.js?ver=1.13.2" id="jquery-ui-core-js" defer></script>
+<script type="rocketlazyloadscript"   id="elementor-frontend-js-before">
+var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":false},"i18n":{"shareOnFacebook":"Share on Facebook","shareOnTwitter":"Share on Twitter","pinIt":"Pin it","download":"Download","downloadImage":"Download image","fullscreen":"Fullscreen","zoom":"Zoom","share":"Share","playVideo":"Play Video","previous":"Previous","next":"Next","close":"Close","a11yCarouselWrapperAriaLabel":"Carousel | Horizontal scrolling: Arrow Left & Right","a11yCarouselPrevSlideMessage":"Previous slide","a11yCarouselNextSlideMessage":"Next slide","a11yCarouselFirstSlideMessage":"This is the first slide","a11yCarouselLastSlideMessage":"This is the last slide","a11yCarouselPaginationBulletMessage":"Go to slide"},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":768,"lg":1025,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"Mobile Portrait","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Mobile Landscape","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablet Portrait","value":1024,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablet Landscape","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Laptop","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Widescreen","value":2400,"default_value":2400,"direction":"min","is_enabled":false}}},"version":"3.21.3","is_static":false,"experimentalFeatures":{"e_optimized_assets_loading":true,"e_optimized_css_loading":true,"e_font_icon_svg":true,"additional_custom_breakpoints":true,"container":true,"e_swiper_latest":true,"container_grid":true,"home_screen":true,"ai-layout":true,"landing-pages":true},"urls":{"assets":"https:\/\/aihomeworkhelper.co\/wp-content\/plugins\/elementor\/assets\/"},"swiperClass":"swiper","settings":{"page":[],"editorPreferences":[]},"kit":{"active_breakpoints":["viewport_mobile","viewport_tablet"],"global_image_lightbox":"yes","lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description"},"post":{"id":919,"title":"How%20to%20avoid%20plagiarism%20when%20using%20an%20AI%20essay%20writing%20tool%20-%20AI%20HomeWork%20Helper","excerpt":"","featuredImage":"https:\/\/aihomeworkhelper.co\/wp-content\/uploads\/2024\/03\/bcb2f7865a2420ca58f7073c7899808e.png"}};
+</script>
+<script type="rocketlazyloadscript"   src="https://aihomeworkhelper.co/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=3.21.3" id="elementor-frontend-js" defer></script>
+<script type="rocketlazyloadscript" data-rocket-type="text/javascript">(function (undefined) {let scriptOptions={"_localizedStrings":{"redirect_overlay_title":"Hold On","redirect_overlay_text":"You are being redirected to another page,<br>it may take a few seconds.","webview_notification_text":"The selected provider doesn't support embedded browsers!"},"_targetWindow":"prefer-popup","_redirectOverlay":"overlay-with-spinner-and-message","_unsupportedWebviewBehavior":""};
+/**
+ * Used when Cross-Origin-Opener-Policy blocked the access to the opener. We can't have a reference of the opened windows, so we should attempt to refresh only the windows that has opened popups.
+ */
+window._nslHasOpenedPopup = false;
+window._nslWebViewNoticeElement = null;
+
+window.NSLPopup = function (url, title, w, h) {
+    const userAgent = navigator.userAgent,
+        mobile = function () {
+            return /\b(iPhone|iP[ao]d)/.test(userAgent) ||
+                /\b(iP[ao]d)/.test(userAgent) ||
+                /Android/i.test(userAgent) ||
+                /Mobile/i.test(userAgent);
+        },
+        screenX = window.screenX !== undefined ? window.screenX : window.screenLeft,
+        screenY = window.screenY !== undefined ? window.screenY : window.screenTop,
+        outerWidth = window.outerWidth !== undefined ? window.outerWidth : document.documentElement.clientWidth,
+        outerHeight = window.outerHeight !== undefined ? window.outerHeight : document.documentElement.clientHeight - 22,
+        targetWidth = mobile() ? null : w,
+        targetHeight = mobile() ? null : h,
+        left = parseInt(screenX + (outerWidth - targetWidth) / 2, 10),
+        right = parseInt(screenY + (outerHeight - targetHeight) / 2.5, 10),
+        features = [];
+    if (targetWidth !== null) {
+        features.push('width=' + targetWidth);
+    }
+    if (targetHeight !== null) {
+        features.push('height=' + targetHeight);
+    }
+    features.push('left=' + left);
+    features.push('top=' + right);
+    features.push('scrollbars=1');
+
+    const newWindow = window.open(url, title, features.join(','));
+
+    if (window.focus) {
+        newWindow.focus();
+    }
+
+    window._nslHasOpenedPopup = true;
+
+    return newWindow;
+};
+
+let isWebView = null;
+
+function checkWebView() {
+    if (isWebView === null) {
+        function _detectOS(ua) {
+            if (/Android/.test(ua)) {
+                return "Android";
+            } else if (/iPhone|iPad|iPod/.test(ua)) {
+                return "iOS";
+            } else if (/Windows/.test(ua)) {
+                return "Windows";
+            } else if (/Mac OS X/.test(ua)) {
+                return "Mac";
+            } else if (/CrOS/.test(ua)) {
+                return "Chrome OS";
+            } else if (/Firefox/.test(ua)) {
+                return "Firefox OS";
+            }
+            return "";
+        }
+
+        function _detectBrowser(ua) {
+            let android = /Android/.test(ua);
+
+            if (/Opera Mini/.test(ua) || / OPR/.test(ua) || / OPT/.test(ua)) {
+                return "Opera";
+            } else if (/CriOS/.test(ua)) {
+                return "Chrome for iOS";
+            } else if (/Edge/.test(ua)) {
+                return "Edge";
+            } else if (android && /Silk\//.test(ua)) {
+                return "Silk";
+            } else if (/Chrome/.test(ua)) {
+                return "Chrome";
+            } else if (/Firefox/.test(ua)) {
+                return "Firefox";
+            } else if (android) {
+                return "AOSP";
+            } else if (/MSIE|Trident/.test(ua)) {
+                return "IE";
+            } else if (/Safari\//.test(ua)) {
+                return "Safari";
+            } else if (/AppleWebKit/.test(ua)) {
+                return "WebKit";
+            }
+            return "";
+        }
+
+        function _detectBrowserVersion(ua, browser) {
+            if (browser === "Opera") {
+                return /Opera Mini/.test(ua) ? _getVersion(ua, "Opera Mini/") :
+                    / OPR/.test(ua) ? _getVersion(ua, " OPR/") :
+                        _getVersion(ua, " OPT/");
+            } else if (browser === "Chrome for iOS") {
+                return _getVersion(ua, "CriOS/");
+            } else if (browser === "Edge") {
+                return _getVersion(ua, "Edge/");
+            } else if (browser === "Chrome") {
+                return _getVersion(ua, "Chrome/");
+            } else if (browser === "Firefox") {
+                return _getVersion(ua, "Firefox/");
+            } else if (browser === "Silk") {
+                return _getVersion(ua, "Silk/");
+            } else if (browser === "AOSP") {
+                return _getVersion(ua, "Version/");
+            } else if (browser === "IE") {
+                return /IEMobile/.test(ua) ? _getVersion(ua, "IEMobile/") :
+                    /MSIE/.test(ua) ? _getVersion(ua, "MSIE ")
+                        :
+                        _getVersion(ua, "rv:");
+            } else if (browser === "Safari") {
+                return _getVersion(ua, "Version/");
+            } else if (browser === "WebKit") {
+                return _getVersion(ua, "WebKit/");
+            }
+            return "0.0.0";
+        }
+
+        function _getVersion(ua, token) {
+            try {
+                return _normalizeSemverString(ua.split(token)[1].trim().split(/[^\w\.]/)[0]);
+            } catch (o_O) {
+            }
+            return "0.0.0";
+        }
+
+        function _normalizeSemverString(version) {
+            const ary = version.split(/[\._]/);
+            return (parseInt(ary[0], 10) || 0) + "." +
+                (parseInt(ary[1], 10) || 0) + "." +
+                (parseInt(ary[2], 10) || 0);
+        }
+
+        function _isWebView(ua, os, browser, version, options) {
+            switch (os + browser) {
+                case "iOSSafari":
+                    return false;
+                case "iOSWebKit":
+                    return _isWebView_iOS(options);
+                case "AndroidAOSP":
+                    return false;
+                case "AndroidChrome":
+                    return parseFloat(version) >= 42 ? /; wv/.test(ua) : /\d{2}\.0\.0/.test(version) ? true : _isWebView_Android(options);
+            }
+            return false;
+        }
+
+        function _isWebView_iOS(options) {
+            const document = (window["document"] || {});
+
+            if ("WEB_VIEW" in options) {
+                return options["WEB_VIEW"];
+            }
+            return !("fullscreenEnabled" in document || "webkitFullscreenEnabled" in document || false);
+        }
+
+        function _isWebView_Android(options) {
+            if ("WEB_VIEW" in options) {
+                return options["WEB_VIEW"];
+            }
+            return !("requestFileSystem" in window || "webkitRequestFileSystem" in window || false);
+        }
+
+        const options = {},
+            nav = window.navigator || {},
+            ua = nav.userAgent || "",
+            os = _detectOS(ua),
+            browser = _detectBrowser(ua),
+            browserVersion = _detectBrowserVersion(ua, browser);
+
+        isWebView = _isWebView(ua, os, browser, browserVersion, options);
+    }
+
+    return isWebView;
+}
+
+function isAllowedWebViewForUserAgent(provider) {
+    const facebookAllowedWebViews = [
+        'Instagram',
+        'FBAV',
+        'FBAN'
+    ];
+    let whitelist = [];
+
+    if (provider && provider === 'facebook') {
+        whitelist = facebookAllowedWebViews;
+    }
+
+    const nav = window.navigator || {},
+        ua = nav.userAgent || "";
+
+    if (whitelist.length && ua.match(new RegExp(whitelist.join('|')))) {
+        return true;
+    }
+
+    return false;
+}
+
+function disableButtonInWebView(providerButtonElement) {
+    if (providerButtonElement) {
+        providerButtonElement.classList.add('nsl-disabled-provider');
+        providerButtonElement.setAttribute('href', '#');
+
+        providerButtonElement.addEventListener('pointerdown', (e) => {
+            if (!window._nslWebViewNoticeElement) {
+                window._nslWebViewNoticeElement = document.createElement('div');
+                window._nslWebViewNoticeElement.id = "nsl-notices-fallback";
+                window._nslWebViewNoticeElement.addEventListener('pointerdown', function (e) {
+                    this.parentNode.removeChild(this);
+                    window._nslWebViewNoticeElement = null;
+                });
+                const webviewNoticeHTML = '<div class="error"><p>' + scriptOptions._localizedStrings.webview_notification_text + '</p></div>';
+
+                window._nslWebViewNoticeElement.insertAdjacentHTML("afterbegin", webviewNoticeHTML);
+                document.body.appendChild(window._nslWebViewNoticeElement);
+            }
+        });
+    }
+
+}
+
+window._nslDOMReady(function () {
+
+    window.nslRedirect = function (url) {
+        if (scriptOptions._redirectOverlay) {
+            const overlay = document.createElement('div');
+            overlay.id = "nsl-redirect-overlay";
+            let overlayHTML = '';
+            const overlayContainer = "<div id='nsl-redirect-overlay-container'>",
+                overlayContainerClose = "</div>",
+                overlaySpinner = "<div id='nsl-redirect-overlay-spinner'></div>",
+                overlayTitle = "<p id='nsl-redirect-overlay-title'>" + scriptOptions._localizedStrings.redirect_overlay_title + "</p>",
+                overlayText = "<p id='nsl-redirect-overlay-text'>" + scriptOptions._localizedStrings.redirect_overlay_text + "</p>";
+
+            switch (scriptOptions._redirectOverlay) {
+                case "overlay-only":
+                    break;
+                case "overlay-with-spinner":
+                    overlayHTML = overlayContainer + overlaySpinner + overlayContainerClose;
+                    break;
+                default:
+                    overlayHTML = overlayContainer + overlaySpinner + overlayTitle + overlayText + overlayContainerClose;
+                    break;
+            }
+
+            overlay.insertAdjacentHTML("afterbegin", overlayHTML);
+            document.body.appendChild(overlay);
+        }
+
+        window.location = url;
+    };
+
+    let targetWindow = scriptOptions._targetWindow || 'prefer-popup',
+        lastPopup = false;
+
+
+    const buttonLinks = document.querySelectorAll(' a[data-plugin="nsl"][data-action="connect"], a[data-plugin="nsl"][data-action="link"]');
+    buttonLinks.forEach(function (buttonLink) {
+        buttonLink.addEventListener('click', function (e) {
+            if (lastPopup && !lastPopup.closed) {
+                e.preventDefault();
+                lastPopup.focus();
+            } else {
+
+                let href = this.href,
+                    success = false;
+                if (href.indexOf('?') !== -1) {
+                    href += '&';
+                } else {
+                    href += '?';
+                }
+
+                const redirectTo = this.dataset.redirect;
+                if (redirectTo === 'current') {
+                    href += 'redirect=' + encodeURIComponent(window.location.href) + '&';
+                } else if (redirectTo && redirectTo !== '') {
+                    href += 'redirect=' + encodeURIComponent(redirectTo) + '&';
+                }
+
+                if (targetWindow !== 'prefer-same-window' && checkWebView()) {
+                    targetWindow = 'prefer-same-window';
+                }
+
+                if (targetWindow === 'prefer-popup') {
+                    lastPopup = NSLPopup(href + 'display=popup', 'nsl-social-connect', this.dataset.popupwidth, this.dataset.popupheight);
+                    if (lastPopup) {
+                        success = true;
+                        e.preventDefault();
+                    }
+                } else if (targetWindow === 'prefer-new-tab') {
+                    const newTab = window.open(href + 'display=popup', '_blank');
+                    if (newTab) {
+                        if (window.focus) {
+                            newTab.focus();
+                        }
+                        success = true;
+                        window._nslHasOpenedPopup = true;
+                        e.preventDefault();
+                    }
+                }
+
+                if (!success) {
+                    window.location = href;
+                    e.preventDefault();
+                }
+            }
+        });
+    });
+
+    let buttonCountChanged = false;
+
+    const googleLoginButtons = document.querySelectorAll(' a[data-plugin="nsl"][data-provider="google"]');
+    if (googleLoginButtons.length && checkWebView()) {
+        googleLoginButtons.forEach(function (googleLoginButton) {
+            if (scriptOptions._unsupportedWebviewBehavior === 'disable-button') {
+                disableButtonInWebView(googleLoginButton);
+            } else {
+                googleLoginButton.remove();
+                buttonCountChanged = true;
+            }
+        });
+    }
+
+    const facebookLoginButtons = document.querySelectorAll(' a[data-plugin="nsl"][data-provider="facebook"]');
+    if (facebookLoginButtons.length && checkWebView() && /Android/.test(window.navigator.userAgent) && !isAllowedWebViewForUserAgent('facebook')) {
+        facebookLoginButtons.forEach(function (facebookLoginButton) {
+            if (scriptOptions._unsupportedWebviewBehavior === 'disable-button') {
+                disableButtonInWebView(facebookLoginButton);
+            } else {
+                facebookLoginButton.remove();
+                buttonCountChanged = true;
+            }
+        });
+    }
+
+    const separators = document.querySelectorAll('div.nsl-separator');
+    if (buttonCountChanged && separators.length) {
+        separators.forEach(function (separator) {
+            const separatorParentNode = separator.parentNode;
+            if (separatorParentNode) {
+                const separatorButtonContainer = separatorParentNode.querySelector('div.nsl-container-buttons');
+                if (separatorButtonContainer && !separatorButtonContainer.hasChildNodes()) {
+                    separator.remove();
+                }
+            }
+        })
+    }
+});
+
+/**
+ * Cross-Origin-Opener-Policy blocked the access to the opener
+ */
+if (typeof BroadcastChannel === "function") {
+    const _nslLoginBroadCastChannel = new BroadcastChannel('nsl_login_broadcast_channel');
+    _nslLoginBroadCastChannel.onmessage = (event) => {
+        if (window?._nslHasOpenedPopup && event.data?.action === 'redirect') {
+            window._nslHasOpenedPopup = false;
+
+            const url = event.data?.href;
+            _nslLoginBroadCastChannel.close();
+            if (typeof window.nslRedirect === 'function') {
+                window.nslRedirect(url);
+            } else {
+                window.opener.location = url;
+            }
+        }
+    };
+}})();</script><script>window.lazyLoadOptions={elements_selector:"img[data-lazy-src],.rocket-lazyload,iframe[data-lazy-src]",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,callback_loaded:function(element){if(element.tagName==="IFRAME"&&element.dataset.rocketLazyload=="fitvidscompatible"){if(element.classList.contains("lazyloaded")){if(typeof window.jQuery!="undefined"){if(jQuery.fn.fitVids){jQuery(element).parent().fitVids()}}}}}};window.addEventListener('LazyLoad::Initialized',function(e){var lazyLoadInstance=e.detail.instance;if(window.MutationObserver){var observer=new MutationObserver(function(mutations){var image_count=0;var iframe_count=0;var rocketlazy_count=0;mutations.forEach(function(mutation){for(i=0;i<mutation.addedNodes.length;i++){if(typeof mutation.addedNodes[i].getElementsByTagName!=='function'){continue}
+if(typeof mutation.addedNodes[i].getElementsByClassName!=='function'){continue}
+images=mutation.addedNodes[i].getElementsByTagName('img');is_image=mutation.addedNodes[i].tagName=="IMG";iframes=mutation.addedNodes[i].getElementsByTagName('iframe');is_iframe=mutation.addedNodes[i].tagName=="IFRAME";rocket_lazy=mutation.addedNodes[i].getElementsByClassName('rocket-lazyload');image_count+=images.length;iframe_count+=iframes.length;rocketlazy_count+=rocket_lazy.length;if(is_image){image_count+=1}
+if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_count>0){lazyLoadInstance.update()}});var b=document.getElementsByTagName("body")[0];var config={childList:!0,subtree:!0};observer.observe(b,config)}},!1)</script><script data-no-minify="1" async src="https://aihomeworkhelper.co/wp-content/plugins/wp-rocket/assets/js/lazyload/16.1/lazyload.min.js"></script></body>
+</html>
+
+<!-- This website is like a Rocket, isn't it? Performance optimized by WP Rocket. Learn more: https://wp-rocket.me - Debug: cached@1714619713 -->
